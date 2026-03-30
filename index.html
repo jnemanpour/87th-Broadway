@@ -3,604 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>87th &amp; Broadway — SPA 6 Corridor Development Research</title>
-<style>
-:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--accent:#4f8cff;--accent2:#a78bfa;--accent3:#34d399;--warn:#f59e0b;--danger:#ef4444;--text:#e2e2e8;--muted:#8888a0;--highlight:#1a1a2e;}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Inter','SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;padding:0;}
-a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#0f172a 100%);padding:80px 40px;text-align:center;border-bottom:1px solid var(--border);}
-.hero h1{font-size:3rem;font-weight:800;background:linear-gradient(135deg,#4f8cff,#a78bfa,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px;}
-.hero .subtitle{font-size:1.3rem;color:var(--muted);margin-bottom:30px;}
-.hero .tag{display:inline-block;padding:6px 16px;border-radius:20px;font-size:.85rem;margin:4px;border:1px solid var(--border);background:rgba(79,140,255,.08);}
-.container{max-width:1400px;margin:0 auto;padding:30px 24px;}
-nav.toc{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 24px;overflow-x:auto;white-space:nowrap;}
-nav.toc a{display:inline-block;padding:8px 16px;margin:2px;border-radius:8px;font-size:.82rem;color:var(--muted);transition:all .2s;}
-nav.toc a:hover,nav.toc a.active{background:rgba(79,140,255,.12);color:var(--accent);text-decoration:none;}
-section{margin-bottom:48px;scroll-margin-top:60px;}
-h2{font-size:1.8rem;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--border);}
-h2 .emoji{margin-right:8px;}
-h3{font-size:1.2rem;font-weight:600;margin:20px 0 10px;color:var(--accent2);}
-h4{font-size:1rem;font-weight:600;margin:14px 0 8px;color:var(--accent3);}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0;}
-.stat{background:var(--highlight);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
-.stat .val{font-size:1.8rem;font-weight:800;color:var(--accent);}
-.stat .label{font-size:.8rem;color:var(--muted);margin-top:4px;}
-.stat.green .val{color:var(--accent3);}
-.stat.warn .val{color:var(--warn);}
-.stat.danger .val{color:var(--danger);}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;}
-thead th{background:var(--highlight);padding:10px 12px;text-align:left;font-weight:600;color:var(--accent);border-bottom:2px solid var(--border);}
-tbody td{padding:10px 12px;border-bottom:1px solid var(--border);}
-tbody tr:hover{background:rgba(79,140,255,.04);}
-.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:600;}
-.badge-green{background:rgba(52,211,153,.15);color:var(--accent3);border:1px solid rgba(52,211,153,.3);}
-.badge-blue{background:rgba(79,140,255,.15);color:var(--accent);border:1px solid rgba(79,140,255,.3);}
-.badge-warn{background:rgba(245,158,11,.15);color:var(--warn);border:1px solid rgba(245,158,11,.3);}
-.badge-danger{background:rgba(239,68,68,.15);color:var(--danger);border:1px solid rgba(239,68,68,.3);}
-.alert{padding:16px 20px;border-radius:10px;margin:16px 0;font-size:.9rem;}
-.alert-warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);color:var(--warn);}
-.alert-danger{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:var(--danger);}
-.alert-info{background:rgba(79,140,255,.08);border:1px solid rgba(79,140,255,.25);color:var(--accent);}
-.alert-success{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--accent3);}
-ul,ol{margin:8px 0 8px 24px;}li{margin:4px 0;}
-.map-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:16px 0;}
-.map-link{display:block;padding:16px;background:var(--highlight);border:1px solid var(--border);border-radius:10px;transition:all .2s;}
-.map-link:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none;}
-.map-link .title{font-weight:600;color:var(--text);margin-bottom:4px;}
-.map-link .desc{font-size:.82rem;color:var(--muted);}
-.timeline{border-left:3px solid var(--accent);padding-left:24px;margin:16px 0;}
-.timeline .item{position:relative;margin-bottom:20px;}
-.timeline .item::before{content:'';position:absolute;left:-31px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);}
-.timeline .item.urgent::before{background:var(--danger);}
-.timeline .item.done::before{background:var(--accent3);}
-.timeline .date{font-size:.8rem;color:var(--muted);font-weight:600;}
-.stack-bar{display:flex;height:36px;border-radius:8px;overflow:hidden;margin:12px 0;}
-.stack-bar div{display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:#fff;}
-.footer{text-align:center;padding:40px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:60px;}
-@media(max-width:768px){.hero h1{font-size:2rem;}.hero{padding:40px 20px;}.container{padding:16px;}h2{font-size:1.4rem;}.stat .val{font-size:1.4rem;}}
-details{margin:8px 0;}details summary{cursor:pointer;font-weight:600;padding:8px 0;color:var(--accent2);}details summary:hover{color:var(--accent);}
-</style>
+<title>87th &amp; Broadway — Parcel Map</title>
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
 </head>
 <body>
 
-<div class="hero">
-  <h1>87th &amp; Broadway</h1>
-  <div class="subtitle">SPA 6 Corridor Development Research — The Neman Group</div>
-  <div>
-    <span class="tag">SPA 6</span>
-    <span class="tag">Broadway-Manchester</span>
-    <span class="tag">City of Vernon</span>
-    <span class="tag">15 Parcels — $4.8M</span>
-    <span class="tag">8701 S Broadway</span>
-    <span class="tag">Opportunity Zone</span>
-  </div>
-</div>
+<header>
+  <h1>87th &amp; Broadway — Acquisition Research</h1>
+  <p>Kleinman Trust &middot; 12 Parcels &middot; $4.8M Proposal &middot; ~90,291 sf land &middot; The Neman Group</p>
+  <nav class="tabs">
+    <a href="index.html" class="tab active">Parcel Map</a>
+    <a href="comps.html" class="tab">Commercial Comps</a>
+    <a href="grants.html" class="tab">Grants &amp; Incentives</a>
+    <a href="contacts.html" class="tab">Contacts &amp; Outreach</a>
+    <a href="scenarios.html" class="tab">Development Scenarios</a>
+  </nav>
+</header>
 
-<nav class="toc" id="toc">
-  <a href="#overview">Overview</a>
-  <a href="#properties">Properties</a>
-  <a href="#deal">Deal Analysis</a>
-  <a href="#spa6">SPA 6 Corridor</a>
-  <a href="#buildable">What You Can Build</a>
-  <a href="#funding">Funding &amp; Incentives</a>
-  <a href="#capital-stack">Capital Stack</a>
-  <a href="#recent-builds">Recent Builds</a>
-  <a href="#contacts">Contact Directory</a>
-  <a href="#maps">Maps</a>
-  <a href="#risks">Risks &amp; Due Diligence</a>
-  <a href="#timeline">Timeline</a>
-</nav>
+<main>
+<div id="map"></div>
 
-<div class="container">
-
-<!-- ============ OVERVIEW ============ -->
-<section id="overview">
-<h2>Executive Overview</h2>
-<div class="card">
-<p>This is an <strong>SPA 6 / Broadway-Manchester corridor play</strong> spanning two jurisdictions — City of LA and City of Vernon. The corridor is receiving <strong>$200M+ in committed public investment</strong>. With aggressive incentive stacking, <strong>60-80% of total project costs</strong> can be funded through public money, leaving owner equity at <strong>5-15%</strong>.</p>
-</div>
-<div class="stat-grid">
-  <div class="stat green"><div class="val">$200M+</div><div class="label">Public Investment in Corridor</div></div>
-  <div class="stat"><div class="val">$4.8M</div><div class="label">Vernon Acquisition Price</div></div>
-  <div class="stat green"><div class="val">62-76%</div><div class="label">Below Market Pricing</div></div>
-  <div class="stat"><div class="val">15</div><div class="label">Parcels Under Offer</div></div>
-  <div class="stat green"><div class="val">196K SF</div><div class="label">Max Buildable (Vernon)</div></div>
-  <div class="stat warn"><div class="val">60-80%</div><div class="label">Achievable Public Funding</div></div>
-</div>
-</section>
-
-<!-- ============ PROPERTIES ============ -->
-<section id="properties">
-<h2>Your Properties</h2>
-<div class="card-grid">
-<div class="card">
-  <h3>8701 S Broadway <span class="badge badge-green">OWNED</span></h3>
+<div class="table-wrap">
+  <div class="table-title">All Parcels</div>
   <table>
-    <tr><td><strong>APN</strong></td><td>6040-019-001</td></tr>
-    <tr><td><strong>Jurisdiction</strong></td><td>City of Los Angeles (CD8)</td></tr>
-    <tr><td><strong>Zoning</strong></td><td>C2-1VL-CPIO</td></tr>
-    <tr><td><strong>Lot Size</strong></td><td>15,844 SF (~0.36 acres)</td></tr>
-    <tr><td><strong>Building</strong></td><td>13,965 SF, single story, built 1993</td></tr>
-    <tr><td><strong>Entity</strong></td><td>LA Harvard Property LLC</td></tr>
-    <tr><td><strong>Purchased</strong></td><td>Nov 2020 — $2,030,000</td></tr>
-    <tr><td><strong>Assessed</strong></td><td>$2,197,335 (Land: $1.3M / Imp: $898K)</td></tr>
-    <tr><td><strong>Current Use</strong></td><td>Former Broadway Swapmeet / Mini Mall</td></tr>
-    <tr><td><strong>Overlay</strong></td><td>Broadway/Manchester Redevelopment (active thru Dec 2027)</td></tr>
+    <thead>
+      <tr><th>APN</th><th>Address</th><th>Status</th><th>Type</th><th>Land SF</th><th>Bldg SF</th><th>Year</th><th>Lot</th><th>Assessed</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040019001" target="_blank">6040-019-001</a></td>
+        <td>8701 S Broadway</td><td><span class="b owned">You Own</span></td><td>Commercial</td><td>15,750</td><td>13,965</td><td>1993</td><td>105x150</td><td class="mono">$2,197,335</td><td>Allen Tract — anchor property</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014002" target="_blank">6040-014-002</a></td>
+        <td>S Broadway (Boxing Gym)</td><td><span class="b owned">You Own</span></td><td>Commercial</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="mono">—</td><td>East end of block — boxing gym + lot</td>
+      </tr>
+      <tr class="sep">
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014008" target="_blank">6040-014-008</a></td>
+        <td>— (no situs)</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>15,000</td><td>—</td><td>—</td><td>100x150</td><td class="mono">$206,832</td><td>Lots 8-9, corner — next to 8701</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014007" target="_blank">6040-014-007</a></td>
+        <td>— (no situs)</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>7,500</td><td>—</td><td>—</td><td>50x150</td><td class="mono">$191,199</td><td>Lot 7</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014006" target="_blank">6040-014-006</a></td>
+        <td>8623 S Broadway</td><td><span class="b improved">Purchasing</span></td><td>Restaurant</td><td>7,500</td><td>22,500</td><td>1927</td><td>50x150</td><td class="mono">$127,418</td><td>Lot 6 — largest building in deal</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014005" target="_blank">6040-014-005</a></td>
+        <td>8617 S Broadway</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>7,050</td><td>—</td><td>—</td><td>47x150</td><td class="mono">$95,504</td><td>Lot 5 (part)</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014004" target="_blank">6040-014-004</a></td>
+        <td>8615 S Broadway</td><td><span class="b improved">Purchasing</span></td><td>Office</td><td>3,750</td><td>3,699</td><td>1948</td><td>25x150</td><td class="mono">$132,864</td><td>Lots 4-5 (part)</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040014003" target="_blank">6040-014-003</a></td>
+        <td>8613 S Broadway</td><td><span class="b improved">Purchasing</span></td><td>Store</td><td>—</td><td>3,096</td><td>1910</td><td>—</td><td class="mono">$112,218</td><td>Lot 4 (part) — next to boxing gym</td>
+      </tr>
+      <tr class="sep">
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040019002" target="_blank">6040-019-002</a></td>
+        <td>8713 S Broadway</td><td><span class="b improved">Purchasing</span></td><td>Store</td><td>15,750</td><td>13,020</td><td>1936</td><td>105x150</td><td class="mono">$180,281</td><td>Adjacent south of 8701</td>
+      </tr>
+      <tr class="sep">
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040015016" target="_blank">6040-015-016</a></td>
+        <td>8680 S Broadway</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>5,535</td><td>—</td><td>—</td><td>41x135</td><td class="mono">$41,397</td><td>East side, corner at 87th</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040015029" target="_blank">6040-015-029</a></td>
+        <td>8656 S Broadway</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>6,075</td><td>—</td><td>—</td><td>45x135</td><td class="mono">$40,174</td><td>East side</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040015012" target="_blank">6040-015-012</a></td>
+        <td>8650 S Broadway</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>6,750</td><td>—</td><td>—</td><td>50x135</td><td class="mono">$48,756</td><td>East side, corner</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040015014" target="_blank">6040-015-014</a></td>
+        <td>8660 S Broadway</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>5,670</td><td>—</td><td>—</td><td>42x135</td><td class="mono">$46,931</td><td>East side</td>
+      </tr>
+      <tr>
+        <td><a class="apn" href="https://portal.assessor.lacounty.gov/parceldetail/6040015015" target="_blank">6040-015-015</a></td>
+        <td>8666 S Broadway</td><td><span class="b vacant">Purchasing</span></td><td>Vacant</td><td>5,400</td><td>—</td><td>—</td><td>40x135</td><td class="mono">$38,209</td><td>East side</td>
+      </tr>
+      <tr class="sep">
+        <td><span class="mono" style="color:#7c3aed;font-size:.76rem">6040-015-900/901</span></td>
+        <td>S of W 86th Pl</td><td><span class="b potential">Potential</span></td><td>City Lot</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="mono">—</td><td>Lot 700 — LA City parking lot</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="4">12 Purchasing + 2 Owned + 1 Potential</td><td>~90,291</td><td>42,315</td><td></td><td></td><td class="mono">$4,800,000</td><td>Purchase price for 12 parcels</td></tr>
+    </tfoot>
   </table>
 </div>
-<div class="card">
-  <h3>Vernon Parcels (15) <span class="badge badge-blue">UNDER OFFER</span></h3>
-  <table>
-    <tr><td><strong>APNs</strong></td><td>6040-026-019/020, 6040-014-003/004/005/006/008, 6040-104-007, 6040-015-012/014/015/016/029, 6040-019-002</td></tr>
-    <tr><td><strong>Jurisdiction</strong></td><td>City of Vernon</td></tr>
-    <tr><td><strong>Zoning</strong></td><td>General Industry (I)</td></tr>
-    <tr><td><strong>Land</strong></td><td>~98,061 SF (~2.25 acres)</td></tr>
-    <tr><td><strong>Building</strong></td><td>~42,315 SF</td></tr>
-    <tr><td><strong>Seller</strong></td><td>Alan N. Kleinman Trust</td></tr>
-    <tr><td><strong>Price</strong></td><td>$4,800,000</td></tr>
-    <tr><td><strong>Deposit</strong></td><td>$240,000 (5%)</td></tr>
-    <tr><td><strong>Contingency</strong></td><td>15 days</td></tr>
-    <tr><td><strong>Close</strong></td><td>30 days after contingency removal</td></tr>
-    <tr><td><strong>Condition</strong></td><td>As-Is</td></tr>
-    <tr><td><strong>Broker</strong></td><td>Lee &amp; Associates — Miles Solomon (DUAL AGENCY)</td></tr>
-  </table>
-</div>
-</div>
-<div class="card">
-  <h3>Lot 700 <span class="badge badge-warn">INTEREST STAGE</span></h3>
-  <p>Behind the vacant lot on the east side of the street near 87th &amp; Broadway. Needs identification via LA County Assessor parcel map or tract map lookup. Nearby parcels of interest include 8770 S Broadway (APN 6040-020-002, east side) and the Manchester Urban Homes site at 8721-8765 S Broadway.</p>
-</div>
-</section>
-
-<!-- ============ DEAL ANALYSIS ============ -->
-<section id="deal">
-<h2>Deal Analysis — Vernon Parcels</h2>
-<div class="stat-grid">
-  <div class="stat green"><div class="val">$49/SF</div><div class="label">Land Price (Market: $200+)</div></div>
-  <div class="stat green"><div class="val">$113/SF</div><div class="label">Building Price (Market: $297-313)</div></div>
-  <div class="stat green"><div class="val">$2.13M/ac</div><div class="label">Per Acre (Data Centers: $9M+)</div></div>
-</div>
-<div class="card">
-<h3>Comparable Transactions</h3>
-<table>
-  <thead><tr><th>Property</th><th>Size</th><th>Price</th><th>$/SF</th><th>Notes</th></tr></thead>
-  <tbody>
-    <tr><td>Bridge Point Vernon II</td><td>209K SF</td><td>—</td><td>~$297 ask</td><td>2024, 36' clear</td></tr>
-    <tr><td>2334-2344 E 38th St, Vernon</td><td>16K SF</td><td>$4-4.3M</td><td>$250-265</td><td>1939 warehouse</td></tr>
-    <tr><td>1925-1936 E Vernon Ave</td><td>368K SF / 7 ac</td><td>$61.5M</td><td>$167/bldg</td><td>CoreSite data center site</td></tr>
-    <tr><td>4400 Pacific Blvd</td><td>253K SF / 5.4 ac</td><td>$48.8M</td><td>$208</td><td>Digital Realty data center</td></tr>
-    <tr><td>Goodman LAX01 site</td><td>5.6 ac</td><td>$206M</td><td>$842/SF land</td><td>Data center premium</td></tr>
-    <tr><td><strong>YOUR DEAL</strong></td><td><strong>42K SF / 2.25 ac</strong></td><td><strong>$4.8M</strong></td><td><strong>$113/bldg, $49/land</strong></td><td><strong>62-76% below market</strong></td></tr>
-  </tbody>
-</table>
-</div>
-<div class="alert alert-warn">The steep discount likely reflects: building condition/age, environmental risk, 15-parcel complexity, trust sale motivation, and As-Is terms. Thorough due diligence is critical.</div>
-</section>
-
-<!-- ============ SPA 6 ============ -->
-<section id="spa6">
-<h2>SPA 6 / Broadway-Manchester Corridor</h2>
-<div class="card">
-<h3>Why SPA 6 Matters</h3>
-<p>SPA 6 (South LA) has the highest hardship levels in LA County. This unlocks virtually every equity-based funding stream:</p>
-<table>
-  <thead><tr><th>Designation</th><th>What It Unlocks</th><th>Status</th></tr></thead>
-  <tbody>
-    <tr><td>SPA 6</td><td>County health/social services priority</td><td><span class="badge badge-green">Active</span></td></tr>
-    <tr><td>CalEnviroScreen Top 5%</td><td>CA Climate Investments, SB 535 DAC funding</td><td><span class="badge badge-green">Active</span></td></tr>
-    <tr><td>Promise Zone (SLATE-Z)</td><td>Federal grant preference; $310M+ secured</td><td><span class="badge badge-blue">Legacy</span></td></tr>
-    <tr><td>Opportunity Zones</td><td>Capital gains deferral/exclusion</td><td><span class="badge badge-warn">Verify Tracts</span></td></tr>
-    <tr><td>TOC Tier</td><td>20-80% density bonus</td><td><span class="badge badge-green">Active</span></td></tr>
-    <tr><td>TCC Eligible</td><td>Prop 4 Round 6 grants</td><td><span class="badge badge-green">Active</span></td></tr>
-    <tr><td>High Injury Network</td><td>Federal/state safety funding</td><td><span class="badge badge-green">Active</span></td></tr>
-    <tr><td>Redevelopment Plan</td><td>Design standards, possible incentives</td><td><span class="badge badge-warn">Thru Dec 2027</span></td></tr>
-    <tr><td>SE Gateway Light Rail</td><td>Future transit through Vernon</td><td><span class="badge badge-blue">~2035</span></td></tr>
-  </tbody>
-</table>
-</div>
-<div class="card">
-<h3>$200M+ Committed Public Investment</h3>
-<table>
-  <thead><tr><th>Project</th><th>Budget</th><th>Status</th></tr></thead>
-  <tbody>
-    <tr><td>Broadway-Manchester ATP (2.8 miles)</td><td>$85M</td><td>Under construction (2024-2027)</td></tr>
-    <tr><td>Metro Broadway Bus-Only Lanes (2028 Olympics)</td><td>$139M</td><td>Federal grant secured</td></tr>
-    <tr><td>Manchester Urban Homes (122 units, your neighbor)</td><td>$84M</td><td>Broke ground Sep 2023</td></tr>
-    <tr><td>South LA Eco-Lab TCC Grant</td><td>$60M</td><td>Active</td></tr>
-    <tr><td>SLATE-Z Promise Zone (legacy)</td><td>$310M+</td><td>67+ grants secured</td></tr>
-    <tr><td>Southeast Gateway Light Rail (Vernon)</td><td>$231M+ state</td><td>Engineering/design</td></tr>
-  </tbody>
-</table>
-</div>
-<div class="card">
-<h3>SPA 6 Demographics</h3>
-<div class="stat-grid">
-  <div class="stat danger"><div class="val">28%</div><div class="label">Below Poverty Level</div></div>
-  <div class="stat danger"><div class="val">38%</div><div class="label">Uninsured Adults</div></div>
-  <div class="stat"><div class="val">69.7%</div><div class="label">Latino Population</div></div>
-  <div class="stat"><div class="val">22.1%</div><div class="label">Black Population</div></div>
-</div>
-<p style="margin-top:12px;color:var(--muted);">These indicators strengthen applications for every equity-based funding program. SPA 6 ranks in the top 5% of disadvantaged census tracts statewide under CalEnviroScreen.</p>
-</div>
-</section>
-
-<!-- ============ WHAT YOU CAN BUILD ============ -->
-<section id="buildable">
-<h2>What You Can Build</h2>
-<div class="card-grid">
-<div class="card">
-  <h3>Vernon Parcels — General Industry Zone</h3>
-  <div class="stat-grid">
-    <div class="stat green"><div class="val">2:1 FAR</div><div class="label">Floor Area Ratio</div></div>
-    <div class="stat green"><div class="val">196K SF</div><div class="label">Max Buildable</div></div>
-    <div class="stat"><div class="val">No Cap</div><div class="label">Height Limit</div></div>
-  </div>
-  <h4>By Right (No CUP Needed)</h4>
-  <ul>
-    <li>Warehouse / Distribution</li>
-    <li>Manufacturing</li>
-    <li>Data Center (Vernon's power is 50% cheaper than SCE)</li>
-    <li>Cold Storage</li>
-    <li>Food Processing</li>
-  </ul>
-  <h4>With CUP or Overlay</h4>
-  <ul>
-    <li>Creative Office (C-1/C-2 overlay)</li>
-    <li>Retail (C-1/C-2 overlay)</li>
-    <li>Residential / Live-Work (requires MU-N/MU-S rezoning or H Overlay)</li>
-  </ul>
-</div>
-<div class="card">
-  <h3>8701 S Broadway — C2-1VL-CPIO</h3>
-  <div class="stat-grid">
-    <div class="stat"><div class="val">3 stories</div><div class="label">Base Height (45 ft)</div></div>
-    <div class="stat green"><div class="val">50-70+</div><div class="label">Units w/ TOC Bonus</div></div>
-  </div>
-  <h4>Permitted Uses</h4>
-  <ul>
-    <li>Commercial + Residential (C2 allows both)</li>
-    <li>Mixed-use development</li>
-    <li>Retail / Restaurant / Office</li>
-  </ul>
-  <h4>With Incentive Programs</h4>
-  <ul>
-    <li><strong>TOC:</strong> Up to 80% density increase, reduced parking, height bonus</li>
-    <li><strong>ED1:</strong> 100% affordable = ministerial (fast-track) approval</li>
-    <li><strong>State Density Bonus:</strong> Additional height/reduced setbacks for affordable</li>
-  </ul>
-</div>
-</div>
-</section>
-
-<!-- ============ FUNDING ============ -->
-<section id="funding">
-<h2>Funding &amp; Tax Incentives</h2>
-<div class="alert alert-success"><strong>Bottom Line:</strong> With aggressive stacking, 60-80% of total project costs can come from public money, tax credits, subsidized debt, and non-recourse financing. Owner equity: potentially 5-15% of total project cost.</div>
-
-<div class="card">
-<h3>22 Identified Funding Programs</h3>
-<table>
-  <thead><tr><th>Program</th><th>Type</th><th>Est. Value</th><th>Status</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Opportunity Zones</strong></td><td>Tax — capital gains exclusion</td><td>$500K-$5M+</td><td><span class="badge badge-warn">Verify tracts</span></td></tr>
-    <tr><td><strong>New Markets Tax Credits</strong></td><td>Tax — 39% credit over 7yr</td><td>$3-6M</td><td><span class="badge badge-danger">Act fast (DOGE risk)</span></td></tr>
-    <tr><td><strong>SBA 504 Loan</strong></td><td>Debt — below market</td><td>$1.9-5.5M</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>C-PACE Financing</strong></td><td>Non-recourse debt</td><td>$3-5M</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>IRA Solar/Energy ITC</strong></td><td>Tax — up to 50%</td><td>$450K-$750K</td><td><span class="badge badge-danger">Begin by Jul 4, 2026</span></td></tr>
-    <tr><td><strong>California Competes</strong></td><td>Tax — state credit</td><td>$200K-$1M+</td><td><span class="badge badge-danger">Apply by Mar 16</span></td></tr>
-    <tr><td><strong>EPA Brownfields</strong></td><td>Grant</td><td>$500K-$2M</td><td><span class="badge badge-blue">FY2027 opens fall</span></td></tr>
-    <tr><td><strong>EDA Grants</strong></td><td>Grant — infrastructure</td><td>$500K-$3M</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>EB-5 (SELARC)</strong></td><td>Equity — investor capital</td><td>$4-8M</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>HUD Section 108/CDBG</strong></td><td>Loan — thru local gov</td><td>Varies</td><td><span class="badge badge-green">Rolling</span></td></tr>
-    <tr><td><strong>DTSC Voluntary Cleanup</strong></td><td>Liability protection</td><td>Invaluable</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>CA IBank Loans/Bonds</strong></td><td>Debt — infrastructure</td><td>$1-65M</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>Vernon Utility Incentives</strong></td><td>Rebates + savings</td><td>$100K-$200K</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>Vernon EV Charger Rebates</strong></td><td>Rebate — up to $100K</td><td>$25-100K</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>WOTC (Workforce)</strong></td><td>Tax — per employee</td><td>$29K+/yr</td><td><span class="badge badge-warn">Reauth expected</span></td></tr>
-    <tr><td><strong>CA New Employment Credit</strong></td><td>Tax — 35% of wages</td><td>$560K/yr</td><td><span class="badge badge-warn">Verify status</span></td></tr>
-    <tr><td><strong>Historic Tax Credits</strong></td><td>Tax — 20% federal + state</td><td>$1-2.25M</td><td><span class="badge badge-blue">If buildings qualify</span></td></tr>
-    <tr><td><strong>179D Energy Deduction</strong></td><td>Tax — per SF</td><td>Varies</td><td><span class="badge badge-danger">Begin by Jun 30, 2026</span></td></tr>
-    <tr><td><strong>Mfg Sales Tax Exemption</strong></td><td>Tax — 3.94% exempt</td><td>Ongoing</td><td><span class="badge badge-green">Available</span></td></tr>
-    <tr><td><strong>TCC (Prop 4) Grants</strong></td><td>Grant — climate/equity</td><td>$5-35M</td><td><span class="badge badge-blue">Round 6 coming</span></td></tr>
-    <tr><td><strong>EIFD (Tax Increment)</strong></td><td>Public finance tool</td><td>Long-term</td><td><span class="badge badge-blue">Requires Vernon action</span></td></tr>
-    <tr><td><strong>TOC Density Bonus</strong></td><td>Entitlement — 80% increase</td><td>Value-add</td><td><span class="badge badge-green">Available</span></td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<!-- ============ CAPITAL STACK ============ -->
-<section id="capital-stack">
-<h2>Capital Stack Model — $20M Development</h2>
-<div class="stack-bar">
-  <div style="width:24%;background:#3b82f6">SBA Bank 24%</div>
-  <div style="width:10%;background:#6366f1">SBA CDC 10%</div>
-  <div style="width:18%;background:#8b5cf6">NMTC 18%</div>
-  <div style="width:18%;background:#a78bfa">C-PACE 18%</div>
-  <div style="width:13%;background:#34d399">OZ Equity 13%</div>
-  <div style="width:5%;background:#fbbf24">Credits 5%</div>
-  <div style="width:3%;background:#f97316">Grants 3%</div>
-  <div style="width:9%;background:#ef4444">Owner 9%</div>
-</div>
-<div class="card">
-<table>
-  <thead><tr><th>Source</th><th>%</th><th>Amount</th><th>Type</th></tr></thead>
-  <tbody>
-    <tr><td>SBA 504 (Bank)</td><td>24%</td><td>$4.8M</td><td>Senior debt</td></tr>
-    <tr><td>SBA 504 (CDC)</td><td>10%</td><td>$1.92M</td><td>Subordinate debt</td></tr>
-    <tr><td>NMTC subsidy</td><td>15-20%</td><td>$3-4M</td><td>Equity-like subsidy</td></tr>
-    <tr><td>C-PACE</td><td>15-20%</td><td>$3-4M</td><td>Non-recourse assessment</td></tr>
-    <tr><td>Opportunity Zone equity</td><td>10-15%</td><td>$2-3M</td><td>QOF investment</td></tr>
-    <tr><td>IRA/Solar credits</td><td>3-5%</td><td>$600K-$1M</td><td>Tax credit</td></tr>
-    <tr><td>Cal Competes + other</td><td>2-5%</td><td>$400K-$1M</td><td>State tax credit</td></tr>
-    <tr><td>EPA/State grants</td><td>2-3%</td><td>$400K-$600K</td><td>Grant</td></tr>
-    <tr style="background:rgba(239,68,68,.08)"><td><strong>Owner Equity</strong></td><td><strong>5-10%</strong></td><td><strong>$1-2M</strong></td><td><strong>Cash</strong></td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<!-- ============ RECENT BUILDS ============ -->
-<section id="recent-builds">
-<h2>Recent Builds &amp; Project Teams</h2>
-<div class="card">
-<h3>Vernon Data Centers</h3>
-<table>
-  <thead><tr><th>Project</th><th>Size</th><th>Developer</th><th>GC</th><th>Price/Cost</th></tr></thead>
-  <tbody>
-    <tr><td>Prime LAX01</td><td>242K SF, 33MW</td><td>Prime Data Centers</td><td>Clune Construction</td><td>N/A</td></tr>
-    <tr><td>Goodman LAX01</td><td>263K SF, 50MW</td><td>Goodman Group</td><td>Whiting-Turner</td><td>$206M (land)</td></tr>
-    <tr><td>CoreSite Vernon</td><td>368K SF, 7 ac</td><td>CoreSite / American Tower</td><td>TBD</td><td>$61.5M</td></tr>
-    <tr><td>Digital Realty</td><td>253K SF, 5.4 ac</td><td>Digital Realty</td><td>TBD</td><td>$48.8M</td></tr>
-  </tbody>
-</table>
-</div>
-<div class="card">
-<h3>Vernon Industrial (Spec)</h3>
-<table>
-  <thead><tr><th>Project</th><th>Size</th><th>Developer</th><th>Architect</th><th>GC</th></tr></thead>
-  <tbody>
-    <tr><td>Bridge Point Vernon I</td><td>117K SF</td><td>Bridge Industrial</td><td>Herdman Architecture</td><td>Arch-Con</td></tr>
-    <tr><td>Bridge Point Vernon II</td><td>209K SF</td><td>Bridge Industrial</td><td>Herdman Architecture</td><td>Millie &amp; Severson</td></tr>
-    <tr><td>Bridge Point Vernon III</td><td>185K SF</td><td>Bridge Industrial</td><td>Herdman Architecture</td><td>Millie &amp; Severson</td></tr>
-    <tr><td>Soto Industrial</td><td>119K SF</td><td>Pacific Industrial</td><td>—</td><td>Fullmer Construction</td></tr>
-    <tr><td>Regent Cold Storage</td><td>67K SF</td><td>Regent</td><td>—</td><td>ARCO National</td></tr>
-    <tr><td>Alpine Foods</td><td>117K SF</td><td>Alpine Food</td><td>—</td><td>ARCO National</td></tr>
-  </tbody>
-</table>
-</div>
-<div class="card">
-<h3>Broadway-Manchester Corridor</h3>
-<table>
-  <thead><tr><th>Project</th><th>Size</th><th>Developer</th><th>Architect</th><th>Budget</th></tr></thead>
-  <tbody>
-    <tr><td>Manchester Urban Homes (87th-88th &amp; Broadway)</td><td>122 units</td><td>Abode Communities + NHS</td><td>John V. Mutlow</td><td>$84M</td></tr>
-    <tr><td>9402 S Broadway</td><td>180 units + 41K SF commercial</td><td>94B LLC (Datum/Bollenbach)</td><td>Morphosis</td><td>—</td></tr>
-    <tr><td>Holy Trinity Apts (9704 S Broadway)</td><td>67 units</td><td>Logos Faith Dev</td><td>—</td><td>—</td></tr>
-    <tr><td>Metro @ Florence (7220 Maie Ave)</td><td>160 units, 7 stories</td><td>Meta Housing Corp</td><td>—</td><td>—</td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<!-- ============ CONTACTS ============ -->
-<section id="contacts">
-<h2>Contact Directory</h2>
-
-<div class="card">
-<h3>City of Vernon</h3>
-<table>
-  <thead><tr><th>Name</th><th>Title</th><th>Contact</th></tr></thead>
-  <tbody>
-    <tr><td>Leticia Lopez</td><td>Mayor</td><td>(323) 583-8811</td></tr>
-    <tr><td>Brian Saeki</td><td>City Administrator</td><td>(323) 583-8811</td></tr>
-    <tr><td>Todd Dusenberry</td><td>VPU General Manager</td><td>(323) 583-8811 x579</td></tr>
-    <tr><td>Zaynah N. Moussa</td><td>City Attorney</td><td>(323) 583-8811</td></tr>
-    <tr><td>Marisa Olguin</td><td>Chamber President</td><td>molguin@vernonchamber.org</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="card">
-<h3>Elected Officials</h3>
-<table>
-  <thead><tr><th>Name</th><th>Office</th><th>Contact</th><th>Relevance</th></tr></thead>
-  <tbody>
-    <tr><td>Marqueece Harris-Dawson</td><td>LA City Council President, CD8</td><td>(213) 473-7008</td><td>Your district (Broadway)</td></tr>
-    <tr><td>Janice Hahn</td><td>LA County Supervisor, 4th</td><td>(213) 974-4444</td><td>Vernon</td></tr>
-    <tr><td>Holly Mitchell</td><td>LA County Supervisor, 2nd</td><td>(213) 974-2222</td><td>South LA</td></tr>
-    <tr><td>Maxine Waters</td><td>US Rep, CA-43</td><td>(323) 757-8900</td><td>Office at 10124 S Broadway</td></tr>
-    <tr><td>Robert Garcia</td><td>US Rep, CA-42</td><td>(562) 512-8489</td><td>Vernon district</td></tr>
-    <tr><td>Maria Elena Durazo</td><td>State Senator, SD-26</td><td>(213) 483-9300</td><td>Vernon / South LA</td></tr>
-    <tr><td>Mark Gonzalez</td><td>Assemblymember, AD-54</td><td>(213) 620-4646</td><td>Vernon, Commerce, DTLA</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="card">
-<h3>Key Development Contacts</h3>
-<table>
-  <thead><tr><th>Name / Firm</th><th>Specialty</th><th>Contact</th></tr></thead>
-  <tbody>
-    <tr><td>Jeffrey Stephens — CBRE</td><td>Vernon industrial broker ($4.1B transactions)</td><td>Via CBRE LA</td></tr>
-    <tr><td>Herdman Architecture</td><td>Top Vernon industrial architect (Bridge Point I-III)</td><td>herdmanarchitecture.com</td></tr>
-    <tr><td>ARCO National Construction</td><td>Cold storage design-build GC</td><td>arconational.com</td></tr>
-    <tr><td>Whiting-Turner</td><td>Data center GC (Goodman LAX01)</td><td>whiting-turner.com</td></tr>
-    <tr><td>Converse Consultants</td><td>Phase I/II ESA</td><td>converseconsultants.com</td></tr>
-    <tr><td>John Holloway — BBK</td><td>Environmental attorney (Exide/Vernon)</td><td>bbklaw.com</td></tr>
-    <tr><td>Stephen Cheung — LAEDC</td><td>Free business assistance</td><td>(888) 452-3321</td></tr>
-    <tr><td>Clearinghouse CDFI</td><td>NMTC lender ($737M deployed)</td><td>(949) 859-3600</td></tr>
-    <tr><td>CRCD</td><td>Community dev, Vernon-Central</td><td>coalitionrcd.org</td></tr>
-    <tr><td>SLATE-Z</td><td>Promise Zone coalition</td><td>slatez.org</td></tr>
-    <tr><td>Andy Nakahata — IBank</td><td>State financing</td><td>(916) 341-6600</td></tr>
-    <tr><td>Abode Communities</td><td>Developer, Manchester Urban Homes (neighbor)</td><td>abodecommunities.org</td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<!-- ============ MAPS ============ -->
-<section id="maps">
-<h2>Maps &amp; Tools</h2>
-<div class="map-links">
-  <a href="https://portal.assessor.lacounty.gov/mapsearch" target="_blank" class="map-link"><div class="title">LA County Assessor Parcels</div><div class="desc">Search by APN to see parcel boundaries and assessed values</div></a>
-  <a href="https://zimas.lacity.org/" target="_blank" class="map-link"><div class="title">ZIMAS (LA City Zoning)</div><div class="desc">Enter "8701 S Broadway" for exact zoning &amp; overlays</div></a>
-  <a href="https://experience.arcgis.com/experience/bddf8ea4f08440d68744eb042752ed7c" target="_blank" class="map-link"><div class="title">Vernon Interactive GIS Map</div><div class="desc">Vernon parcel boundaries, zoning districts, infrastructure</div></a>
-  <a href="https://opportunityzones.hud.gov/resources/map" target="_blank" class="map-link"><div class="title">HUD Opportunity Zone Map</div><div class="desc">Verify if parcels are in designated OZ census tracts</div></a>
-  <a href="https://www.envirostor.dtsc.ca.gov/public/" target="_blank" class="map-link"><div class="title">DTSC EnviroStor</div><div class="desc">Check each APN for contamination records</div></a>
-  <a href="https://geotracker.waterboards.ca.gov/" target="_blank" class="map-link"><div class="title">GeoTracker</div><div class="desc">Underground storage tank and groundwater contamination records</div></a>
-  <a href="https://experience.arcgis.com/experience/6b863505f9454cea802f4be0b4b49d62" target="_blank" class="map-link"><div class="title">CalEnviroScreen 4.0</div><div class="desc">Environmental burden scores — supports grant applications</div></a>
-  <a href="https://opzones.ca.gov/oz-map/" target="_blank" class="map-link"><div class="title">California OZ Map</div><div class="desc">State OZ boundaries overlaid with state investments</div></a>
-  <a href="https://storymaps.arcgis.com/stories/3f52b65d816b4d8da963033c2c2ece1c" target="_blank" class="map-link"><div class="title">Broadway-Manchester ATP StoryMap</div><div class="desc">$85M infrastructure project on your doorstep</div></a>
-  <a href="https://www.reimaginevernon.com/about" target="_blank" class="map-link"><div class="title">Reimagine Vernon (Westside Plan)</div><div class="desc">840-acre mixed-use rezoning plan</div></a>
-  <a href="https://www.loopnet.com/search/industrial-properties/vernon-ca/for-sale/" target="_blank" class="map-link"><div class="title">LoopNet — Vernon Industrial</div><div class="desc">Current listings and market comps</div></a>
-  <a href="https://www.google.com/maps/place/8701+S+Broadway,+Los+Angeles,+CA+90003" target="_blank" class="map-link"><div class="title">Google Maps — 8701 S Broadway</div><div class="desc">Satellite, Street View, measure distances</div></a>
-</div>
-</section>
-
-<!-- ============ RISKS ============ -->
-<section id="risks">
-<h2>Risks &amp; Due Diligence</h2>
-<div class="alert alert-danger"><strong>15-day contingency is dangerously short for 15 industrial parcels in Vernon.</strong> Push for 60-90 days minimum. Phase I ESA alone takes 2-4 weeks.</div>
-<div class="card-grid">
-<div class="card">
-  <h3>Environmental <span class="badge badge-danger">HIGH RISK</span></h3>
-  <ul>
-    <li>Vernon has extensive industrial contamination history</li>
-    <li>Exide Technologies Superfund site nearby — lead/arsenic</li>
-    <li>25+ sites with leaking underground storage tanks</li>
-    <li>"As Is" sale = you inherit whatever is in the ground</li>
-    <li><strong>Action:</strong> Phase I ESA on ALL 15 parcels immediately</li>
-    <li><strong>Action:</strong> Check DTSC EnviroStor + GeoTracker for each APN</li>
-    <li><strong>Budget:</strong> $27K-$69K for Phase I; $15K-$50K for Phase II if triggered</li>
-  </ul>
-</div>
-<div class="card">
-  <h3>Dual Agency <span class="badge badge-warn">MEDIUM RISK</span></h3>
-  <ul>
-    <li>Lee &amp; Associates represents BOTH buyer and seller</li>
-    <li>Broker cannot advocate for lowest price while pursuing highest</li>
-    <li>Your negotiation strategy is exposed to the seller's agent</li>
-    <li><strong>Action:</strong> Retain your own independent real estate attorney immediately</li>
-    <li><strong>Action:</strong> Request in writing what Lee has disclosed to seller about you</li>
-  </ul>
-</div>
-<div class="card">
-  <h3>Multi-Parcel Complexity <span class="badge badge-warn">MEDIUM RISK</span></h3>
-  <ul>
-    <li>15 separate parcels each need title search, environmental review</li>
-    <li>Each may carry different easements, encumbrances</li>
-    <li>Trust-held property requires verification of trustee authority</li>
-    <li>APN typo possible: "6040-0150016" may be "6040-015-016"; "6040-104-007" may be "6040-014-007"</li>
-    <li><strong>Action:</strong> Preliminary title report on all 15 parcels</li>
-  </ul>
-</div>
-<div class="card">
-  <h3>Building Condition <span class="badge badge-warn">MEDIUM RISK</span></h3>
-  <ul>
-    <li>$113/SF building price suggests poor condition or obsolescence</li>
-    <li>Possible unreinforced masonry (seismic risk)</li>
-    <li>Asbestos/lead paint likely in pre-1980 buildings</li>
-    <li><strong>Action:</strong> Structural/seismic assessment, roof inspection, hazmat survey</li>
-  </ul>
-</div>
-</div>
-<div class="card">
-<h3>Estimated Due Diligence Costs</h3>
-<table>
-  <thead><tr><th>Item</th><th>Estimated Cost</th></tr></thead>
-  <tbody>
-    <tr><td>Phase I ESA (15 parcels)</td><td>$27,000-$69,000</td></tr>
-    <tr><td>Phase II ESA (if needed, 3-5 parcels)</td><td>$15,000-$50,000</td></tr>
-    <tr><td>Title Insurance (owner's policy)</td><td>$5,000-$8,000</td></tr>
-    <tr><td>ALTA Survey</td><td>$8,000-$15,000</td></tr>
-    <tr><td>Property Inspection / Structural</td><td>$3,000-$8,000</td></tr>
-    <tr><td>Legal Fees</td><td>$15,000-$30,000</td></tr>
-    <tr><td>Escrow Fees</td><td>$3,000-$5,000</td></tr>
-    <tr><td>Documentary Transfer Tax ($1.65/$1K)</td><td>~$7,920</td></tr>
-    <tr><td>Appraisal</td><td>$4,000-$6,000</td></tr>
-    <tr style="background:rgba(79,140,255,.08)"><td><strong>Total Estimated Buyer-Side Costs</strong></td><td><strong>$89,000-$193,000</strong></td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<!-- ============ TIMELINE ============ -->
-<section id="timeline">
-<h2>Action Timeline</h2>
-<div class="timeline">
-  <div class="item urgent">
-    <div class="date">THIS WEEK</div>
-    <div><strong>California Competes Tax Credit</strong> — Application window open Mar 2-16, 2026</div>
-  </div>
-  <div class="item urgent">
-    <div class="date">THIS WEEK</div>
-    <div><strong>Verify OZ status</strong> — Use HUD map for both locations</div>
-  </div>
-  <div class="item urgent">
-    <div class="date">ASAP</div>
-    <div><strong>Commission Phase I ESA</strong> — All 15 Vernon parcels</div>
-  </div>
-  <div class="item urgent">
-    <div class="date">ASAP</div>
-    <div><strong>Retain independent attorney</strong> — Don't rely on Lee &amp; Associates</div>
-  </div>
-  <div class="item">
-    <div class="date">WITHIN 2 WEEKS</div>
-    <div><strong>Engage NMTC consultant</strong> — Baker Tilly, Cherry Bekaert, or Novogradac</div>
-  </div>
-  <div class="item">
-    <div class="date">WITHIN 2 WEEKS</div>
-    <div><strong>Contact LADF</strong> — NMTC allocation availability</div>
-  </div>
-  <div class="item">
-    <div class="date">WITHIN 2 WEEKS</div>
-    <div><strong>Contact SELARC</strong> — EB-5 investor interest for Vernon</div>
-  </div>
-  <div class="item">
-    <div class="date">30-60 DAYS</div>
-    <div><strong>Begin SBA 504 application</strong> + engage C-PACE lender + structure OZ fund</div>
-  </div>
-  <div class="item urgent">
-    <div class="date">BY JUNE 30, 2026</div>
-    <div><strong>Begin solar construction</strong> — IRA ITC deadline July 4, 2026</div>
-  </div>
-  <div class="item">
-    <div class="date">JULY 2026</div>
-    <div><strong>Monitor OZ 2.0 nominations</strong> — Window opens July 1</div>
-  </div>
-  <div class="item">
-    <div class="date">FALL 2026</div>
-    <div><strong>Apply EPA Brownfields FY2027</strong> — Through City of Vernon</div>
-  </div>
-  <div class="item">
-    <div class="date">6-12 MONTHS</div>
-    <div><strong>Close NMTC + OZ fund + begin construction</strong></div>
-  </div>
-</div>
-</section>
-
-</div><!-- /container -->
-
-<div class="footer">
-  <p>87th &amp; Broadway — SPA 6 Corridor Development Research</p>
-  <p>Prepared for The Neman Group — March 26, 2026</p>
-  <p style="margin-top:8px;">Research compiled by Claude. Not legal, financial, or investment advice. Verify all data independently.</p>
-</div>
+</main>
 
 <script>
-// Highlight active nav section on scroll
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav.toc a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
-  navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
-});
-</script>
+const map = L.map('map').setView([33.9590, -118.2782], 17);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri',maxZoom:20}).addTo(map);
+L.esri.tiledMapLayer({url:'https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache/LACounty_Parcel/MapServer',maxZoom:20,opacity:0.7}).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',{maxZoom:20,opacity:0.85}).addTo(map);
 
+const OWN='#3b82f6',BUY='#22c55e',BUY_IMP='#f59e0b',POTENTIAL='#a855f7';
+const parcelDefs=[
+  {apn:'6040-019-001',label:'8701 S Broadway',status:'You Own',type:'Commercial',land:'15,750 sf',bldg:'13,965 sf (1993)',color:OWN},
+  {apn:'6040-014-002',label:'Boxing Gym Lot',status:'You Own',type:'Commercial',land:'—',bldg:'—',color:OWN},
+  {apn:'6040-014-008',label:'Lots 8-9 (vacant)',status:'Purchasing',type:'Vacant',land:'15,000 sf',bldg:'—',color:BUY},
+  {apn:'6040-014-007',label:'Lot 7 (vacant)',status:'Purchasing',type:'Vacant',land:'7,500 sf',bldg:'—',color:BUY},
+  {apn:'6040-014-006',label:'8623 S Broadway',status:'Purchasing',type:'Restaurant',land:'7,500 sf',bldg:'22,500 sf (1927)',color:BUY_IMP},
+  {apn:'6040-014-005',label:'8617 S Broadway',status:'Purchasing',type:'Vacant',land:'7,050 sf',bldg:'—',color:BUY},
+  {apn:'6040-014-004',label:'8615 S Broadway',status:'Purchasing',type:'Office',land:'3,750 sf',bldg:'3,699 sf (1948)',color:BUY_IMP},
+  {apn:'6040-014-003',label:'8613 S Broadway',status:'Purchasing',type:'Store',land:'—',bldg:'3,096 sf (1910)',color:BUY_IMP},
+  {apn:'6040-019-002',label:'8713 S Broadway',status:'Purchasing',type:'Store',land:'15,750 sf',bldg:'13,020 sf (1936)',color:BUY_IMP},
+  {apn:'6040-015-016',label:'8680 S Broadway',status:'Purchasing',type:'Vacant',land:'5,535 sf',bldg:'—',color:BUY},
+  {apn:'6040-015-029',label:'8656 S Broadway',status:'Purchasing',type:'Vacant',land:'6,075 sf',bldg:'—',color:BUY},
+  {apn:'6040-015-012',label:'8650 S Broadway',status:'Purchasing',type:'Vacant',land:'6,750 sf',bldg:'—',color:BUY},
+  {apn:'6040-015-014',label:'8660 S Broadway',status:'Purchasing',type:'Vacant',land:'5,670 sf',bldg:'—',color:BUY},
+  {apn:'6040-015-015',label:'8666 S Broadway',status:'Purchasing',type:'Vacant',land:'5,400 sf',bldg:'—',color:BUY},
+  {apn:'6040-015-900',label:'Lot 700 — LA City',status:'Potential',type:'City Parking Lot',land:'—',bldg:'—',color:POTENTIAL},
+  {apn:'6040-015-901',label:'Lot 700 — LA City (pt 2)',status:'Potential',type:'City Parking Lot',land:'—',bldg:'—',color:POTENTIAL}
+];
+
+const apnList=parcelDefs.map(p=>"'"+p.apn+"'").join(',');
+const svcUrl='https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache/LACounty_Parcel/MapServer/0/query';
+fetch(svcUrl+'?where=APN+IN+('+apnList+')&outFields=APN&returnGeometry=true&outSR=4326&f=geojson')
+  .then(r=>r.json()).then(data=>{
+    if(!data.features||!data.features.length)return;
+    const lookup={};parcelDefs.forEach(p=>{lookup[p.apn]=p;});
+    data.features.forEach(f=>{
+      const def=lookup[f.properties.APN];if(!def)return;
+      L.geoJSON(f,{style:{color:def.color,weight:3,fillColor:def.color,fillOpacity:0.35,opacity:1}}).addTo(map)
+        .bindPopup('<div style="font-family:Inter,sans-serif;font-size:13px;min-width:200px"><strong>'+def.label+'</strong><br><span style="font-family:JetBrains Mono;font-size:11px;color:#666">'+f.properties.APN+'</span><br><span style="margin-top:4px;display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:'+def.color+'22;color:'+def.color+'">'+def.status+'</span><div style="margin-top:6px;font-size:12px">'+def.type+'<br>Land: '+def.land+(def.bldg!=='—'?'<br>Bldg: '+def.bldg:'')+'</div></div>');
+    });
+  }).catch(()=>{});
+
+const lg=L.control({position:'bottomright'});
+lg.onAdd=function(){const d=L.DomUtil.create('div');d.style.cssText='background:#fff;padding:10px 14px;border-radius:8px;font:12px Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15);line-height:1.8';d.innerHTML='<b style="font-size:11px">Legend</b><br><span style="color:'+OWN+'">&#9632;</span> You Own (2)<br><span style="color:'+BUY+'">&#9632;</span> Purchasing — Vacant<br><span style="color:'+BUY_IMP+'">&#9632;</span> Purchasing — Improved<br><span style="color:'+POTENTIAL+'">&#9632;</span> Potential — Lot 700';return d;};
+lg.addTo(map);
+</script>
 </body>
 </html>

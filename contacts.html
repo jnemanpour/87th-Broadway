@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>87th &amp; Broadway — Contacts &amp; Outreach</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filter-btn{padding:6px 14px;border-radius:6px;border:1px solid #e2e5ea;background:#fff;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;color:#5f6774}
+.filter-btn:hover{background:#f4f5f7}
+.filter-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+.contact-count{font-size:.78rem;color:#8b919d;margin-bottom:12px}
+.c-table td{vertical-align:top}
+.c-table .org{font-weight:600;color:#1a1d23}
+.c-table .person{color:#2563eb;font-weight:500}
+.c-table .title{font-size:.72rem;color:#5f6774}
+.c-table .contact-info{font-size:.74rem;line-height:1.6}
+.c-table .contact-info a{color:#2563eb;text-decoration:none}
+.c-table .contact-info a:hover{text-decoration:underline}
+.section-header{background:#f0f4ff;padding:10px 14px;font-size:.82rem;font-weight:700;color:#1a1d23;border-top:2px solid #2563eb}
+.section-header-green{background:#f0fdf4;border-top-color:#16a34a}
+.section-header-orange{background:#fffbeb;border-top-color:#d97706}
+.section-header-purple{background:#faf5ff;border-top-color:#7c3aed}
+.section-header-red{background:#fef2f2;border-top-color:#dc2626}
+.section-header-teal{background:#f0fdfa;border-top-color:#0d9488}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>87th &amp; Broadway — Acquisition Research</h1>
+  <p>Kleinman Trust &middot; 12 Parcels &middot; $4.8M Proposal &middot; ~90,291 sf land &middot; The Neman Group</p>
+  <nav class="tabs">
+    <a href="index.html" class="tab">Parcel Map</a>
+    <a href="comps.html" class="tab">Commercial Comps</a>
+    <a href="grants.html" class="tab">Grants &amp; Incentives</a>
+    <a href="contacts.html" class="tab active">Contacts &amp; Outreach</a>
+    <a href="scenarios.html" class="tab">Development Scenarios</a>
+  </nav>
+</header>
+
+<main>
+
+<div class="metric-row">
+  <div class="metric">
+    <div class="label">Total Stakeholders</div>
+    <div class="value">200+</div>
+    <div class="sub">Officials, developers, architects, nonprofits, agencies, funders</div>
+  </div>
+  <div class="metric">
+    <div class="label">Priority #1</div>
+    <div class="value">CD8 Office</div>
+    <div class="sub">Council President Harris-Dawson — your district representative</div>
+  </div>
+  <div class="metric">
+    <div class="label">Priority #2</div>
+    <div class="value">CRCD</div>
+    <div class="sub">Mark Wilson — the community org for this area, based 0.5 mi away</div>
+  </div>
+  <div class="metric">
+    <div class="label">Priority #3</div>
+    <div class="value">Abode Communities</div>
+    <div class="sub">Robin Hughes — built the 122-unit project next door</div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterTable('all')">All</button>
+  <button class="filter-btn" onclick="filterTable('elected')">Elected Officials</button>
+  <button class="filter-btn" onclick="filterTable('city')">City Departments</button>
+  <button class="filter-btn" onclick="filterTable('state')">State Agencies</button>
+  <button class="filter-btn" onclick="filterTable('federal')">Federal Agencies</button>
+  <button class="filter-btn" onclick="filterTable('developer')">Developers</button>
+  <button class="filter-btn" onclick="filterTable('architect')">Architects</button>
+  <button class="filter-btn" onclick="filterTable('nonprofit')">Nonprofits</button>
+  <button class="filter-btn" onclick="filterTable('funder')">Funders &amp; CDFIs</button>
+  <button class="filter-btn" onclick="filterTable('syndicator')">Tax Credit Syndicators</button>
+  <button class="filter-btn" onclick="filterTable('consultant')">Consultants</button>
+  <button class="filter-btn" onclick="filterTable('industry')">Industry Orgs</button>
+</div>
+<div class="contact-count" id="contact-count"></div>
+
+<div class="table-wrap">
+<table class="c-table" id="contacts-table">
+<thead><tr><th style="width:20%">Organization</th><th style="width:18%">Contact</th><th style="width:12%">Category</th><th style="width:25%">Phone / Email / Address</th><th style="width:25%">Relevance to Project</th></tr></thead>
+<tbody>
+
+<!-- ==================== ELECTED OFFICIALS ==================== -->
+<tr><td colspan="5" class="section-header">ELECTED OFFICIALS</td></tr>
+
+<tr data-cat="elected">
+  <td><span class="org">LA City Council District 8</span></td>
+  <td><span class="person">Marqueece Harris-Dawson</span><br><span class="title">Council President</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">(213) 473-7008<br><a href="mailto:Councilmember.Harris-Dawson@lacity.org">Councilmember.Harris-Dawson@lacity.org</a><br>200 N Spring St, Rm 450, LA 90012</td>
+  <td>Your district representative. As Council President, has major influence over planning and housing policy citywide.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">CD8 District Office</span></td>
+  <td><span class="person">Joanne Kim</span><br><span class="title">Chief of Staff</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">(213) 485-7616<br>8475 S Vermont Ave, LA 90044</td>
+  <td>District office — handles local development inquiries. First point of contact for project support.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">CD8</span></td>
+  <td><span class="person">Rachel Brashier</span><br><span class="title">Senior Advisor</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">(213) 473-7008</td>
+  <td>Senior advisor to Council President.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">CD8</span></td>
+  <td><span class="person">Albizael Del Valle</span><br><span class="title">Economic Development Deputy</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">(213) 473-7008</td>
+  <td>Handles economic development for the district — key contact for incentives and business development.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">Mayor's Office</span></td>
+  <td><span class="person">Mayor Karen Bass</span><br><span class="title">Mayor of Los Angeles</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">200 N Spring St, Rm 303, LA 90012</td>
+  <td>ED1 executive directive for streamlined affordable housing approvals. Housing is her #1 priority.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">Mayor's Office</span></td>
+  <td><span class="person">Dr. Etsemaye Agonafer</span><br><span class="title">Deputy Mayor, Homelessness &amp; Community Health</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">200 N Spring St, Rm 303, LA 90012</td>
+  <td>Oversees housing/homelessness policy — supportive housing component.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">Mayor's Office</span></td>
+  <td><span class="person">Karren Lane</span><br><span class="title">Deputy Mayor, Community Empowerment</span></td>
+  <td><span class="tag tag-fed">Elected</span></td>
+  <td class="contact-info">200 N Spring St, Rm 303, LA 90012</td>
+  <td>Community empowerment initiatives — South LA focus.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">CA Assembly District 64</span></td>
+  <td><span class="person">Blanca Pacheco</span><br><span class="title">Assemblymember</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">(562) 861-5803<br><a href="mailto:assemblymember.pacheco@assembly.ca.gov">assemblymember.pacheco@assembly.ca.gov</a><br>8255 Firestone Blvd #203, Downey 90241</td>
+  <td>State representative — state housing legislation, AHSC support letters.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">AD-64 Staff</span></td>
+  <td><span class="person">Nikki Johnson</span><br><span class="title">Chief of Staff</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info"><a href="mailto:nikki.johnson@asm.ca.gov">nikki.johnson@asm.ca.gov</a></td>
+  <td>Key staff contact for state support letters and grant applications.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">CA Senate District 28</span></td>
+  <td><span class="person">Lola Smallwood-Cuevas</span><br><span class="title">State Senator</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">(213) 745-6656<br><a href="mailto:senator.smallwood-cuevas@senate.ca.gov">senator.smallwood-cuevas@senate.ca.gov</a><br>700 Exposition Park Dr, LA 90037</td>
+  <td>State senator — workforce/labor policy champion. Support letters for state grants.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">SD-28 Staff</span></td>
+  <td><span class="person">Jessica Zaragoza</span><br><span class="title">Chief of Staff</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info"><a href="mailto:Jessica.Zaragoza@sen.ca.gov">Jessica.Zaragoza@sen.ca.gov</a></td>
+  <td>Key staff contact for state-level support.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">US Congress — CD-34</span></td>
+  <td><span class="person">Jimmy Gomez</span><br><span class="title">U.S. Representative</span></td>
+  <td><span class="tag tag-fed">Federal</span></td>
+  <td class="contact-info">(213) 481-1425<br>350 S Bixel St #120, LA 90017</td>
+  <td>Federal representative — NMTC, HUD, Opportunity Zone advocacy.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">LA County — 2nd District</span></td>
+  <td><span class="person">Holly J. Mitchell</span><br><span class="title">County Supervisor</span></td>
+  <td><span class="tag tag-county">County</span></td>
+  <td class="contact-info">(213) 974-2222<br>500 W Temple St, Rm 866, LA 90012</td>
+  <td>County supervisor — Measure A housing funds, county programs.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">Supervisor Mitchell Staff</span></td>
+  <td><span class="person">Pamela Leo</span><br><span class="title">Deputy — Housing &amp; Planning</span></td>
+  <td><span class="tag tag-county">County</span></td>
+  <td class="contact-info">(213) 974-2222</td>
+  <td>Key county contact for housing/planning programs and Measure A funding.</td>
+</tr>
+<tr data-cat="elected">
+  <td><span class="org">Supervisor Mitchell Staff</span></td>
+  <td><span class="person">Carolyn Angius</span><br><span class="title">Deputy — Economic &amp; Workforce Dev</span></td>
+  <td><span class="tag tag-county">County</span></td>
+  <td class="contact-info">(213) 974-2222</td>
+  <td>County economic development — workforce programs, business incentives.</td>
+</tr>
+
+<!-- ==================== CITY DEPARTMENTS ==================== -->
+<tr><td colspan="5" class="section-header section-header-green">CITY OF LA DEPARTMENTS</td></tr>
+
+<tr data-cat="city">
+  <td><span class="org">LA Dept of City Planning</span></td>
+  <td><span class="person">Vincent P. Bertoni, AICP</span><br><span class="title">Director of Planning</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">200 N Spring St, Rm 525, LA 90012</td>
+  <td>Oversees all planning — CHIP/MIIP, TOC, zoning, entitlements.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">DCP — South LA Office</span></td>
+  <td><span class="person">South LA Planning Team</span><br><span class="title">Community Planning</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 978-1465<br><a href="mailto:planning.southla@lacity.org">planning.southla@lacity.org</a><br>8475 S Vermont Ave, 1st Fl, LA 90044</td>
+  <td>Your local planning office — same building as CD8 district office. First stop for zoning questions.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">DCP — CHIP/MIIP</span></td>
+  <td><span class="person">Theadora Trindle</span><br><span class="title">City Planner — Housing Element</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 564-7099<br><a href="mailto:housingelement@lacity.org">housingelement@lacity.org</a></td>
+  <td>Direct contact for CHIP/MIIP density bonus program — up to 120% bonus on C2 land.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">DCP — Redevelopment</span></td>
+  <td><span class="person">Redevelopment Plan Unit</span><br><span class="title">Broadway/Manchester Overlay</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info"><a href="mailto:planning.redevelopment@lacity.org">planning.redevelopment@lacity.org</a></td>
+  <td>Broadway/Manchester is a former CRA project area with overlay provisions.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">DCP Executive</span></td>
+  <td><span class="person">Kevin J. Keller, AICP</span><br><span class="title">Executive Officer</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">200 N Spring St, Rm 525, LA 90012</td>
+  <td>DCP executive leadership.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">DCP</span></td>
+  <td><span class="person">Arthi Varma, AICP</span><br><span class="title">Deputy Dir — Citywide Policy</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">200 N Spring St, Rm 525</td>
+  <td>Oversees CHIP/MIIP, TOC, and housing incentive policies.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">DCP</span></td>
+  <td><span class="person">Craig Weber</span><br><span class="title">Deputy Dir — Development Services</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">200 N Spring St, Rm 525</td>
+  <td>Handles development services — entitlement processing.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">LA Housing Dept (LAHD)</span></td>
+  <td><span class="person">Tiena Johnson Hall</span><br><span class="title">General Manager</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 808-8808<br><a href="mailto:lahd.lac@lacity.org">lahd.lac@lacity.org</a><br>1910 Sunset Blvd #300, LA 90026</td>
+  <td>Runs all city affordable housing programs — Homes for LA NOFA, pipeline.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">LAHD — NOFA/Funding</span></td>
+  <td><span class="person">Timothy Elliott</span><br><span class="title">Manager, Multifamily Housing Finance</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info"><a href="mailto:lahd-nofa@lacity.org">lahd-nofa@lacity.org</a><br><a href="mailto:lahd.H4LANOFA@lacity.org">lahd.H4LANOFA@lacity.org</a></td>
+  <td>Direct contact for Homes for LA NOFA applications — Round 2 Spring 2026.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">LADBS</span></td>
+  <td><span class="person">Osama Younan, P.E.</span><br><span class="title">General Manager &amp; Superintendent</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 473-3231 (or 311)<br><a href="mailto:ladbs.asd@lacity.org">ladbs.asd@lacity.org</a><br>201 N Figueroa St, LA 90012</td>
+  <td>Building permits, plan check, ED1 processing.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">Bureau of Engineering — ATP</span></td>
+  <td><span class="person">Gina Liang</span><br><span class="title">Project Manager — Broadway-Manchester ATP</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 442-4267<br><a href="mailto:gina.liang@lacity.org">gina.liang@lacity.org</a></td>
+  <td>Managing the $85M Broadway-Manchester Active Transportation Project — directly at your site.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">Bureau of Engineering — ATP</span></td>
+  <td><span class="person">Brian Ahn</span><br><span class="title">Senior Civil Engineer — Task Order Mgr</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info"><a href="mailto:brian.ahn@lacity.org">brian.ahn@lacity.org</a></td>
+  <td>Technical lead on ATP — coordinate construction timelines with your development.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">EWDD</span></td>
+  <td><span class="person">Carolyn M. Hull</span><br><span class="title">General Manager</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 744-7164<br>444 S Flower St, 14th Fl, LA 90071</td>
+  <td>Economic development — workforce programs, business incentives, job creation.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">EWDD</span></td>
+  <td><span class="person">Frederick Jackson</span><br><span class="title">AGM — Economic Development</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 744-7300</td>
+  <td>Economic development programs and commercial corridor support.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">LA Metro — Joint Development</span></td>
+  <td><span class="person">Marie Sullivan</span><br><span class="title">Senior Manager, Joint Development</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info"><a href="mailto:jointdevelopment@metro.net">jointdevelopment@metro.net</a></td>
+  <td>Transit-oriented development — Metro bus corridor on Broadway, 2028 Olympics improvements.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">HACLA</span></td>
+  <td><span class="person">Lourdes Castro Ramirez</span><br><span class="title">President &amp; CEO</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 252-2500<br>2600 Wilshire Blvd, LA 90057</td>
+  <td>Housing Authority — Section 8 vouchers, public housing, supportive housing partnerships.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">CRA/LA (Successor)</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Broadway/Manchester Area</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 277-6778<br>448 S Hill St #301, LA 90013</td>
+  <td>Former redevelopment agency — Broadway/Manchester is a CRA project area.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">LADWP</span></td>
+  <td><span class="person">Commercial Programs</span><br><span class="title">Solar, EV, Green Building</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(800) 342-5397</td>
+  <td>Solar incentives, EV rebates ($2M max/premises), Feed-in Tariff with DAC bonus.</td>
+</tr>
+<tr data-cat="city">
+  <td><span class="org">EmpowerLA</span></td>
+  <td><span class="person">Neighborhood Council</span><br><span class="title">Empowerment Congress South Area</span></td>
+  <td><span class="tag tag-city">City</span></td>
+  <td class="contact-info">(213) 978-1551<br>empowerla.org</td>
+  <td>Local neighborhood council — community input, support letters, outreach partner.</td>
+</tr>
+
+<!-- ==================== STATE AGENCIES ==================== -->
+<tr><td colspan="5" class="section-header section-header-orange">STATE AGENCIES</td></tr>
+
+<tr data-cat="state">
+  <td><span class="org">CA HCD</span></td>
+  <td><span class="person">Gustavo Velasquez</span><br><span class="title">Director</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">(916) 263-2911<br>hcd.ca.gov</td>
+  <td>Oversees AHSC, IIG, SB 35, housing element compliance — the state housing agency.</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">HCD — IIG Program</span></td>
+  <td><span class="person">Paul Dulai</span><br><span class="title">IIG Program Manager</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">hcd.ca.gov/grants-and-funding/programs-active/infill-infrastructure-grant</td>
+  <td>Infill Infrastructure Grant — up to $30M for infrastructure supporting housing.</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">CTCAC</span></td>
+  <td><span class="person">Marina Wiant</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">(916) 654-6340<br>treasurer.ca.gov/ctcac</td>
+  <td>Allocates LIHTC credits — 4% and 9%. The primary equity source ($8-22M potential).</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">CDLAC</span></td>
+  <td><span class="person">Marina Wiant</span><br><span class="title">Interim Executive Director</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info"><a href="mailto:CDLAC@treasurer.ca.gov">CDLAC@treasurer.ca.gov</a></td>
+  <td>Allocates tax-exempt bond cap for 4% LIHTC projects. Must secure allocation.</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">CalHFA — MIP</span></td>
+  <td><span class="person">Stephanie McFadden</span><br><span class="title">MIP Director</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">(877) 922-5432<br>calhfa.ca.gov/multifamily/mixedincome</td>
+  <td>Mixed-Income Program — below-market construction/perm loans. $50-75M available 2026.</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">Strategic Growth Council</span></td>
+  <td><span class="person">Erin Curtis</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">sgc.ca.gov</td>
+  <td>Administers AHSC grant — up to $50M/project. Exceptional fit for this site.</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">SGC — AHSC</span></td>
+  <td><span class="person">Brianne Logasa / Lois Kim</span><br><span class="title">AHSC Program Staff</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">sgc.ca.gov/about/contact</td>
+  <td>AHSC program contacts — Round 10 NOFA expected Spring 2026.</td>
+</tr>
+<tr data-cat="state">
+  <td><span class="org">GO-Biz</span></td>
+  <td><span class="person">Dee Dee Myers</span><br><span class="title">Director</span></td>
+  <td><span class="tag tag-state">State</span></td>
+  <td class="contact-info">(916) 319-9367<br>business.ca.gov</td>
+  <td>California Competes tax credit, business incentives, economic development.</td>
+</tr>
+
+<!-- ==================== FEDERAL AGENCIES ==================== -->
+<tr><td colspan="5" class="section-header section-header-red">FEDERAL AGENCIES</td></tr>
+
+<tr data-cat="federal">
+  <td><span class="org">HUD — LA Field Office</span></td>
+  <td><span class="person">Eduardo Cabrera</span><br><span class="title">Director</span></td>
+  <td><span class="tag tag-fed">Federal</span></td>
+  <td class="contact-info">300 N Los Angeles St #4054, LA 90012</td>
+  <td>CDBG, HOME, Section 108 loan guarantees — 8727 S Broadway got $7M from HUD-funded programs.</td>
+</tr>
+<tr data-cat="federal">
+  <td><span class="org">HUD — LA PIH</span></td>
+  <td><span class="person">Meena Bavan</span><br><span class="title">PIH Director</span></td>
+  <td><span class="tag tag-fed">Federal</span></td>
+  <td class="contact-info">300 N Los Angeles St, LA 90012</td>
+  <td>Public and Indian Housing — Section 8, project-based vouchers.</td>
+</tr>
+<tr data-cat="federal">
+  <td><span class="org">CDFI Fund</span></td>
+  <td><span class="person">NMTC Help Desk</span><br><span class="title">New Markets Tax Credits</span></td>
+  <td><span class="tag tag-fed">Federal</span></td>
+  <td class="contact-info">cdfifund.gov/programs-training/programs/new-markets-tax-credit</td>
+  <td>NMTC program — $3-8M potential subsidy. Program permanent at $5B/year.</td>
+</tr>
+<tr data-cat="federal">
+  <td><span class="org">EPA Region 9 — Brownfields</span></td>
+  <td><span class="person">Lisa Hanusiak</span><br><span class="title">Brownfields Program</span></td>
+  <td><span class="tag tag-fed">Federal</span></td>
+  <td class="contact-info">epa.gov/brownfields/r9</td>
+  <td>Brownfields assessment/cleanup grants — up to $2M. Nearby 9111 S Broadway had contamination.</td>
+</tr>
+<tr data-cat="federal">
+  <td><span class="org">FHLBank San Francisco</span></td>
+  <td><span class="person">AHP Program</span><br><span class="title">Affordable Housing Program</span></td>
+  <td><span class="tag tag-fed">Federal</span></td>
+  <td class="contact-info">fhlbsf.com/products/community-programs-grants/ahp</td>
+  <td>$22K/household subsidy — precedent: $1M for nearby South LA project.</td>
+</tr>
+
+<!-- ==================== DEVELOPERS ==================== -->
+<tr><td colspan="5" class="section-header section-header-purple">DEVELOPERS ACTIVE IN SOUTH LA</td></tr>
+
+<tr data-cat="developer">
+  <td><span class="org">Abode Communities</span></td>
+  <td><span class="person">Robin Hughes</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(213) 225-2868<br>1149 S Hill St #700, LA 90015<br>abodecommunities.org</td>
+  <td>Built 122-unit project at 8727 S Broadway — directly adjacent. Key partner/precedent.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">SoLa Impact</span></td>
+  <td><span class="person">Martin Muoto</span><br><span class="title">Founder &amp; CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(424) 335-3548<br><a href="mailto:info@solaimpact.com">info@solaimpact.com</a><br>8730 S Vermont Ave, LA 90044<br>solaimpact.com</td>
+  <td>Largest Black-led developer in South LA. Multiple Broadway/Vermont projects. Runs OZ funds. Based 0.5 mi away.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">NHSLA</span></td>
+  <td><span class="person">Lori Gay</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(323) 291-0222<br>3926 Wilshire Blvd #200, LA 90010<br>nhslacounty.org</td>
+  <td>Partner on 8727 S Broadway. NeighborWorks affiliate — homeownership and community dev in South LA.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Bridge Housing</span></td>
+  <td><span class="person">Smitha Seshadri</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(213) 534-4802 (LA)<br>600 Wilshire Blvd #1000, LA 90017<br>bridgehousing.com</td>
+  <td>Built Evermont (180 units) at Vermont/Manchester — 0.8 mi west.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">CRCD</span></td>
+  <td><span class="person">Mark Wilson</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(323) 750-9087<br>8475 S Vermont Ave, LA 90044<br>coalitionrcd.org</td>
+  <td>THE community org for this area. Housing, workforce dev, community organizing. Based 0.5 mi away.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Primestor Development</span></td>
+  <td><span class="person">Arturo Sneider</span><br><span class="title">Founder &amp; CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(310) 295-1174<br>1200 W Olympic Blvd #280, LA 90064<br>primestor.com</td>
+  <td>Commercial/retail developer in underserved South LA. The Beehive on Manchester. Voice for South LA investment.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Thomas Safran &amp; Assoc</span></td>
+  <td><span class="person">Jon Blanchard</span><br><span class="title">President</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(310) 820-8888<br>11812 San Vicente Blvd #600, LA 90049<br>tsahousing.com</td>
+  <td>5,000+ affordable units in LA. One of the most prolific affordable developers.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Related California</span></td>
+  <td><span class="person">Bill Witte</span><br><span class="title">President</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(949) 660-7272<br>18201 Von Karman Ave #900, Irvine 92612<br>relatedcalifornia.com</td>
+  <td>Jordan Downs redevelopment in South LA. Major mixed-use/affordable developer.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">AMCAL Multi-Housing</span></td>
+  <td><span class="person">Percival Vaz</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(818) 247-0447<br>30141 Agoura Rd #100, Agoura Hills 91301<br>amcalhousing.com</td>
+  <td>Major affordable and mixed-income developer active across South LA.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Mercy Housing California</span></td>
+  <td><span class="person">LA Regional Office</span><br><span class="title">Affordable Housing</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(213) 743-5820<br>1500 S Grand Ave #100, LA 90015<br>mercyhousing.org</td>
+  <td>National nonprofit developer with significant LA portfolio.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">National CORE</span></td>
+  <td><span class="person">Michael Ruane</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(909) 483-2444<br>9065 Haven Ave #100, Rancho Cucamonga 91730<br>nationalcore.org</td>
+  <td>One of the largest affordable housing developers in the western US.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Jamboree Housing</span></td>
+  <td><span class="person">Laura Archuleta</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(949) 263-8676<br>jamboreehousing.com</td>
+  <td>Major SoCal affordable housing developer.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Meta Housing</span></td>
+  <td><span class="person">John Huskey</span><br><span class="title">President</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(323) 957-6801<br>metahousing.com</td>
+  <td>For-profit affordable housing developer active across LA County.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">PATH Ventures</span></td>
+  <td><span class="person">Jennifer Hark Dietz</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(323) 644-2200<br>340 N Madison Ave, LA 90004<br>epath.org</td>
+  <td>Permanent supportive housing developer — homeless services.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">LA Family Housing</span></td>
+  <td><span class="person">Stephanie Klasky-Gamer</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(818) 982-3895<br>lafh.org</td>
+  <td>Major homeless services provider with growing development arm.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">Cesar Chavez Foundation</span></td>
+  <td><span class="person">Paul Chavez</span><br><span class="title">President &amp; CEO</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(818) 265-0300<br>634 S Spring St #400, LA 90014<br>cesarechavezfoundation.org</td>
+  <td>Affordable housing through faith-based development arm.</td>
+</tr>
+<tr data-cat="developer">
+  <td><span class="org">ELACC</span></td>
+  <td><span class="person">Isela Gracian</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-dev">Developer</span></td>
+  <td class="contact-info">(323) 269-4214<br>elacc.org</td>
+  <td>Model CDC for community-driven development.</td>
+</tr>
+
+<!-- ==================== ARCHITECTS ==================== -->
+<tr><td colspan="5" class="section-header section-header-teal">ARCHITECTS</td></tr>
+
+<tr data-cat="architect">
+  <td><span class="org">John V. Mutlow Architects</span></td>
+  <td><span class="person">John V. Mutlow, FAIA</span><br><span class="title">Principal</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(310) 829-2249<br>2510 Main St #201, Santa Monica 90405<br>mutlowarchitects.com</td>
+  <td>Designed 8727 S Broadway (122 units) — directly adjacent to your site. Affordable housing specialist.</td>
+</tr>
+<tr data-cat="architect">
+  <td><span class="org">Morphosis</span></td>
+  <td><span class="person">Thom Mayne, FAIA</span><br><span class="title">Founding Principal (Pritzker Prize)</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(310) 453-2247<br>3440 Wesley St, Culver City 90232<br>morphosis.com</td>
+  <td>Designed 9402 S Broadway project — signals high-design potential on the corridor.</td>
+</tr>
+<tr data-cat="architect">
+  <td><span class="org">TCA Architects</span></td>
+  <td><span class="person">Keven Ratner</span><br><span class="title">Managing Principal</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(213) 480-0590 (LA)<br>tca-arch.com</td>
+  <td>Designed Evermont at Vermont/Manchester (180 units). Large multifamily specialist.</td>
+</tr>
+<tr data-cat="architect">
+  <td><span class="org">SVA Architects</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Affordable Housing</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(818) 251-7933<br>2120 Colorado Ave #230, Santa Monica 90404<br>sfrdesign.com</td>
+  <td>One of the most active affordable housing architecture firms in LA. Dozens of LIHTC projects.</td>
+</tr>
+<tr data-cat="architect">
+  <td><span class="org">Gonzalez Goodale Architects</span></td>
+  <td><span class="person">Lena Gonzalez / David Goodale</span><br><span class="title">Principals</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(213) 380-4060<br>ggarchitecture.com</td>
+  <td>Specialize in affordable and multifamily housing in LA.</td>
+</tr>
+<tr data-cat="architect">
+  <td><span class="org">KTGY Architecture</span></td>
+  <td><span class="person">LA Office</span><br><span class="title">Multifamily &amp; Mixed-Use</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(949) 851-2133<br>445 S Figueroa St #3650, LA 90071<br>ktgy.com</td>
+  <td>Major multifamily/mixed-use firm. National presence.</td>
+</tr>
+<tr data-cat="architect">
+  <td><span class="org">Studio One Eleven</span></td>
+  <td><span class="person">Michael Bohn, FAIA</span><br><span class="title">Principal</span></td>
+  <td><span class="tag tag-green">Architect</span></td>
+  <td class="contact-info">(562) 590-3811<br>245 E 3rd St, Long Beach 90802<br>studio-111.com</td>
+  <td>Community-driven design in underserved areas. Rockefeller Foundation partner.</td>
+</tr>
+
+<!-- ==================== NONPROFITS ==================== -->
+<tr><td colspan="5" class="section-header">NONPROFITS &amp; COMMUNITY ORGANIZATIONS</td></tr>
+
+<tr data-cat="nonprofit">
+  <td><span class="org">Community Build Inc</span></td>
+  <td><span class="person">Robert Sausedo</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(323) 290-6560<br>6400 S Avalon Blvd, LA 90003<br>communitybuild.org</td>
+  <td>Based in 90003 — workforce training, construction jobs. Key local hiring partner for your project.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">TRUST South LA</span></td>
+  <td><span class="person">Sandra McNeill</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(323) 233-4118<br>4912 S Central Ave, LA 90011<br>trustsouthla.org</td>
+  <td>Community land trust — anti-displacement advocacy. Engage early as key stakeholder.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">SAJE</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Tenant Rights &amp; Anti-Displacement</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(213) 745-9961<br>152 W 32nd St, LA 90007<br>saje.net</td>
+  <td>Tenant rights, anti-displacement. Can oppose large developments — engage early to build support.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">LA Neighborhood Initiative</span></td>
+  <td><span class="person">Ruben Garcia</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(213) 627-5264<br>315 W 9th St #705, LA 90015<br>laneighborhood.org</td>
+  <td>Streetscape improvement, small business support along Broadway.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">LA Voice</span></td>
+  <td><span class="person">Rev. Zach Hoover</span><br><span class="title">Executive Director</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(213) 500-5901<br>lavoice.org</td>
+  <td>Faith-based community organizing — housing policy advocacy in South LA.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">VSEDC</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Economic Development</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(323) 753-2335<br>5918 S Vermont Ave, LA 90044<br>vsedc.org</td>
+  <td>Vermont-Slauson EDC — small business lending, community programs along the corridor.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">WLCAC</span></td>
+  <td><span class="person">Tim Watkins</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(323) 563-5639<br>10950 S Central Ave, LA 90059<br>wlcac.org</td>
+  <td>One of the oldest South LA community orgs. Job training, housing. Strong political connections.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">CA Community Foundation</span></td>
+  <td><span class="person">Antonia Hernandez</span><br><span class="title">President &amp; CEO</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(213) 413-4130<br>221 S Figueroa St #400, LA 90012<br>calfund.org</td>
+  <td>Major LA philanthropy. One of the most influential people in LA civic life.</td>
+</tr>
+<tr data-cat="nonprofit">
+  <td><span class="org">Weingart Foundation</span></td>
+  <td><span class="person">Miguel Santana</span><br><span class="title">President &amp; CEO</span></td>
+  <td><span class="tag tag-listed">Nonprofit</span></td>
+  <td class="contact-info">(213) 688-7799<br>1055 Wilshire Blvd #1660, LA 90017<br>weingartfnd.org</td>
+  <td>Major funder. Former LA City Admin Officer. Foundation focuses on homelessness &amp; housing.</td>
+</tr>
+
+<!-- ==================== FUNDERS & CDFIs ==================== -->
+<tr><td colspan="5" class="section-header section-header-green">FUNDERS &amp; CDFIs</td></tr>
+
+<tr data-cat="funder">
+  <td><span class="org">Genesis LA</span></td>
+  <td><span class="person">Brian Arguelles</span><br><span class="title">President &amp; CEO</span></td>
+  <td><span class="tag tag-dev">CDFI</span></td>
+  <td class="contact-info">(213) 250-8195<br>1000 N Alameda St #240, LA 90012<br>genesisla.org</td>
+  <td>NMTC allocator for underserved LA communities. Key contact for $3-8M NMTC subsidy.</td>
+</tr>
+<tr data-cat="funder">
+  <td><span class="org">LISC Los Angeles</span></td>
+  <td><span class="person">Tunua Thrash-Ntuk</span><br><span class="title">LA Executive Director</span></td>
+  <td><span class="tag tag-dev">CDFI</span></td>
+  <td class="contact-info">(213) 250-9550<br>500 S Grand Ave #2150, LA 90071<br>lisc.org/los-angeles</td>
+  <td>Major CDFI — predevelopment loans, NMTC, capacity building. Well connected in South LA.</td>
+</tr>
+<tr data-cat="funder">
+  <td><span class="org">Enterprise Community Partners</span></td>
+  <td><span class="person">LA Office</span><br><span class="title">LIHTC Equity &amp; TA</span></td>
+  <td><span class="tag tag-dev">CDFI</span></td>
+  <td class="contact-info">(213) 787-3370<br>600 Wilshire Blvd #600, LA 90017<br>enterprisecommunity.org</td>
+  <td>Major national intermediary — LIHTC equity, grants, technical assistance. Essential for tax credit projects.</td>
+</tr>
+<tr data-cat="funder">
+  <td><span class="org">Clearinghouse CDFI</span></td>
+  <td><span class="person">Douglas Bystry</span><br><span class="title">CEO</span></td>
+  <td><span class="tag tag-dev">CDFI</span></td>
+  <td class="contact-info">(866) 618-2346<br>clearinghousecdfi.com</td>
+  <td>One of the largest CDFIs — large-scale acquisition and construction financing. S&amp;P rated.</td>
+</tr>
+<tr data-cat="funder">
+  <td><span class="org">LIIF</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Low Income Investment Fund</span></td>
+  <td><span class="tag tag-dev">CDFI</span></td>
+  <td class="contact-info">liifund.org</td>
+  <td>Predevelopment, acquisition, construction, and permanent loans. Active NMTC allocatee.</td>
+</tr>
+
+<!-- ==================== TAX CREDIT SYNDICATORS ==================== -->
+<tr><td colspan="5" class="section-header section-header-orange">TAX CREDIT SYNDICATORS</td></tr>
+
+<tr data-cat="syndicator">
+  <td><span class="org">Raymond James</span></td>
+  <td><span class="person">Kevin Kilbane</span><br><span class="title">Affordable Housing Investments</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">raymondjames.com/tax-credit</td>
+  <td>Major LIHTC syndicator — purchases 4% and 9% credits. $8-22M potential equity.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">National Equity Fund</span></td>
+  <td><span class="person">Debbie Burkart</span><br><span class="title">LA/Western Region</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">nefinc.org</td>
+  <td>LIHTC syndicator — sister org to LISC.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">US Bancorp Impact Finance</span></td>
+  <td><span class="person">Impact Finance Team</span><br><span class="title">LIHTC &amp; NMTC</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">usbank.com/impact-finance</td>
+  <td>Major bank syndicator — LIHTC equity and NMTC.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">WNC &amp; Associates</span></td>
+  <td><span class="person">David Ciminelli</span><br><span class="title">LIHTC Investments</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">wncinc.com</td>
+  <td>SoCal-based LIHTC syndicator.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">Boston Financial</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Tax Credit Investments</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">boston.financial</td>
+  <td>Major national LIHTC syndicator.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">RBC Community Investments</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">LIHTC &amp; NMTC</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">rbccm.com/community-investments</td>
+  <td>Major bank syndicator.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">Citi Community Capital</span></td>
+  <td><span class="person">Jeremy Johnson</span><br><span class="title">Community Capital</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">citibank.com/icg/sa/citicommunitycapital</td>
+  <td>Funded 8727 S Broadway project. Precedent relationship for this corridor.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">R4 Capital</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Tax Credit Equity</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">r4cap.com</td>
+  <td>Growing LIHTC syndicator.</td>
+</tr>
+<tr data-cat="syndicator">
+  <td><span class="org">Alliant / Walker &amp; Dunlop</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Tax Credit Investments</span></td>
+  <td><span class="tag tag-state">Syndicator</span></td>
+  <td class="contact-info">alliantcapital.com</td>
+  <td>Major national syndicator.</td>
+</tr>
+
+<!-- ==================== CONSULTANTS ==================== -->
+<tr><td colspan="5" class="section-header section-header-red">CONSULTANTS &amp; SPECIALISTS</td></tr>
+
+<tr data-cat="consultant">
+  <td><span class="org">Greenberg Glusker (OZ)</span></td>
+  <td><span class="person">OZ Practice Group</span><br><span class="title">Opportunity Zone Attorneys</span></td>
+  <td><span class="tag tag-sold">Consultant</span></td>
+  <td class="contact-info">greenbergglusker.com/opportunity-zones</td>
+  <td>LA-based OZ specialists — structure QOF for acquisition. Priority #1 consultant.</td>
+</tr>
+<tr data-cat="consultant">
+  <td><span class="org">Cox Castle &amp; Nicholson</span></td>
+  <td><span class="person">Land Use Practice</span><br><span class="title">Density Bonus / Entitlements</span></td>
+  <td><span class="tag tag-sold">Consultant</span></td>
+  <td class="contact-info">coxcastle.com/practices-land-use</td>
+  <td>Top LA land use firm — CHIP/MIIP, TOC, SB 35, AB 2011 entitlements.</td>
+</tr>
+<tr data-cat="consultant">
+  <td><span class="org">HRG Conservation</span></td>
+  <td><span class="person">Historic Assessment</span><br><span class="title">Historic Preservation</span></td>
+  <td><span class="tag tag-sold">Consultant</span></td>
+  <td class="contact-info">hrgconservation.com</td>
+  <td>Historic assessment for 1910 and 1927 buildings — unlocks 20% federal tax credit.</td>
+</tr>
+<tr data-cat="consultant">
+  <td><span class="org">Phase I ESA Firms</span></td>
+  <td><span class="person">Multiple (RFP needed)</span><br><span class="title">Environmental Consultants</span></td>
+  <td><span class="tag tag-sold">Consultant</span></td>
+  <td class="contact-info">Recommend: Partner Engineering, Terracon, EBI Consulting</td>
+  <td>Phase I ESA required before closing — nearby 9111 S Broadway had contamination.</td>
+</tr>
+<tr data-cat="consultant">
+  <td><span class="org">C-PACE Administrators</span></td>
+  <td><span class="person">LA County PACE</span><br><span class="title">Clean Energy Financing</span></td>
+  <td><span class="tag tag-sold">Consultant</span></td>
+  <td class="contact-info">Providers: Nuveen Green Capital, Petros PACE, Counterpointe SRE</td>
+  <td>C-PACE financing — $2-5M+ for solar, EV, energy efficiency. No money down, 30-year terms.</td>
+</tr>
+
+<!-- ==================== INDUSTRY ORGS ==================== -->
+<tr><td colspan="5" class="section-header section-header-purple">INDUSTRY ORGANIZATIONS</td></tr>
+
+<tr data-cat="industry">
+  <td><span class="org">SCANPH</span></td>
+  <td><span class="person">Staff Directory</span><br><span class="title">SoCal Nonprofit Housing Assoc</span></td>
+  <td><span class="tag tag-county">Industry</span></td>
+  <td class="contact-info">scanph.org/staff</td>
+  <td>Southern CA Association of Non-Profit Housing — networking, policy, technical assistance.</td>
+</tr>
+<tr data-cat="industry">
+  <td><span class="org">ULI Los Angeles</span></td>
+  <td><span class="person">LA Chapter Staff</span><br><span class="title">Urban Land Institute</span></td>
+  <td><span class="tag tag-county">Industry</span></td>
+  <td class="contact-info">la.uli.org/about/staff</td>
+  <td>Development industry network — technical advisory panels, conferences, best practices.</td>
+</tr>
+<tr data-cat="industry">
+  <td><span class="org">LA Business Council</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Business &amp; Development</span></td>
+  <td><span class="tag tag-county">Industry</span></td>
+  <td class="contact-info">labusinesscouncil.org</td>
+  <td>Business advocacy — development policy, sustainability, economic growth.</td>
+</tr>
+<tr data-cat="industry">
+  <td><span class="org">Central City Association</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Business &amp; Development</span></td>
+  <td><span class="tag tag-county">Industry</span></td>
+  <td class="contact-info">ccala.org/staff</td>
+  <td>Development advocacy — housing policy, regulatory reform.</td>
+</tr>
+<tr data-cat="industry">
+  <td><span class="org">CA Housing Consortium</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Housing Policy</span></td>
+  <td><span class="tag tag-county">Industry</span></td>
+  <td class="contact-info">calhsng.org</td>
+  <td>Statewide housing policy — advocacy for funding and streamlining.</td>
+</tr>
+<tr data-cat="industry">
+  <td><span class="org">BIASC</span></td>
+  <td><span class="person">General Inquiries</span><br><span class="title">Building Industry Assoc of SoCal</span></td>
+  <td><span class="tag tag-county">Industry</span></td>
+  <td class="contact-info">biasc.org</td>
+  <td>Building industry advocacy — code, permitting, construction workforce.</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+</main>
+
+<script>
+function filterTable(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const rows = document.querySelectorAll('#contacts-table tbody tr');
+  let count = 0;
+  rows.forEach(row => {
+    if (row.querySelector('.section-header')) {
+      // Section headers: show if 'all' or if the next data rows match
+      row.style.display = '';
+      return;
+    }
+    const rowCat = row.getAttribute('data-cat');
+    if (!rowCat) return;
+    if (cat === 'all' || rowCat === cat) {
+      row.style.display = '';
+      count++;
+    } else {
+      row.style.display = 'none';
+    }
+  });
+  // Hide section headers with no visible rows after them
+  const allRows = Array.from(rows);
+  allRows.forEach((row, i) => {
+    if (row.querySelector('.section-header')) {
+      let hasVisible = false;
+      for (let j = i + 1; j < allRows.length; j++) {
+        if (allRows[j].querySelector('.section-header')) break;
+        if (allRows[j].style.display !== 'none') { hasVisible = true; break; }
+      }
+      row.style.display = hasVisible ? '' : 'none';
+    }
+  });
+  document.getElementById('contact-count').textContent = (cat === 'all' ? 'Showing all' : 'Filtered: ' + count) + ' contacts';
+}
+// Initial count
+document.addEventListener('DOMContentLoaded', () => {
+  const total = document.querySelectorAll('#contacts-table tbody tr[data-cat]').length;
+  document.getElementById('contact-count').textContent = 'Showing all ' + total + ' contacts';
+});
+</script>
+</body>
+</html>

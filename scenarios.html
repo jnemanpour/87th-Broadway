@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>87th &amp; Broadway — Development Scenarios</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.zone-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.zone-card{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.zone-card h4{font-size:.82rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.zone-card .zone-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.zone-a .zone-dot{background:#2563eb}
+.zone-b .zone-dot{background:#059669}
+.zone-c .zone-dot{background:#7c3aed}
+.zone-card .zone-stats{font-size:.74rem;color:#5f6774;line-height:1.6}
+.zone-card .zone-stats strong{color:#1a1d23}
+
+.scenario-panel{background:#fff;border:1px solid #e2e5ea;border-radius:10px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.scenario-header{padding:16px 20px;border-bottom:1px solid #f0f1f3;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.scenario-header:hover{background:#f8f9fa}
+.scenario-header h3{font-size:.92rem;font-weight:800;display:flex;align-items:center;gap:8px}
+.scenario-header .scenario-tag{font-size:.64rem;font-weight:600;padding:2px 8px;border-radius:4px}
+.scenario-header .roi-badge{font-size:.88rem;font-weight:800;color:#059669}
+.scenario-body{padding:20px;display:block}
+
+.pro-forma{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.pf-section{background:#f8f9fa;border:1px solid #f0f1f3;border-radius:8px;padding:14px 16px}
+.pf-section h5{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;margin-bottom:8px}
+.pf-line{display:flex;justify-content:space-between;font-size:.76rem;padding:3px 0;border-bottom:1px solid #f0f1f3}
+.pf-line:last-child{border-bottom:none}
+.pf-line.total{font-weight:700;border-top:2px solid #e2e5ea;padding-top:6px;margin-top:4px;font-size:.82rem}
+.pf-line .amt{font-family:'JetBrains Mono',monospace;font-weight:600}
+
+.roi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+.roi-card{text-align:center;background:#f8f9fa;border:1px solid #f0f1f3;border-radius:8px;padding:10px}
+.roi-card .roi-label{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d}
+.roi-card .roi-val{font-size:1.05rem;font-weight:800;margin-top:2px}
+.roi-card .roi-sub{font-size:.62rem;color:#5f6774;margin-top:1px}
+
+.funding-stack{margin-top:12px}
+.stack-bar{display:flex;height:32px;border-radius:6px;overflow:hidden;margin-bottom:6px}
+.stack-bar div{display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;color:#fff}
+.stack-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.68rem}
+.stack-legend span{display:flex;align-items:center;gap:4px}
+.stack-legend .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+
+.amenity-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.amenity-card{background:#fff;border:1px solid #e2e5ea;border-radius:8px;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.amenity-card h5{font-size:.76rem;font-weight:700;margin-bottom:4px}
+.amenity-card .amenity-detail{font-size:.7rem;color:#5f6774;line-height:1.5}
+
+.compare-table{width:100%;border-collapse:collapse;font-size:.76rem}
+.compare-table th{background:#1a1d23;color:#fff;padding:10px 12px;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;text-align:center}
+.compare-table th:first-child{text-align:left;border-radius:8px 0 0 0}
+.compare-table th:last-child{border-radius:0 8px 0 0}
+.compare-table td{padding:10px 12px;text-align:center;border-bottom:1px solid #f0f1f3}
+.compare-table td:first-child{text-align:left;font-weight:600}
+.compare-table tr:hover td{background:#f0f4ff}
+.compare-table .best{color:#059669;font-weight:800}
+.compare-table .worst{color:#dc2626}
+
+.ref-section{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:16px 20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ref-section h4{font-size:.82rem;font-weight:700;margin-bottom:8px}
+.ref-list{list-style:none;padding:0}
+.ref-list li{font-size:.74rem;padding:4px 0;border-bottom:1px solid #f0f1f3}
+.ref-list li:last-child{border-bottom:none}
+.ref-list a{color:#2563eb;text-decoration:none}
+.ref-list a:hover{text-decoration:underline}
+.ref-cat{font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;margin-top:10px;margin-bottom:4px}
+
+@media(max-width:900px){
+  .zone-cards,.pro-forma{grid-template-columns:1fr}
+  .roi-grid{grid-template-columns:repeat(3,1fr)}
+  .amenity-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>87th &amp; Broadway — Acquisition Research</h1>
+  <p>Kleinman Trust &middot; 12 Parcels &middot; $4.8M Proposal &middot; ~90,291 sf land &middot; The Neman Group</p>
+  <nav class="tabs">
+    <a href="index.html" class="tab">Parcel Map</a>
+    <a href="comps.html" class="tab">Commercial Comps</a>
+    <a href="grants.html" class="tab">Grants &amp; Incentives</a>
+    <a href="contacts.html" class="tab">Contacts &amp; Outreach</a>
+    <a href="scenarios.html" class="tab active">Development Scenarios</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ZONING SUMMARY -->
+<h3 class="section-title">Zoning &amp; Density — What You Can Build</h3>
+<div class="metric-row">
+  <div class="metric">
+    <div class="label">Zone</div>
+    <div class="value">C2-1VL</div>
+    <div class="sub">Commercial, Height District 1 Very Limited</div>
+  </div>
+  <div class="metric">
+    <div class="label">Base Density</div>
+    <div class="value">225 units</div>
+    <div class="sub">1 unit per 400 sf (R4) on 90,291 sf</div>
+  </div>
+  <div class="metric">
+    <div class="label">MIIP Bonus (120%)</div>
+    <div class="value">~495 units</div>
+    <div class="sub">CHIP/MIIP TOC area — 120% density bonus + 55% FAR bonus</div>
+  </div>
+  <div class="metric">
+    <div class="label">AB 2011 Near Transit</div>
+    <div class="value">80 du/acre</div>
+    <div class="sub">Up to 65 ft / 5 stories, ministerial approval, zero parking</div>
+  </div>
+  <div class="metric">
+    <div class="label">Max Height</div>
+    <div class="value">45 ft base / 65 ft AB 2011</div>
+    <div class="sub">3 stories base, 5 stories with state programs</div>
+  </div>
+</div>
+
+<!-- DEVELOPMENT ZONES -->
+<h3 class="section-title">Development Zones</h3>
+<div class="zone-cards">
+  <div class="zone-card zone-a">
+    <h4><span class="zone-dot"></span> Zone A — West Block (Your Side)</h4>
+    <div class="zone-stats">
+      <strong>Parcels:</strong> 014-003 to 014-008, 019-002, + your 8701 &amp; boxing gym<br>
+      <strong>Land:</strong> ~72,000 sf (1.65 ac)<br>
+      <strong>Existing:</strong> 8701 (shelter use), boxing gym ($7.8K/mo), restaurant (1927), store (1910), office (1948)<br>
+      <strong>Strategy:</strong> Keep 8701 &amp; gym structures. Demo 3 smaller buildings. Build mixed-use village core — residential over grocery, clinic, daycare, retail. Adaptive reuse of 8701 for income-producing use.
+    </div>
+  </div>
+  <div class="zone-card zone-b">
+    <h4><span class="zone-dot"></span> Zone B — East Block (Across Broadway)</h4>
+    <div class="zone-stats">
+      <strong>Parcels:</strong> 015-012 to 015-016 (5 parcels)<br>
+      <strong>Land:</strong> ~29,430 sf (0.68 ac)<br>
+      <strong>Existing:</strong> All vacant — clean slate<br>
+      <strong>Strategy:</strong> 100% affordable housing to maximize LIHTC equity and grants. 4-5 story Type V wood frame. Fastest to build, easiest to finance. Could break ground first.
+    </div>
+  </div>
+  <div class="zone-card zone-c">
+    <h4><span class="zone-dot"></span> Zone C — Detached Parcels</h4>
+    <div class="zone-stats">
+      <strong>Parcels:</strong> 026-019, 026-020<br>
+      <strong>Land:</strong> ~7,770 sf (0.18 ac)<br>
+      <strong>Existing:</strong> Vacant — city lot (Lot 700 adjacent)<br>
+      <strong>Strategy:</strong> Small-scale: 4-6 townhomes, or small commercial (laundromat + coffee, community space). Could also serve as staging area during construction of main blocks.
+    </div>
+  </div>
+</div>
+
+<!-- AREA COMP PROJECTS -->
+<h3 class="section-title">Comparable Projects in the Area</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Project</th><th>Location</th><th>Units</th><th>Total Cost</th><th>$/Unit</th><th>Type</th><th>Developer</th><th>Funding</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Manchester Urban Homes</strong></td><td>8727 S Broadway</td><td>120</td><td class="mono">$84M</td><td class="mono">$700K</td>
+        <td>76 apts + 46 townhomes<br>30-60% AMI</td><td>Abode Communities / NHSLA</td><td>4% LIHTC, tax-exempt bonds, City $7M</td><td><span class="tag tag-dev">Leasing 2026</span></td>
+      </tr>
+      <tr>
+        <td><strong>5637 S Broadway</strong></td><td>5637 S Broadway</td><td>37</td><td class="mono">~$25M*</td><td class="mono">~$675K</td>
+        <td>100% affordable</td><td>Eleos</td><td>Health Net $550K + LIHTC</td><td><span class="tag tag-dev">Broke Ground Mar 2026</span></td>
+      </tr>
+      <tr>
+        <td><strong>5001 S Broadway</strong></td><td>5001 S Broadway</td><td>187</td><td class="mono">~$130M*</td><td class="mono">~$695K</td>
+        <td>7-story, affordable + ground-floor commercial</td><td>Eleos</td><td>LIHTC + bonds</td><td><span class="tag tag-dev">Under Construction</span></td>
+      </tr>
+      <tr>
+        <td><strong>Jordan Downs</strong></td><td>Watts (103rd)</td><td>1,400</td><td class="mono">$1B+</td><td class="mono">$714K</td>
+        <td>Mixed-income village<br>housing + retail + parks</td><td>HACLA / BRIDGE Housing</td><td>4% LIHTC, bonds, HUD CNI, TCC, AHSC</td><td><span class="tag tag-dev">Multi-phase thru 2030</span></td>
+      </tr>
+      <tr>
+        <td><strong>Vermont-Manchester</strong></td><td>Vermont &amp; Manchester</td><td>180</td><td class="mono">~$125M*</td><td class="mono">~$694K</td>
+        <td>Mixed-use: 180 units + Target + 64K sf retail</td><td>BRIDGE / CRCD / Primestor</td><td>LIHTC + bonds + city funds</td><td><span class="tag tag-dev">Under Construction</span></td>
+      </tr>
+      <tr>
+        <td><strong>Heavenly Vision Senior</strong></td><td>9500 S Broadway</td><td>46</td><td class="mono">—</td><td class="mono">—</td>
+        <td>Senior 1-BR, LIHTC</td><td>—</td><td>4% LIHTC</td><td><span class="tag tag-sold">Complete</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding:10px 16px;font-size:.7rem;color:#8b919d;border-top:1px solid #f0f1f3">* Estimated based on comparable $/unit in the area. Actual costs may vary. Average affordable housing cost in South LA: $675K–$714K/unit (2024-2026).</div>
+</div>
+
+<!-- KEY FINANCIAL ASSUMPTIONS -->
+<h3 class="section-title">Financial Assumptions (South LA, 2026)</h3>
+<div class="metric-row">
+  <div class="metric">
+    <div class="label">Hard Costs</div>
+    <div class="value">$300–$400/sf</div>
+    <div class="sub">Type V wood frame, prevailing wage, South LA</div>
+  </div>
+  <div class="metric">
+    <div class="label">Soft Costs</div>
+    <div class="value">25–30% of hard</div>
+    <div class="sub">Architecture, permits, legal, financing fees</div>
+  </div>
+  <div class="metric">
+    <div class="label">4% LIHTC Equity</div>
+    <div class="value">$0.85/credit</div>
+    <div class="sub">~30% of eligible costs, 10-yr credit period</div>
+  </div>
+  <div class="metric">
+    <div class="label">Cap Rate (C class)</div>
+    <div class="value">5.4–5.8%</div>
+    <div class="sub">South LA multifamily, 2025 market</div>
+  </div>
+</div>
+<div class="metric-row">
+  <div class="metric">
+    <div class="label">Market Rent (90003)</div>
+    <div class="value">$1,845/mo 1BR</div>
+    <div class="sub">$2,291/mo 2BR &middot; $2,600+ 3BR</div>
+  </div>
+  <div class="metric">
+    <div class="label">60% AMI Rent</div>
+    <div class="value">$1,704/mo 1BR</div>
+    <div class="sub">$2,044/mo 2BR &middot; $2,363/mo 3BR</div>
+  </div>
+  <div class="metric">
+    <div class="label">50% AMI Rent</div>
+    <div class="value">$1,420/mo 1BR</div>
+    <div class="sub">$1,703/mo 2BR &middot; $1,969/mo 3BR</div>
+  </div>
+  <div class="metric">
+    <div class="label">30% AMI Rent</div>
+    <div class="value">$852/mo 1BR</div>
+    <div class="sub">$1,022/mo 2BR &middot; $1,181/mo 3BR</div>
+  </div>
+</div>
+
+<!-- SCENARIO 1: THE VILLAGE -->
+<h3 class="section-title">Development Scenarios</h3>
+
+<div class="scenario-panel">
+  <div class="scenario-header">
+    <h3><span style="color:#2563eb">Scenario 1:</span> The Village — Mixed-Use Community Hub</h3>
+    <span class="roi-badge">7.2% Cash-on-Cash</span>
+  </div>
+  <div class="scenario-body">
+    <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">Full build-out across all zones. Grocery-anchored mixed-use village with affordable + market housing, clinic, daycare, and community retail. This is the vision play — highest long-term NOI, strongest community impact, most grant-eligible.</p>
+
+    <div class="pro-forma">
+      <div class="pf-section">
+        <h5>Program</h5>
+        <div class="pf-line"><span>Zone A: Residential units (over retail)</span><span class="amt">148 units</span></div>
+        <div class="pf-line"><span>Zone B: 100% affordable housing</span><span class="amt">72 units</span></div>
+        <div class="pf-line"><span>Zone C: Townhomes</span><span class="amt">6 units</span></div>
+        <div class="pf-line total"><span>Total Residential</span><span class="amt">226 units</span></div>
+        <div class="pf-line"><span>Ground-floor retail/commercial (Zone A)</span><span class="amt">35,000 sf</span></div>
+        <div class="pf-line"><span>&nbsp;&nbsp;— Grocery anchor</span><span class="amt">12,000 sf</span></div>
+        <div class="pf-line"><span>&nbsp;&nbsp;— FQHC clinic (St. John's)</span><span class="amt">6,000 sf</span></div>
+        <div class="pf-line"><span>&nbsp;&nbsp;— Childcare center</span><span class="amt">5,500 sf</span></div>
+        <div class="pf-line"><span>&nbsp;&nbsp;— Pharmacy</span><span class="amt">2,500 sf</span></div>
+        <div class="pf-line"><span>&nbsp;&nbsp;— Laundromat / Coffee / Credit Union</span><span class="amt">9,000 sf</span></div>
+        <div class="pf-line"><span>Adaptive reuse of 8701 S Broadway</span><span class="amt">13,965 sf</span></div>
+        <div class="pf-line"><span>Boxing gym (keep operating)</span><span class="amt">as-is</span></div>
+      </div>
+      <div class="pf-section">
+        <h5>Unit Mix &amp; Rents (Blended)</h5>
+        <div class="pf-line"><span>Studio (30%) — 550 sf avg</span><span class="amt">68 units &middot; $1,550/mo</span></div>
+        <div class="pf-line"><span>1-BR (40%) — 700 sf avg</span><span class="amt">90 units &middot; $1,750/mo</span></div>
+        <div class="pf-line"><span>2-BR (20%) — 950 sf avg</span><span class="amt">45 units &middot; $2,150/mo</span></div>
+        <div class="pf-line"><span>3-BR (10%) — 1,150 sf avg</span><span class="amt">23 units &middot; $2,400/mo</span></div>
+        <div class="pf-line"><span>Affordable split: 70% affordable / 30% market</span><span class="amt"></span></div>
+        <div class="pf-line total"><span>Avg. blended residential rent</span><span class="amt">$1,780/mo</span></div>
+        <div class="pf-line"><span>Retail NNN rent (blended)</span><span class="amt">$1.75/sf/mo</span></div>
+        <div class="pf-line total"><span>Gross Annual Revenue</span><span class="amt">$5.57M</span></div>
+      </div>
+    </div>
+
+    <div class="pro-forma">
+      <div class="pf-section">
+        <h5>Development Costs</h5>
+        <div class="pf-line"><span>Land acquisition (12 parcels)</span><span class="amt">$4,800,000</span></div>
+        <div class="pf-line"><span>Demolition (3 buildings, ~29K sf)</span><span class="amt">$580,000</span></div>
+        <div class="pf-line"><span>Hard costs — residential (176K sf @ $350/sf)</span><span class="amt">$61,600,000</span></div>
+        <div class="pf-line"><span>Hard costs — retail shell (35K sf @ $250/sf)</span><span class="amt">$8,750,000</span></div>
+        <div class="pf-line"><span>Hard costs — townhomes (7.2K sf @ $325/sf)</span><span class="amt">$2,340,000</span></div>
+        <div class="pf-line"><span>8701 adaptive reuse (14K sf @ $150/sf)</span><span class="amt">$2,095,000</span></div>
+        <div class="pf-line"><span>Site work, utilities, landscape</span><span class="amt">$3,200,000</span></div>
+        <div class="pf-line"><span>Soft costs (28% of hard)</span><span class="amt">$21,840,000</span></div>
+        <div class="pf-line"><span>Developer fee (4%)</span><span class="amt">$4,200,000</span></div>
+        <div class="pf-line"><span>Financing costs &amp; reserves</span><span class="amt">$5,400,000</span></div>
+        <div class="pf-line total"><span>Total Development Cost</span><span class="amt">$114,805,000</span></div>
+        <div class="pf-line total"><span>Cost per unit</span><span class="amt">$508,000</span></div>
+      </div>
+      <div class="pf-section">
+        <h5>Operating Pro Forma (Stabilized Year 1)</h5>
+        <div class="pf-line"><span>Gross residential income</span><span class="amt">$4,828,800</span></div>
+        <div class="pf-line"><span>Retail NNN income (35K sf)</span><span class="amt">$735,000</span></div>
+        <div class="pf-line"><span>8701 repurposed income</span><span class="amt">$240,000</span></div>
+        <div class="pf-line"><span>Boxing gym income</span><span class="amt">$93,600</span></div>
+        <div class="pf-line"><span>Laundry/parking/other</span><span class="amt">$120,000</span></div>
+        <div class="pf-line total"><span>Effective Gross Income (5% vacancy)</span><span class="amt">$5,716,530</span></div>
+        <div class="pf-line"><span>Operating expenses (35%)</span><span class="amt">($2,000,786)</span></div>
+        <div class="pf-line"><span>Property management (5%)</span><span class="amt">($285,827)</span></div>
+        <div class="pf-line"><span>Replacement reserves</span><span class="amt">($180,000)</span></div>
+        <div class="pf-line"><span>Insurance &amp; security</span><span class="amt">($350,000)</span></div>
+        <div class="pf-line total"><span>Net Operating Income (NOI)</span><span class="amt">$2,899,918</span></div>
+        <div class="pf-line"><span>Debt service (~$55M perm loan @ 6.5%)</span><span class="amt">($1,650,000)</span></div>
+        <div class="pf-line total"><span>Annual Cash Flow (pre-tax)</span><span class="amt">$1,249,918</span></div>
+      </div>
+    </div>
+
+    <!-- Funding stack -->
+    <div class="funding-stack">
+      <h5 style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;margin-bottom:6px">Capital Stack</h5>
+      <div class="stack-bar">
+        <div style="width:30%;background:#2563eb">LIHTC 30%</div>
+        <div style="width:25%;background:#059669">Bonds 25%</div>
+        <div style="width:12%;background:#7c3aed">Grants 12%</div>
+        <div style="width:18%;background:#d97706">Perm Loan 18%</div>
+        <div style="width:15%;background:#dc2626">Equity 15%</div>
+      </div>
+      <div class="stack-legend">
+        <span><span class="dot" style="background:#2563eb"></span> 4% LIHTC Equity — $34.4M</span>
+        <span><span class="dot" style="background:#059669"></span> Tax-Exempt Bonds — $28.7M</span>
+        <span><span class="dot" style="background:#7c3aed"></span> City/State Grants — $13.8M</span>
+        <span><span class="dot" style="background:#d97706"></span> Permanent Loan — $20.7M</span>
+        <span><span class="dot" style="background:#dc2626"></span> Developer/LP Equity — $17.2M</span>
+      </div>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-card"><div class="roi-label">Stabilized NOI</div><div class="roi-val" style="color:#059669">$2.9M</div><div class="roi-sub">Year 1</div></div>
+      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669">7.2%</div><div class="roi-sub">On $17.2M equity</div></div>
+      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val">$104K</div><div class="roi-sub">After debt service</div></div>
+      <div class="roi-card"><div class="roi-label">Cap Rate (on cost)</div><div class="roi-val">2.5%</div><div class="roi-sub">NOI / total cost</div></div>
+      <div class="roi-card"><div class="roi-label">Stabilized Value</div><div class="roi-val">$52.7M</div><div class="roi-sub">NOI / 5.5% market cap</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIO 2: AFFORDABLE HOUSING PLAY -->
+<div class="scenario-panel">
+  <div class="scenario-header">
+    <h3><span style="color:#059669">Scenario 2:</span> 100% Affordable — Grant Maximizer</h3>
+    <span class="roi-badge">8.5% Cash-on-Cash</span>
+  </div>
+  <div class="scenario-body">
+    <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">All zones built as 100% affordable housing (30-60% AMI). Maximizes LIHTC equity, tax-exempt bonds, and city/state grants. Lower per-unit NOI but your equity requirement is dramatically reduced. SB 35 ministerial approval = 90-day entitlement. Best ROI on cash invested because grants and credits pay for most of it.</p>
+
+    <div class="pro-forma">
+      <div class="pf-section">
+        <h5>Program</h5>
+        <div class="pf-line"><span>Zone A: Affordable housing (5 stories via SB 35)</span><span class="amt">180 units</span></div>
+        <div class="pf-line"><span>Zone B: Affordable housing (4 stories)</span><span class="amt">72 units</span></div>
+        <div class="pf-line"><span>Zone C: Affordable townhomes</span><span class="amt">6 units</span></div>
+        <div class="pf-line total"><span>Total Residential</span><span class="amt">258 units</span></div>
+        <div class="pf-line"><span>AMI mix: 20% @ 30% AMI, 60% @ 50% AMI, 20% @ 60% AMI</span><span class="amt"></span></div>
+        <div class="pf-line"><span>Small community room + mgmt office</span><span class="amt">3,000 sf</span></div>
+      </div>
+      <div class="pf-section">
+        <h5>Unit Mix &amp; Rents</h5>
+        <div class="pf-line"><span>1-BR (50%) — 650 sf</span><span class="amt">129 units &middot; $1,325/mo avg</span></div>
+        <div class="pf-line"><span>2-BR (35%) — 900 sf</span><span class="amt">90 units &middot; $1,590/mo avg</span></div>
+        <div class="pf-line"><span>3-BR (15%) — 1,100 sf</span><span class="amt">39 units &middot; $1,830/mo avg</span></div>
+        <div class="pf-line total"><span>Avg. blended rent</span><span class="amt">$1,470/mo</span></div>
+        <div class="pf-line total"><span>Gross Annual Revenue</span><span class="amt">$4,551,360</span></div>
+      </div>
+    </div>
+
+    <div class="pro-forma">
+      <div class="pf-section">
+        <h5>Development Costs</h5>
+        <div class="pf-line"><span>Land acquisition</span><span class="amt">$4,800,000</span></div>
+        <div class="pf-line"><span>Demolition</span><span class="amt">$580,000</span></div>
+        <div class="pf-line"><span>Hard costs (200K sf @ $350/sf)</span><span class="amt">$70,000,000</span></div>
+        <div class="pf-line"><span>Site work</span><span class="amt">$2,800,000</span></div>
+        <div class="pf-line"><span>Soft costs (28%)</span><span class="amt">$19,600,000</span></div>
+        <div class="pf-line"><span>Developer fee (15% — affordable premium)</span><span class="amt">$14,670,000</span></div>
+        <div class="pf-line"><span>Financing costs &amp; reserves</span><span class="amt">$5,800,000</span></div>
+        <div class="pf-line total"><span>Total Development Cost</span><span class="amt">$118,250,000</span></div>
+        <div class="pf-line total"><span>Cost per unit</span><span class="amt">$458,000</span></div>
+      </div>
+      <div class="pf-section">
+        <h5>Operating Pro Forma (Stabilized)</h5>
+        <div class="pf-line"><span>Gross residential income</span><span class="amt">$4,551,360</span></div>
+        <div class="pf-line"><span>Other income (laundry, parking)</span><span class="amt">$96,000</span></div>
+        <div class="pf-line total"><span>EGI (3% vacancy — affordable)</span><span class="amt">$4,507,939</span></div>
+        <div class="pf-line"><span>Operating expenses (32%)</span><span class="amt">($1,442,540)</span></div>
+        <div class="pf-line"><span>Property management (6%)</span><span class="amt">($270,476)</span></div>
+        <div class="pf-line"><span>Reserves + insurance</span><span class="amt">($420,000)</span></div>
+        <div class="pf-line total"><span>Net Operating Income (NOI)</span><span class="amt">$2,374,923</span></div>
+        <div class="pf-line"><span>Debt service (~$25M perm @ 4.5% soft debt)</span><span class="amt">($750,000)</span></div>
+        <div class="pf-line total"><span>Annual Cash Flow</span><span class="amt">$1,624,923</span></div>
+      </div>
+    </div>
+
+    <div class="funding-stack">
+      <h5 style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;margin-bottom:6px">Capital Stack</h5>
+      <div class="stack-bar">
+        <div style="width:35%;background:#2563eb">LIHTC 35%</div>
+        <div style="width:22%;background:#059669">Bonds 22%</div>
+        <div style="width:20%;background:#7c3aed">Grants 20%</div>
+        <div style="width:7%;background:#d97706">Soft Loan 7%</div>
+        <div style="width:16%;background:#dc2626">Equity 16%</div>
+      </div>
+      <div class="stack-legend">
+        <span><span class="dot" style="background:#2563eb"></span> 4% LIHTC Equity — $41.4M</span>
+        <span><span class="dot" style="background:#059669"></span> Tax-Exempt Bonds — $26.0M</span>
+        <span><span class="dot" style="background:#7c3aed"></span> City/State/Fed Grants — $23.7M</span>
+        <span><span class="dot" style="background:#d97706"></span> Soft Loans (LAHD/HCD) — $8.3M</span>
+        <span><span class="dot" style="background:#dc2626"></span> Developer Equity — $18.9M</span>
+      </div>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-card"><div class="roi-label">Stabilized NOI</div><div class="roi-val" style="color:#059669">$2.37M</div><div class="roi-sub">Year 1</div></div>
+      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669">8.5%</div><div class="roi-sub">On $18.9M equity</div></div>
+      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val">$135K</div><div class="roi-sub">After debt service</div></div>
+      <div class="roi-card"><div class="roi-label">Developer Fee</div><div class="roi-val" style="color:#2563eb">$14.7M</div><div class="roi-sub">Paid during construction</div></div>
+      <div class="roi-card"><div class="roi-label">Entitlement Time</div><div class="roi-val">90 days</div><div class="roi-sub">SB 35 ministerial</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIO 3: HYBRID -->
+<div class="scenario-panel">
+  <div class="scenario-header">
+    <h3><span style="color:#d97706">Scenario 3:</span> Hybrid — 70% Affordable / 30% Market via MIIP</h3>
+    <span class="roi-badge">6.8% Cash-on-Cash</span>
+  </div>
+  <div class="scenario-body">
+    <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">Uses the new CHIP/MIIP program (Feb 2025) for 120% density bonus. Mixed-income: 70% affordable for grants/LIHTC eligibility, 30% market-rate for higher rents. No ground-floor retail — pure residential play. Balanced approach but less community impact and fewer grant sources than Scenario 1.</p>
+
+    <div class="pro-forma">
+      <div class="pf-section">
+        <h5>Program</h5>
+        <div class="pf-line"><span>Zone A: Mixed-income apartments</span><span class="amt">180 units</span></div>
+        <div class="pf-line"><span>Zone B: Mixed-income apartments</span><span class="amt">72 units</span></div>
+        <div class="pf-line"><span>Zone C: Market townhomes</span><span class="amt">6 units</span></div>
+        <div class="pf-line total"><span>Total Residential</span><span class="amt">258 units</span></div>
+        <div class="pf-line"><span>70% affordable (50-60% AMI) = 181 units</span><span class="amt"></span></div>
+        <div class="pf-line"><span>30% market = 77 units</span><span class="amt"></span></div>
+      </div>
+      <div class="pf-section">
+        <h5>Blended Revenue</h5>
+        <div class="pf-line"><span>Affordable avg rent</span><span class="amt">$1,550/mo</span></div>
+        <div class="pf-line"><span>Market avg rent</span><span class="amt">$2,100/mo</span></div>
+        <div class="pf-line total"><span>Blended avg rent</span><span class="amt">$1,715/mo</span></div>
+        <div class="pf-line total"><span>Gross Annual Revenue</span><span class="amt">$5,307,720</span></div>
+      </div>
+    </div>
+
+    <div class="pro-forma">
+      <div class="pf-section">
+        <h5>Development Costs</h5>
+        <div class="pf-line"><span>Land + demo</span><span class="amt">$5,380,000</span></div>
+        <div class="pf-line"><span>Hard costs (200K sf @ $360/sf)</span><span class="amt">$72,000,000</span></div>
+        <div class="pf-line"><span>Soft costs (28%)</span><span class="amt">$20,160,000</span></div>
+        <div class="pf-line"><span>Developer fee (8%)</span><span class="amt">$7,800,000</span></div>
+        <div class="pf-line"><span>Financing + reserves</span><span class="amt">$5,600,000</span></div>
+        <div class="pf-line total"><span>Total Development Cost</span><span class="amt">$110,940,000</span></div>
+        <div class="pf-line total"><span>Cost per unit</span><span class="amt">$430,000</span></div>
+      </div>
+      <div class="pf-section">
+        <h5>Operating Pro Forma</h5>
+        <div class="pf-line total"><span>EGI (5% vacancy)</span><span class="amt">$5,042,334</span></div>
+        <div class="pf-line"><span>Expenses + mgmt + reserves</span><span class="amt">($2,218,627)</span></div>
+        <div class="pf-line total"><span>NOI</span><span class="amt">$2,823,707</span></div>
+        <div class="pf-line"><span>Debt service (~$45M @ 6.0%)</span><span class="amt">($1,350,000)</span></div>
+        <div class="pf-line total"><span>Annual Cash Flow</span><span class="amt">$1,473,707</span></div>
+      </div>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-card"><div class="roi-label">Stabilized NOI</div><div class="roi-val" style="color:#059669">$2.82M</div><div class="roi-sub">Year 1</div></div>
+      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669">6.8%</div><div class="roi-sub">On $21.7M equity</div></div>
+      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val">$123K</div><div class="roi-sub">After debt service</div></div>
+      <div class="roi-card"><div class="roi-label">Cap Rate (on cost)</div><div class="roi-val">2.5%</div><div class="roi-sub">NOI / total cost</div></div>
+      <div class="roi-card"><div class="roi-label">Stabilized Value</div><div class="roi-val">$51.3M</div><div class="roi-sub">NOI / 5.5% cap</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIO 4: PHASE IT -->
+<div class="scenario-panel">
+  <div class="scenario-header">
+    <h3><span style="color:#7c3aed">Scenario 4:</span> Phase It — East Block First, West Block Later</h3>
+    <span class="roi-badge">9.1% Cash-on-Cash (Phase 1)</span>
+  </div>
+  <div class="scenario-body">
+    <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px"><strong>This is the recommended strategy.</strong> Start with Zone B (all vacant, 100% affordable) — fastest to entitle, cheapest to build, most grant money available. Use the developer fee + cash flow from Phase 1 to fund your equity for Phase 2 (the mixed-use village on Zone A). De-risks the whole project. Proves concept to lenders and city. Manchester Urban Homes next door validates the market.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="pf-section" style="border:2px solid #7c3aed">
+        <h5 style="color:#7c3aed">Phase 1 — Zone B: East Block (Year 1-2)</h5>
+        <div class="pf-line"><span>72 units, 100% affordable, 4-story Type V</span><span class="amt"></span></div>
+        <div class="pf-line"><span>Total development cost</span><span class="amt">$33,100,000</span></div>
+        <div class="pf-line"><span>Cost per unit</span><span class="amt">$460,000</span></div>
+        <div class="pf-line"><span>LIHTC equity (35%)</span><span class="amt">$11,585,000</span></div>
+        <div class="pf-line"><span>Bonds (25%)</span><span class="amt">$8,275,000</span></div>
+        <div class="pf-line"><span>Grants (AHSC, LAHD, AHP)</span><span class="amt">$6,620,000</span></div>
+        <div class="pf-line"><span>Soft loan</span><span class="amt">$2,320,000</span></div>
+        <div class="pf-line" style="color:#dc2626;font-weight:700"><span>YOUR EQUITY NEEDED</span><span class="amt">$4,300,000</span></div>
+        <div class="pf-line"><span>Developer fee earned</span><span class="amt">$4,965,000</span></div>
+        <div class="pf-line"><span>Stabilized NOI</span><span class="amt">$662,000</span></div>
+        <div class="pf-line"><span>Cash-on-cash return</span><span class="amt" style="color:#059669">9.1%</span></div>
+        <div class="pf-line"><span>Monthly cash flow</span><span class="amt">$32,600</span></div>
+        <div class="pf-line"><span>Entitlement: SB 35 = 90 days</span><span class="amt"></span></div>
+      </div>
+      <div class="pf-section" style="border:2px solid #2563eb">
+        <h5 style="color:#2563eb">Phase 2 — Zone A: West Block Mixed-Use (Year 3-5)</h5>
+        <div class="pf-line"><span>148 units + 35,000 sf retail + 8701 reuse</span><span class="amt"></span></div>
+        <div class="pf-line"><span>Total development cost</span><span class="amt">$81,700,000</span></div>
+        <div class="pf-line"><span>Cost per unit (residential only)</span><span class="amt">$552,000</span></div>
+        <div class="pf-line"><span>LIHTC equity</span><span class="amt">$22,900,000</span></div>
+        <div class="pf-line"><span>Bonds</span><span class="amt">$20,400,000</span></div>
+        <div class="pf-line"><span>Grants (NMTC, HFFI, AHSC)</span><span class="amt">$14,300,000</span></div>
+        <div class="pf-line"><span>Perm loan</span><span class="amt">$15,200,000</span></div>
+        <div class="pf-line" style="color:#dc2626;font-weight:700"><span>YOUR EQUITY NEEDED</span><span class="amt">$8,900,000</span></div>
+        <div class="pf-line"><span>Funded by: Phase 1 dev fee + cash flow</span><span class="amt">~$5.9M</span></div>
+        <div class="pf-line"><span>New cash needed</span><span class="amt" style="color:#dc2626">$3,000,000</span></div>
+        <div class="pf-line"><span>Stabilized NOI (residential + retail)</span><span class="amt">$2,238,000</span></div>
+        <div class="pf-line"><span>Monthly cash flow</span><span class="amt">$72,000</span></div>
+      </div>
+    </div>
+
+    <div class="roi-grid" style="margin-top:16px">
+      <div class="roi-card"><div class="roi-label">Total Project Cost</div><div class="roi-val">$114.8M</div><div class="roi-sub">Both phases</div></div>
+      <div class="roi-card"><div class="roi-label">Total Cash In</div><div class="roi-val" style="color:#dc2626">$7.3M</div><div class="roi-sub">$4.3M + $3.0M</div></div>
+      <div class="roi-card"><div class="roi-label">Combined NOI</div><div class="roi-val" style="color:#059669">$2.9M</div><div class="roi-sub">Stabilized</div></div>
+      <div class="roi-card"><div class="roi-label">Combined Cash Flow</div><div class="roi-val">$104K/mo</div><div class="roi-sub">$1.25M/yr</div></div>
+      <div class="roi-card"><div class="roi-label">Equity Multiple</div><div class="roi-val" style="color:#059669">3.4x</div><div class="roi-sub">Over 15 years</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMUNITY AMENITY OPTIONS -->
+<h3 class="section-title">Community Amenity Analysis — What the Area Needs</h3>
+<p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">90003 is a USDA food desert, HRSA medically underserved area, and childcare desert. These designations unlock additional funding (NMTC, HFFI, CDFI) and ensure guaranteed tenant demand for ground-floor uses.</p>
+<div class="amenity-grid">
+  <div class="amenity-card">
+    <h5>Grocery Store</h5>
+    <div class="amenity-detail">
+      <strong>Size:</strong> 12,000-15,000 sf<br>
+      <strong>Rent:</strong> $1.50-$2.00/sf/mo NNN<br>
+      <strong>Lease:</strong> 15-20 yr<br>
+      <strong>Targets:</strong> Grocery Outlet, Aldi, Superior<br>
+      <strong>Unlocks:</strong> HFFI, NMTC, CA FreshWorks<br>
+      <strong>Need:</strong> USDA food desert. Nearest full grocery is Superior at 85th. No Trader Joe's, Ralphs, or Whole Foods within 5 mi.
+    </div>
+  </div>
+  <div class="amenity-card">
+    <h5>FQHC Clinic</h5>
+    <div class="amenity-detail">
+      <strong>Size:</strong> 5,000-8,000 sf<br>
+      <strong>Rent:</strong> $2.00-$3.00/sf/mo NNN<br>
+      <strong>Lease:</strong> 10-15 yr<br>
+      <strong>Partner:</strong> St. John's Well Child (at 85th)<br>
+      <strong>Unlocks:</strong> NMTC, HPSA designation<br>
+      <strong>Need:</strong> Federal MUA + HPSA. Area has primary care, dental, and mental health shortages.
+    </div>
+  </div>
+  <div class="amenity-card">
+    <h5>Childcare Center</h5>
+    <div class="amenity-detail">
+      <strong>Size:</strong> 5,000-7,000 sf + outdoor<br>
+      <strong>Rent:</strong> $1.50-$2.50/sf/mo<br>
+      <strong>Lease:</strong> 7-10 yr<br>
+      <strong>Funding:</strong> First 5 LA, CalWORKs, CCDBG<br>
+      <strong>Need:</strong> Childcare desert — 5-7 children per licensed slot (threshold: 3:1). ~4,500 children under 5 in zip code.
+    </div>
+  </div>
+  <div class="amenity-card">
+    <h5>Pharmacy + Credit Union</h5>
+    <div class="amenity-detail">
+      <strong>Size:</strong> 2,500 sf + 2,500 sf<br>
+      <strong>Rent:</strong> $2.00-$3.00/sf/mo<br>
+      <strong>Need:</strong> CVS/Walgreens closing South LA stores. Area is a banking desert — dominated by check-cashing and payday lenders. Credit union displaces predatory services.
+    </div>
+  </div>
+</div>
+
+<!-- SIDE-BY-SIDE COMPARISON -->
+<h3 class="section-title">Side-by-Side Comparison</h3>
+<div class="table-wrap">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th style="background:#2563eb">1. The Village</th>
+        <th style="background:#059669">2. 100% Affordable</th>
+        <th style="background:#d97706">3. Hybrid MIIP</th>
+        <th style="background:#7c3aed">4. Phase It</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Total Units</td><td>226</td><td>258</td><td>258</td><td>226</td></tr>
+      <tr><td>Total Dev Cost</td><td class="mono">$114.8M</td><td class="mono">$118.3M</td><td class="mono">$110.9M</td><td class="mono">$114.8M</td></tr>
+      <tr><td>Cost / Unit</td><td class="mono">$508K</td><td class="mono">$458K</td><td class="mono">$430K</td><td class="mono">$508K</td></tr>
+      <tr><td>Your Cash In</td><td class="mono">$17.2M</td><td class="mono">$18.9M</td><td class="mono">$21.7M</td><td class="mono best">$7.3M</td></tr>
+      <tr><td>Stabilized NOI</td><td class="mono best">$2.90M</td><td class="mono">$2.37M</td><td class="mono">$2.82M</td><td class="mono best">$2.90M</td></tr>
+      <tr><td>Annual Cash Flow</td><td class="mono">$1.25M</td><td class="mono best">$1.62M</td><td class="mono">$1.47M</td><td class="mono">$1.25M</td></tr>
+      <tr><td>Monthly Cash Flow</td><td class="mono">$104K</td><td class="mono best">$135K</td><td class="mono">$123K</td><td class="mono">$104K</td></tr>
+      <tr><td>Cash-on-Cash</td><td>7.2%</td><td>8.5%</td><td>6.8%</td><td class="best">9.1% (Ph1)</td></tr>
+      <tr><td>Developer Fee</td><td class="mono">$4.2M</td><td class="mono best">$14.7M</td><td class="mono">$7.8M</td><td class="mono">$4.2M + fee</td></tr>
+      <tr><td>Ground-Floor Retail</td><td class="best">35,000 sf</td><td>None</td><td>None</td><td class="best">35,000 sf</td></tr>
+      <tr><td>Community Impact</td><td class="best">Highest</td><td>High</td><td>Medium</td><td class="best">Highest</td></tr>
+      <tr><td>Grant Eligibility</td><td class="best">Maximum</td><td class="best">Maximum</td><td>Moderate</td><td class="best">Maximum</td></tr>
+      <tr><td>Entitlement Speed</td><td>6-12 mo</td><td class="best">90 days (SB 35)</td><td>4-8 mo</td><td class="best">90 days (Ph1)</td></tr>
+      <tr><td>Risk Level</td><td>Medium-High</td><td>Low</td><td>Medium</td><td class="best">Lowest</td></tr>
+      <tr><td>Stabilized Value</td><td class="mono best">$52.7M</td><td class="mono">$43.2M</td><td class="mono">$51.3M</td><td class="mono best">$52.7M</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RECOMMENDATION -->
+<div class="scenario-panel" style="border:2px solid #7c3aed">
+  <div class="scenario-body">
+    <h3 style="font-size:.95rem;font-weight:800;margin-bottom:8px">Recommendation: Scenario 4 — Phase It</h3>
+    <div style="font-size:.78rem;color:#374151;line-height:1.7">
+      <strong>Why this is the best play for long-term cash flow:</strong>
+      <ul style="margin-top:6px;padding-left:20px">
+        <li><strong>Lowest cash in ($7.3M total)</strong> — Phase 1 developer fee ($5M) funds most of Phase 2 equity</li>
+        <li><strong>Highest Phase 1 cash-on-cash (9.1%)</strong> — proves concept to lenders and investors</li>
+        <li><strong>De-risks everything</strong> — you build on vacant land first (no demo, no existing tenants, no environmental)</li>
+        <li><strong>90-day entitlement via SB 35</strong> — Phase 1 can break ground in 12 months (your timeline)</li>
+        <li><strong>Manchester Urban Homes next door</strong> is literally leasing up right now — social proof for your project</li>
+        <li><strong>Phase 2 mixed-use village</strong> is where the vision lives — grocery, clinic, daycare — but you build it from a position of strength with cash flow behind you</li>
+        <li><strong>Combined $2.9M NOI / $104K monthly cash flow</strong> at stabilization — same as Scenario 1 but with 60% less cash out of pocket</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- REFERENCE LINKS -->
+<h3 class="section-title">Reference Links &amp; Sources</h3>
+
+<div class="ref-section">
+  <h4>Zoning &amp; Entitlements</h4>
+  <ul class="ref-list">
+    <li><a href="https://planning.lacity.gov/plans-policies/citywide-housing-incentive-program" target="_blank">CHIP / MIIP Program — LA City Planning</a> — Density bonus, FAR bonus, height incentives (effective Feb 2025)</li>
+    <li><a href="https://planning.lacity.gov/odocument/a38fe378-2c4b-4260-807e-af66a053a95b/FD_CHIP_Fact_Sheet.pdf" target="_blank">CHIP Fact Sheet (PDF)</a> — MIIP up to 120% density bonus, 55% FAR increase</li>
+    <li><a href="https://planning.lacity.gov/project-review/assembly-bill-2011" target="_blank">AB 2011 — LA City Planning</a> — By-right housing in commercial zones, up to 65 ft near transit</li>
+    <li><a href="https://codelibrary.amlegal.com/codes/los_angeles/latest/lapz/0-0-0-3322" target="_blank">SEC. 12.14 C2 Commercial Zone — LAMC</a> — Base zoning code for C2</li>
+    <li><a href="https://codelibrary.amlegal.com/codes/los_angeles/latest/lapz/0-0-0-6325" target="_blank">SEC. 12.21.1 Height of Buildings — LAMC</a> — 1VL = 45 ft / 3 stories</li>
+    <li><a href="https://planning.lacity.gov/odocument/eadcb225-a16b-4ce6-bc94-c915408c2b04/Zoning_Code_Summary.pdf" target="_blank">LA Zoning Code Summary (PDF)</a> — FAR, density, height by zone</li>
+    <li><a href="https://abundanthousingla.org/an-updated-guide-to-zoning-in-los-angeles/" target="_blank">Guide to Zoning in LA — Abundant Housing LA</a></li>
+    <li><a href="https://www.allenmatkins.com/real-ideas/recent-amendments-to-affordable-housing-and-high-roads-job-act-of-2022-ab-2011.html" target="_blank">AB 2011 Amendments (2025) — Allen Matkins</a></li>
+  </ul>
+
+  <h4 style="margin-top:14px">Comparable Projects</h4>
+  <ul class="ref-list">
+    <li><a href="https://abodecommunities.org/communities/manchester-urban-homes/" target="_blank">Manchester Urban Homes — Abode Communities</a> — 120 units, $84M, directly adjacent to your site</li>
+    <li><a href="https://la.urbanize.city/post/affordable-housing-rise-8727-s-broadway-south-los-angeles" target="_blank">8727 S Broadway — Urbanize LA</a> — Construction and leasing updates</li>
+    <li><a href="https://la.urbanize.city/post/la-city-council-approves-more-funding-affordable-housing-8727-s-broadway" target="_blank">City Council Funding for 8727 S Broadway — Urbanize LA</a></li>
+    <li><a href="https://layimby.com/2023/11/affordable-housing-under-construction-at-5001-south-broadway-south-park-los-angeles.html" target="_blank">5001 S Broadway (187 units) — LA YIMBY</a></li>
+    <li><a href="https://investors.centene.com/2026-03-04-South-L-A-Residents-Gain-37-New-Affordable-Homes-as-Eleos-and-Health-Net-Break-Ground-at-5637-S-Broadway" target="_blank">5637 S Broadway (37 units) — Eleos Groundbreaking Mar 2026</a></li>
+    <li><a href="https://www.hacla.org/en/development-services/development/jordan-downs-redevelopment" target="_blank">Jordan Downs Redevelopment — HACLA</a> — 1,400 units, $1B+, mixed-income village</li>
+    <li><a href="https://bridgehousing.com/jordan-downs/" target="_blank">Jordan Downs — BRIDGE Housing</a></li>
+    <li><a href="https://labusinessjournal.com/real-estate/1-billion-overhaul-underway-jordan-downs-watts/" target="_blank">$1B Overhaul at Jordan Downs — LA Business Journal</a></li>
+    <li><a href="https://la.urbanize.city/region/south-la" target="_blank">South LA Development Tracker — Urbanize LA</a></li>
+  </ul>
+
+  <h4 style="margin-top:14px">Financial &amp; Market Data</h4>
+  <ul class="ref-list">
+    <li><a href="https://www.novoco.com/resource-centers/affordable-housing-tax-credits/lihtc-equity-pricing-trends" target="_blank">LIHTC Equity Pricing Trends — Novogradac</a> — ~$0.85/credit (2025)</li>
+    <li><a href="https://www.novoco.com/resource-centers/affordable-housing-tax-credits/2025-federal-lihtc-information-by-state" target="_blank">2025 Federal LIHTC by State — Novogradac</a></li>
+    <li><a href="https://www.kutakrock.com/newspublications/publications/2025/july/leveraging-the-new-4-percent-lihtc-rule-this-year" target="_blank">New 4% LIHTC 25% Bond Test — Kutak Rock</a></li>
+    <li><a href="https://jdj-consulting.com/what-is-the-los-angeles-construction-cost-2025/" target="_blank">LA Construction Cost 2025 — JDJ Consulting</a></li>
+    <li><a href="https://theapartmentdealer.com/southern-california-multi-family-market-mid-year-2025-cap-rates-are-rising-and-thats-a-good-thing/" target="_blank">SoCal Multifamily Cap Rates Mid-2025 — The Apartment Dealer</a></li>
+    <li><a href="https://commercialobserver.com/2026/01/la-multifamily-housing-rent-q4-2025/" target="_blank">LA Multifamily Q4 2025 — Commercial Observer</a></li>
+    <li><a href="https://www.rentcafe.com/average-rent-market-trends/us/ca/los-angeles/" target="_blank">Average Rent in LA by Neighborhood — RentCafe</a></li>
+    <li><a href="https://www.ushousingdata.com/fair-market-rents/los-angeles-county-ca" target="_blank">LA County Fair Market Rents 2025 — USHousingData</a></li>
+  </ul>
+
+  <h4 style="margin-top:14px">Income &amp; Rent Limits</h4>
+  <ul class="ref-list">
+    <li><a href="https://housing.lacity.gov/wp-content/uploads/2025/07/2025-Income-and-Rent-Schedules.pdf" target="_blank">2025 Rent &amp; Income Schedules — LAHD</a></li>
+    <li><a href="https://planning.lacounty.gov/wp-content/uploads/2025/06/Income-Limits-2025_6.pdf" target="_blank">2025 Income Limits — LA County Regional Planning</a></li>
+    <li><a href="https://www.lacda.org/docs/librariesprovider25/affordable-housing-programs/home/rent-and-income-limits9a4835c9-58ae-44b2-9064-e8a00635664f.pdf" target="_blank">LACDA Rent &amp; Income Limits</a></li>
+  </ul>
+
+  <h4 style="margin-top:14px">Grants &amp; Funding Programs</h4>
+  <ul class="ref-list">
+    <li><a href="https://housing.lacity.gov/housing/housing-development" target="_blank">Housing Development Programs — LAHD</a></li>
+    <li><a href="https://housing.lacity.gov/strategic-engagement/affordable-housing-and-sustainable-communities-program" target="_blank">AHSC Program — LAHD</a></li>
+    <li><a href="https://www.treasurer.ca.gov/ctcac/program.pdf" target="_blank">CTCAC Program Overview (PDF)</a> — California Tax Credit Allocation Committee</li>
+    <li><a href="https://www.northmarq.com/insights/research/2025-affordable-housing-tax-changes-understanding-lihtc-bonds-oz-and-45l" target="_blank">2025 Affordable Housing Tax Changes — Northmarq</a></li>
+  </ul>
+
+  <h4 style="margin-top:14px">Housing Policy &amp; State Law</h4>
+  <ul class="ref-list">
+    <li><a href="https://planning.lacity.gov/plans-policies/initiatives-policies/housing" target="_blank">Housing Policy Overview — LA City Planning</a></li>
+    <li><a href="https://www.hklaw.com/en/insights/publications/2025/12/californias-2026-housing-laws-what-you-need-to-know" target="_blank">California 2026 Housing Laws — Holland &amp; Knight</a></li>
+    <li><a href="https://www.hklaw.com/en/insights/publications/2024/11/californias-2025-housing-laws-what-you-need-to-know" target="_blank">California 2025 Housing Laws — Holland &amp; Knight</a></li>
+    <li><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201720180SB35" target="_blank">SB 35 Bill Text — CA Legislature</a></li>
+  </ul>
+</div>
+
+</main>
+</body>
+</html>

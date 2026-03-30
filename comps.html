@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>87th &amp; Broadway — Commercial Comps</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header>
+  <h1>87th &amp; Broadway — Acquisition Research</h1>
+  <p>Kleinman Trust &middot; 12 Parcels &middot; $4.8M Proposal &middot; ~90,291 sf land &middot; The Neman Group</p>
+  <nav class="tabs">
+    <a href="index.html" class="tab">Parcel Map</a>
+    <a href="comps.html" class="tab active">Commercial Comps</a>
+    <a href="grants.html" class="tab">Grants &amp; Incentives</a>
+    <a href="contacts.html" class="tab">Contacts &amp; Outreach</a>
+    <a href="scenarios.html" class="tab">Development Scenarios</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- Deal Calculator -->
+<div class="calc-panel">
+  <h3 class="calc-title">Deal Calculator &amp; Negotiation Tool</h3>
+  <div class="calc-grid">
+    <div class="calc-input-group">
+      <label>Your Offer</label>
+      <div class="calc-slider-row">
+        <span class="calc-dollar">$</span>
+        <input type="text" id="calcPrice" value="4,800,000" class="calc-field mono" />
+      </div>
+      <input type="range" id="calcSlider" min="2000000" max="10000000" step="50000" value="4800000" class="calc-range" />
+      <div class="calc-range-labels"><span>$2M</span><span>$10M</span></div>
+      <div style="margin-top:14px">
+        <label>Seller Counter / Ask</label>
+        <div class="calc-slider-row">
+          <span class="calc-dollar">$</span>
+          <input type="text" id="counterPrice" value="" placeholder="Enter counter" class="calc-field mono" style="border-color:#dc2626;color:#dc2626" />
+        </div>
+      </div>
+      <div id="negotiationGap" class="nego-gap" style="display:none"></div>
+      <div class="nego-presets">
+        <span class="nego-preset-label">Quick scenarios:</span>
+        <button class="nego-btn" onclick="setPrice(4800000)">$4.8M</button>
+        <button class="nego-btn" onclick="setPrice(5500000)">$5.5M</button>
+        <button class="nego-btn" onclick="setPrice(6000000)">$6.0M</button>
+        <button class="nego-btn" onclick="setPrice(6500000)">$6.5M</button>
+        <button class="nego-btn" onclick="setPrice(7000000)">$7.0M</button>
+      </div>
+    </div>
+    <div class="calc-results">
+      <div class="calc-result-grid">
+        <!-- Row 1: Total Deal -->
+        <div class="calc-card">
+          <div class="calc-label">Total Land $/SF</div>
+          <div class="calc-val mono" id="rTotalPsf">$53</div>
+          <div class="calc-sub">90,291 sf total land</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-label">Vacant Land $/SF</div>
+          <div class="calc-val mono" id="rVacantPsf">$79</div>
+          <div class="calc-sub" id="rVacantSub">60,780 sf vacant</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-label">Improved Land $/SF</div>
+          <div class="calc-val mono" id="rBuiltPsf">$163</div>
+          <div class="calc-sub" id="rBuiltSub">29,511 sf w/ buildings</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-label">Bldg $/SF (included)</div>
+          <div class="calc-val mono" id="rBldgPsf">$113</div>
+          <div class="calc-sub">42,280 sf of buildings</div>
+        </div>
+        <!-- Row 2: Breakdown -->
+        <div class="calc-card highlight-green">
+          <div class="calc-label">Vacant Land Value</div>
+          <div class="calc-val mono" id="rVacantVal">$3.23M</div>
+          <div class="calc-sub">67.3% of purchase — <span id="rVacantPct">67.3</span>%</div>
+        </div>
+        <div class="calc-card highlight-amber">
+          <div class="calc-label">Improved Value</div>
+          <div class="calc-val mono" id="rBuiltVal">$1.57M</div>
+          <div class="calc-sub">32.7% of purchase — <span id="rBuiltPct">32.7</span>%</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-label">vs. Market Vacant ($80-$120)</div>
+          <div class="calc-val" id="rVsMarket" style="color:#059669">Below Market</div>
+          <div class="calc-sub" id="rVsMarketSub">Market value: $4.8M–$7.2M vacant alone</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-label">vs. 8701 Sale ($128/sf)</div>
+          <div class="calc-val" id="rVsComp" style="color:#059669">59% Discount</div>
+          <div class="calc-sub" id="rVsCompSub">Your 8701 sold at $128/sf in 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Allocation slider -->
+  <div class="calc-alloc">
+    <label class="calc-alloc-label">Allocate price between vacant &amp; improved:</label>
+    <div class="calc-alloc-row">
+      <span class="calc-alloc-tag vacant-tag">Vacant: <strong id="allocVacantPct">67%</strong></span>
+      <input type="range" id="allocSlider" min="10" max="90" value="67" class="calc-range alloc-range" />
+      <span class="calc-alloc-tag built-tag">Improved: <strong id="allocBuiltPct">33%</strong></span>
+    </div>
+  </div>
+  <!-- Negotiation Summary -->
+  <div id="negoSummary" class="nego-summary" style="display:none">
+    <div class="nego-summary-grid">
+      <div class="calc-card" style="border-color:#dc2626;border-width:2px">
+        <div class="calc-label">Gap</div>
+        <div class="calc-val mono" id="negoGapVal" style="color:#dc2626">—</div>
+        <div class="calc-sub" id="negoGapPct">—</div>
+      </div>
+      <div class="calc-card">
+        <div class="calc-label">Midpoint</div>
+        <div class="calc-val mono" id="negoMid">—</div>
+        <div class="calc-sub" id="negoMidPsf">—</div>
+      </div>
+      <div class="calc-card">
+        <div class="calc-label">Counter $/SF</div>
+        <div class="calc-val mono" id="negoCounterPsf">—</div>
+        <div class="calc-sub">vs. your offer $/sf</div>
+      </div>
+      <div class="calc-card">
+        <div class="calc-label">Counter vs. Market</div>
+        <div class="calc-val" id="negoCounterMarket">—</div>
+        <div class="calc-sub" id="negoCounterMarketSub">Vacant land $80-$120/sf</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Key Metrics -->
+<div class="metric-row">
+  <div class="metric">
+    <div class="label">Verified Comp — 8701 S Broadway</div>
+    <div class="value">$128/sf</div>
+    <div class="sub">Sold Nov 2020 for $2.03M (15,844 sf) — your own property</div>
+  </div>
+  <div class="metric">
+    <div class="label">Vacant Land Ask</div>
+    <div class="value">$80–$120/sf</div>
+    <div class="sub">Current listings within 0.5 mi</div>
+  </div>
+  <div class="metric">
+    <div class="label">Dev Site (Entitled)</div>
+    <div class="value">$120/sf</div>
+    <div class="sub">8426 S Broadway — 22-unit RTI, listed $875K</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const TOTAL_LAND = 90291;
+  const VACANT_LAND = 60780;
+  const IMPROVED_LAND = 29511;
+  const BLDG_SF = 42280;
+  const COMP_PSF = 128;
+
+  const priceInput = document.getElementById('calcPrice');
+  const priceSlider = document.getElementById('calcSlider');
+  const counterInput = document.getElementById('counterPrice');
+  const allocSlider = document.getElementById('allocSlider');
+
+  function fmt(n){ return n.toLocaleString('en-US') }
+  function fmtM(n){ return n >= 1000000 ? '$'+(n/1000000).toFixed(2)+'M' : '$'+fmt(Math.round(n)) }
+  function fmtPsf(n){ return '$'+Math.round(n) }
+
+  window.setPrice = function(val){
+    priceInput.value = fmt(val);
+    priceSlider.value = val;
+    update();
+  };
+
+  function update(){
+    const price = parseInt(priceInput.value.replace(/[^0-9]/g,'')) || 0;
+    const counter = parseInt((counterInput.value||'').replace(/[^0-9]/g,'')) || 0;
+    const allocVacant = parseInt(allocSlider.value) / 100;
+    const allocBuilt = 1 - allocVacant;
+
+    const vacantVal = price * allocVacant;
+    const builtVal = price * allocBuilt;
+
+    // Total
+    document.getElementById('rTotalPsf').textContent = fmtPsf(price / TOTAL_LAND);
+    // Vacant
+    const vacPsf = vacantVal / VACANT_LAND;
+    document.getElementById('rVacantPsf').textContent = fmtPsf(vacPsf);
+    document.getElementById('rVacantVal').textContent = fmtM(vacantVal);
+    document.getElementById('rVacantPct').textContent = (allocVacant*100).toFixed(1);
+    // Built
+    const bltPsf = builtVal / IMPROVED_LAND;
+    document.getElementById('rBuiltPsf').textContent = fmtPsf(bltPsf);
+    document.getElementById('rBuiltVal').textContent = fmtM(builtVal);
+    document.getElementById('rBuiltPct').textContent = (allocBuilt*100).toFixed(1);
+    // Bldg
+    document.getElementById('rBldgPsf').textContent = fmtPsf(builtVal / BLDG_SF);
+    // Alloc labels
+    document.getElementById('allocVacantPct').textContent = Math.round(allocVacant*100)+'%';
+    document.getElementById('allocBuiltPct').textContent = Math.round(allocBuilt*100)+'%';
+
+    // vs Market
+    const mktEl = document.getElementById('rVsMarket');
+    const mktSubEl = document.getElementById('rVsMarketSub');
+    const mktLow = VACANT_LAND * 80;
+    const mktHigh = VACANT_LAND * 120;
+    if(vacPsf < 80){
+      mktEl.textContent = 'Below Market';
+      mktEl.style.color = '#059669';
+    } else if(vacPsf <= 120){
+      mktEl.textContent = 'At Market';
+      mktEl.style.color = '#d97706';
+    } else {
+      mktEl.textContent = 'Above Market';
+      mktEl.style.color = '#dc2626';
+    }
+    mktSubEl.textContent = 'Market value: '+fmtM(mktLow)+'–'+fmtM(mktHigh)+' vacant alone';
+
+    // vs Comp
+    const discount = ((1 - (price/TOTAL_LAND)/COMP_PSF) * 100);
+    const compEl = document.getElementById('rVsComp');
+    const compSubEl = document.getElementById('rVsCompSub');
+    if(discount > 0){
+      compEl.textContent = Math.round(discount)+'% Discount';
+      compEl.style.color = '#059669';
+    } else {
+      compEl.textContent = Math.abs(Math.round(discount))+'% Premium';
+      compEl.style.color = '#dc2626';
+    }
+    compSubEl.textContent = 'Your 8701 sold at $'+COMP_PSF+'/sf in 2020';
+
+    // Negotiation section
+    const negoSummary = document.getElementById('negoSummary');
+    if(counter > 0){
+      negoSummary.style.display = 'block';
+      const gap = counter - price;
+      const gapPct = ((gap / counter) * 100);
+      const mid = (price + counter) / 2;
+      const counterPsf = counter / TOTAL_LAND;
+      const counterVacPsf = (counter * allocVacant) / VACANT_LAND;
+
+      document.getElementById('negoGapVal').textContent = fmtM(Math.abs(gap));
+      document.getElementById('negoGapPct').textContent = gap > 0
+        ? 'You are '+Math.round(gapPct)+'% below seller'
+        : 'You are '+Math.round(Math.abs(gapPct))+'% above seller';
+
+      document.getElementById('negoMid').textContent = fmtM(mid);
+      document.getElementById('negoMidPsf').textContent = fmtPsf(mid/TOTAL_LAND)+'/sf total land';
+
+      document.getElementById('negoCounterPsf').textContent = fmtPsf(counterPsf);
+
+      const cMktEl = document.getElementById('negoCounterMarket');
+      if(counterVacPsf < 80){
+        cMktEl.textContent = 'Below Market'; cMktEl.style.color = '#059669';
+      } else if(counterVacPsf <= 120){
+        cMktEl.textContent = 'At Market'; cMktEl.style.color = '#d97706';
+      } else {
+        cMktEl.textContent = 'Above Market'; cMktEl.style.color = '#dc2626';
+      }
+    } else {
+      negoSummary.style.display = 'none';
+    }
+  }
+
+  priceInput.addEventListener('input', function(){
+    const raw = this.value.replace(/[^0-9]/g,'');
+    const num = parseInt(raw) || 0;
+    this.value = fmt(num);
+    priceSlider.value = num;
+    update();
+  });
+  priceSlider.addEventListener('input', function(){
+    priceInput.value = fmt(parseInt(this.value));
+    update();
+  });
+  counterInput.addEventListener('input', function(){
+    const raw = this.value.replace(/[^0-9]/g,'');
+    const num = parseInt(raw) || 0;
+    if(num > 0) this.value = fmt(num);
+    update();
+  });
+  allocSlider.addEventListener('input', update);
+  update();
+})();
+</script>
+
+<!-- Verified Sold Comps -->
+<h3 class="section-title">Verified Sold Comps (within 0.5 mi)</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Address</th><th>Sale Date</th><th>Price</th><th>$/SF</th><th>Land SF</th><th>Bldg SF</th><th>Type</th><th>Dist.</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>8701 S Broadway</td><td>Nov 2020</td><td class="mono">$2,030,000</td><td class="mono">$128</td><td>15,844</td><td>13,965</td>
+        <td><span class="tag tag-sold">Sold</span> Retail</td><td>0.0 mi</td><td>Your anchor property — former swap meet. Buyer: LA Harvard Property LLC</td>
+      </tr>
+      <tr>
+        <td>9111-9117 S Broadway</td><td>Jul 2019</td><td class="mono">$320,000</td><td class="mono">$30</td><td>10,578</td><td>—</td>
+        <td><span class="tag tag-sold">Sold</span> Vacant Land</td><td>0.3 mi S</td><td>Contaminated land, sold as-is. C2-1VL zoning. 85 ft Broadway frontage</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Active Listings -->
+<h3 class="section-title">Active Listings &amp; Pending</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Address</th><th>Asking</th><th>$/SF</th><th>Size</th><th>Type</th><th>Dist.</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>9111-9117 S Broadway</td><td class="mono">$850,000</td><td class="mono">$80</td><td>10,578 sf land</td>
+        <td><span class="tag tag-listed">Listed</span> Vacant Land</td><td>0.3 mi S</td><td>Reduced from $995K. TOC-eligible for ~40 units. Closest vacant land comp</td>
+      </tr>
+      <tr>
+        <td>8426 S Broadway</td><td class="mono">$875,000</td><td class="mono">$120</td><td>7,264 sf land</td>
+        <td><span class="tag tag-listed">Listed</span> Dev Site (RTI)</td><td>0.4 mi N</td><td>Reduced from $998K. RTI permits for 22-unit affordable project</td>
+      </tr>
+      <tr>
+        <td>8615-8659 S Broadway</td><td>Subject to Offer</td><td class="mono">—</td><td>Various</td>
+        <td><span class="tag tag-listed">Listed</span> Vacant/Improved</td><td>0.0 mi</td><td>Kleinman Trust parcels — the deal you're negotiating. Broker: Lee &amp; Associates (Miles Solomon)</td>
+      </tr>
+      <tr>
+        <td>8650-8680 S Broadway</td><td>Subject to Offer</td><td class="mono">—</td><td>0.67 ac</td>
+        <td><span class="tag tag-listed">Listed</span> Vacant Land</td><td>0.0 mi</td><td>East-side parcels (015 block) — part of your deal</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Assessed Values Nearby -->
+<h3 class="section-title">Assessed Values — Nearby Properties (no public sale price)</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Address</th><th>APN</th><th>Assessed</th><th>Bldg SF</th><th>Type</th><th>Dist.</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>8601 S Broadway</td><td class="mono">6040-014-001</td><td class="mono">$3,049,147</td><td>7,500</td><td>Medical Office (1928)</td><td>0.15 mi N</td><td>Men's Health Foundation — South LA. ~$407/sf assessed</td>
+      </tr>
+      <tr>
+        <td>8564 S Broadway</td><td class="mono">6040-010-015</td><td class="mono">$818,327</td><td>7,540</td><td>Office/Bank (1963)</td><td>0.2 mi N</td><td>Bank of America. 27,283 sf lot</td>
+      </tr>
+      <tr>
+        <td>8600 S Broadway</td><td class="mono">6040-013-013</td><td class="mono">$699,200</td><td>7,380</td><td>Retail Store (1934)</td><td>0.15 mi N</td><td>Sale history available on PropertyShark</td>
+      </tr>
+      <tr>
+        <td>8800 S Broadway</td><td class="mono">6040-023-023</td><td class="mono">—</td><td>—</td><td>Motel</td><td>0.15 mi S</td><td>Broadway Inn. 7,131 sf lot</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Development Comp -->
+<h3 class="section-title">Development Comp — Adjacent Project</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Project</th><th>Address</th><th>Units</th><th>Total Cost</th><th>$/Unit</th><th>Lot Size</th><th>Status</th><th>Developer</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Manchester Urban Homes</td><td>8727 S Broadway</td><td>122</td><td class="mono">$83.6M</td><td class="mono">$685K</td><td>2.7 ac (117,612 sf)</td>
+        <td><span class="tag tag-dev">Under Construction</span></td><td>Abode Communities / NHSLA</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding:12px 16px;font-size:.78rem;color:#5f6774;border-top:1px solid #f0f1f3">
+    76-unit apartment bldg + 46 townhomes. 30-60% AMI. Funded by City of LA ($7M), tax-exempt bonds ($36M), LIHTC equity. Groundbreaking Sept 2023. Land price not publicly disclosed. Directly adjacent to your parcels.
+  </div>
+</div>
+
+<!-- Analysis -->
+<h3 class="section-title">Deal Analysis</h3>
+<div class="metric-row">
+  <div class="metric">
+    <div class="label">Your $/SF vs. Market</div>
+    <div class="value" style="color:#059669">Below Market</div>
+    <div class="sub">At $53/sf, you're well below the $80-$120/sf range for current vacant land listings on this corridor. Even the 2019 contaminated land sale at $30/sf has since appreciated to $80/sf asking.</div>
+  </div>
+  <div class="metric">
+    <div class="label">Assemblage Premium</div>
+    <div class="value">90,291 sf contiguous</div>
+    <div class="sub">Large assemblages on S Broadway are rare. The adjacent 122-unit project used 2.7 acres — your 2.07 acres gives similar scale for a major development.</div>
+  </div>
+  <div class="metric">
+    <div class="label">Improved Bldg Value</div>
+    <div class="value">~$2.1M included</div>
+    <div class="sub">42,315 sf of buildings (1910-1993) included in $4.8M price — effectively getting land at even lower net cost after building value.</div>
+  </div>
+</div>
+
+</main>
+</body>
+</html>

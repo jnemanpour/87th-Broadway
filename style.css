@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f8f9fa;color:#1a1d23;font-family:'Inter',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+
+header{background:#fff;border-bottom:1px solid #e2e5ea;padding:20px 28px}
+header h1{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+header p{font-size:.82rem;color:#5f6774;margin-top:2px}
+
+/* Tab Navigation */
+nav.tabs{display:flex;gap:0;margin-top:14px;border-bottom:2px solid #e2e5ea;margin-bottom:-1px}
+nav.tabs .tab{padding:8px 18px;font-size:.82rem;font-weight:600;color:#5f6774;text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+nav.tabs .tab:hover{color:#1a1d23;background:#f8f9fa}
+nav.tabs .tab.active{color:#2563eb;border-bottom-color:#2563eb}
+
+main{max-width:1200px;margin:0 auto;padding:20px}
+
+/* Map */
+#map{height:520px;width:100%;border-radius:10px;border:1px solid #e2e5ea;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:20px}
+
+/* Tables */
+.table-wrap{background:#fff;border:1px solid #e2e5ea;border-radius:10px;overflow-x:auto;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:20px}
+.table-title{padding:14px 16px;border-bottom:1px solid #e2e5ea;font-weight:700;font-size:.9rem}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th{text-align:left;padding:8px 12px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#8b919d;background:#f8f9fa;border-bottom:1px solid #e2e5ea}
+td{padding:9px 12px;border-bottom:1px solid #f0f1f3}
+tr:hover td{background:#f0f4ff}
+a.apn{color:#2563eb;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.76rem}
+a.apn:hover{text-decoration:underline}
+tfoot td{background:#f8f9fa;font-weight:700}
+
+/* Badges */
+.b{display:inline-block;padding:2px 7px;border-radius:5px;font-size:.68rem;font-weight:600}
+.vacant{background:#ecfdf5;color:#059669}
+.improved{background:#fffbeb;color:#d97706}
+.owned{background:#eff4ff;color:#2563eb}
+.potential{background:#f5f3ff;color:#7c3aed}
+.sep td{border-top:2px solid #e2e5ea;padding-top:12px}
+
+/* Tags */
+.tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:.66rem;font-weight:600}
+.tag-sold{background:#fef2f2;color:#dc2626}
+.tag-listed{background:#fffbeb;color:#d97706}
+.tag-pending{background:#eff4ff;color:#2563eb}
+.tag-dev{background:#f0fdf4;color:#16a34a}
+.tag-fed{background:#eff4ff;color:#2563eb}
+.tag-state{background:#fefce8;color:#a16207}
+.tag-city{background:#f0fdf4;color:#16a34a}
+.tag-county{background:#faf5ff;color:#7c3aed}
+.tag-green{background:#ecfdf5;color:#059669}
+
+/* Metric Cards */
+.metric-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.metric{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:14px 18px;flex:1;min-width:170px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.metric .label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d}
+.metric .value{font-size:1.15rem;font-weight:800;margin-top:3px}
+.metric .sub{font-size:.72rem;color:#5f6774;margin-top:2px;line-height:1.4}
+
+/* Section Headers */
+.section-title{font-size:.9rem;font-weight:700;padding:12px 0 8px;border-bottom:1px solid #e2e5ea;margin-bottom:12px;margin-top:8px}
+
+/* Grant Cards */
+.grant-card{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+/* Deal Calculator */
+.calc-panel{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:20px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.calc-title{font-size:.95rem;font-weight:800;margin-bottom:14px}
+.calc-grid{display:flex;gap:24px;align-items:flex-start}
+.calc-input-group{min-width:220px;flex-shrink:0}
+.calc-input-group label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;display:block;margin-bottom:6px}
+.calc-slider-row{display:flex;align-items:center;gap:4px;margin-bottom:8px}
+.calc-dollar{font-size:1.1rem;font-weight:800;color:#1a1d23}
+.calc-field{font-size:1.1rem;font-weight:800;border:1px solid #e2e5ea;border-radius:6px;padding:6px 10px;width:170px;outline:none;transition:border .15s}
+.calc-field:focus{border-color:#2563eb}
+.calc-range{width:100%;accent-color:#2563eb;cursor:pointer}
+.calc-range-labels{display:flex;justify-content:space-between;font-size:.66rem;color:#8b919d;margin-top:2px}
+.calc-results{flex:1}
+.calc-result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.calc-card{background:#f8f9fa;border:1px solid #f0f1f3;border-radius:8px;padding:10px 14px}
+.calc-card.highlight-green{background:#ecfdf5;border-color:#a7f3d0}
+.calc-card.highlight-amber{background:#fffbeb;border-color:#fde68a}
+.calc-label{font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d}
+.calc-val{font-size:1.05rem;font-weight:800;margin-top:2px}
+.calc-sub{font-size:.66rem;color:#5f6774;margin-top:1px}
+.calc-alloc{margin-top:14px;padding-top:14px;border-top:1px solid #f0f1f3}
+.calc-alloc-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;display:block;margin-bottom:6px}
+.calc-alloc-row{display:flex;align-items:center;gap:12px}
+.calc-alloc-tag{font-size:.75rem;color:#5f6774;white-space:nowrap}
+.calc-alloc-tag strong{font-weight:700;color:#1a1d23}
+.vacant-tag strong{color:#059669}
+.built-tag strong{color:#d97706}
+.alloc-range{flex:1}
+
+/* Negotiation */
+.nego-presets{margin-top:14px}
+.nego-preset-label{font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;display:block;margin-bottom:6px}
+.nego-btn{background:#f0f4ff;border:1px solid #dbeafe;color:#2563eb;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:5px;cursor:pointer;margin-right:4px;margin-bottom:4px;transition:all .15s}
+.nego-btn:hover{background:#2563eb;color:#fff}
+.nego-summary{margin-top:14px;padding-top:14px;border-top:1px solid #f0f1f3}
+.nego-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+
+@media(max-width:900px){
+  .calc-grid{flex-direction:column}
+  .calc-result-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+.grant-card h3{font-size:.88rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.grant-card .agency{font-size:.72rem;color:#5f6774;margin-bottom:8px}
+.grant-card .details{font-size:.78rem;line-height:1.6;color:#374151}
+.grant-card .details strong{color:#1a1d23}
+.grant-card .amount{font-size:1rem;font-weight:800;color:#059669;margin-top:6px}
+.grant-card .deadline{font-size:.72rem;color:#dc2626;font-weight:600;margin-top:4px}
