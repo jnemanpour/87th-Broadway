@@ -93,6 +93,21 @@
 
 <main>
 
+<!-- PURCHASE PRICE INPUT -->
+<div class="calc-panel" style="margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+    <div>
+      <h3 class="calc-title" style="margin-bottom:8px">Land Acquisition Price</h3>
+      <p style="font-size:.74rem;color:#5f6774;margin:0">All scenario costs, ROI, and capital stacks update automatically.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:4px">
+      <span class="calc-dollar">$</span>
+      <input type="text" id="landPrice" value="4,800,000" class="calc-field mono" style="width:200px;font-size:1.3rem" />
+    </div>
+    <div style="font-size:.74rem;color:#5f6774" id="landPsf">$53/sf on 90,291 sf</div>
+  </div>
+</div>
+
 <!-- ZONING SUMMARY -->
 <h3 class="section-title">Zoning &amp; Density — What You Can Build</h3>
 <div class="metric-row">
@@ -243,7 +258,7 @@
 <div class="scenario-panel">
   <div class="scenario-header">
     <h3><span style="color:#2563eb">Scenario 1:</span> The Village — Mixed-Use Community Hub</h3>
-    <span class="roi-badge">7.2% Cash-on-Cash</span>
+    <span class="roi-badge" id="s1_coc_badge">7.2% Cash-on-Cash</span>
   </div>
   <div class="scenario-body">
     <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">Full build-out across all zones. Grocery-anchored mixed-use village with affordable + market housing, clinic, daycare, and community retail. This is the vision play — highest long-term NOI, strongest community impact, most grant-eligible.</p>
@@ -280,7 +295,7 @@
     <div class="pro-forma">
       <div class="pf-section">
         <h5>Development Costs</h5>
-        <div class="pf-line"><span>Land acquisition (12 parcels)</span><span class="amt">$4,800,000</span></div>
+        <div class="pf-line"><span>Land acquisition (12 parcels)</span><span class="amt" id="s1_land">$4,800,000</span></div>
         <div class="pf-line"><span>Demolition (3 buildings, ~29K sf)</span><span class="amt">$580,000</span></div>
         <div class="pf-line"><span>Hard costs — residential (176K sf @ $350/sf)</span><span class="amt">$61,600,000</span></div>
         <div class="pf-line"><span>Hard costs — retail shell (35K sf @ $250/sf)</span><span class="amt">$8,750,000</span></div>
@@ -290,8 +305,8 @@
         <div class="pf-line"><span>Soft costs (28% of hard)</span><span class="amt">$21,840,000</span></div>
         <div class="pf-line"><span>Developer fee (4%)</span><span class="amt">$4,200,000</span></div>
         <div class="pf-line"><span>Financing costs &amp; reserves</span><span class="amt">$5,400,000</span></div>
-        <div class="pf-line total"><span>Total Development Cost</span><span class="amt">$114,805,000</span></div>
-        <div class="pf-line total"><span>Cost per unit</span><span class="amt">$508,000</span></div>
+        <div class="pf-line total"><span>Total Development Cost</span><span class="amt" id="s1_tdc">$114,805,000</span></div>
+        <div class="pf-line total"><span>Cost per unit</span><span class="amt" id="s1_cpu">$508,000</span></div>
       </div>
       <div class="pf-section">
         <h5>Operating Pro Forma (Stabilized Year 1)</h5>
@@ -306,35 +321,35 @@
         <div class="pf-line"><span>Replacement reserves</span><span class="amt">($180,000)</span></div>
         <div class="pf-line"><span>Insurance &amp; security</span><span class="amt">($350,000)</span></div>
         <div class="pf-line total"><span>Net Operating Income (NOI)</span><span class="amt">$2,899,918</span></div>
-        <div class="pf-line"><span>Debt service (~$55M perm loan @ 6.5%)</span><span class="amt">($1,650,000)</span></div>
-        <div class="pf-line total"><span>Annual Cash Flow (pre-tax)</span><span class="amt">$1,249,918</span></div>
+        <div class="pf-line"><span>Debt service (~$55M perm loan @ 6.5%)</span><span class="amt" id="s1_ds">($1,650,000)</span></div>
+        <div class="pf-line total"><span>Annual Cash Flow (pre-tax)</span><span class="amt" id="s1_cf">$1,249,918</span></div>
       </div>
     </div>
 
     <!-- Funding stack -->
     <div class="funding-stack">
       <h5 style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;margin-bottom:6px">Capital Stack</h5>
-      <div class="stack-bar">
+      <div class="stack-bar" id="s1_stack_bar">
         <div style="width:30%;background:#2563eb">LIHTC 30%</div>
         <div style="width:25%;background:#059669">Bonds 25%</div>
         <div style="width:12%;background:#7c3aed">Grants 12%</div>
         <div style="width:18%;background:#d97706">Perm Loan 18%</div>
         <div style="width:15%;background:#dc2626">Equity 15%</div>
       </div>
-      <div class="stack-legend">
-        <span><span class="dot" style="background:#2563eb"></span> 4% LIHTC Equity — $34.4M</span>
-        <span><span class="dot" style="background:#059669"></span> Tax-Exempt Bonds — $28.7M</span>
-        <span><span class="dot" style="background:#7c3aed"></span> City/State Grants — $13.8M</span>
-        <span><span class="dot" style="background:#d97706"></span> Permanent Loan — $20.7M</span>
-        <span><span class="dot" style="background:#dc2626"></span> Developer/LP Equity — $17.2M</span>
+      <div class="stack-legend" id="s1_stack_legend">
+        <span><span class="dot" style="background:#2563eb"></span> 4% LIHTC Equity — <span id="s1_lihtc">$34.4M</span></span>
+        <span><span class="dot" style="background:#059669"></span> Tax-Exempt Bonds — <span id="s1_bonds">$28.7M</span></span>
+        <span><span class="dot" style="background:#7c3aed"></span> City/State Grants — <span id="s1_grants">$13.8M</span></span>
+        <span><span class="dot" style="background:#d97706"></span> Permanent Loan — <span id="s1_perm">$20.7M</span></span>
+        <span><span class="dot" style="background:#dc2626"></span> Developer/LP Equity — <span id="s1_equity">$17.2M</span></span>
       </div>
     </div>
 
     <div class="roi-grid">
       <div class="roi-card"><div class="roi-label">Stabilized NOI</div><div class="roi-val" style="color:#059669">$2.9M</div><div class="roi-sub">Year 1</div></div>
-      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669">7.2%</div><div class="roi-sub">On $17.2M equity</div></div>
-      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val">$104K</div><div class="roi-sub">After debt service</div></div>
-      <div class="roi-card"><div class="roi-label">Cap Rate (on cost)</div><div class="roi-val">2.5%</div><div class="roi-sub">NOI / total cost</div></div>
+      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669" id="s1_coc">7.2%</div><div class="roi-sub" id="s1_coc_sub">On $17.2M equity</div></div>
+      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val" id="s1_mcf">$104K</div><div class="roi-sub">After debt service</div></div>
+      <div class="roi-card"><div class="roi-label">Cap Rate (on cost)</div><div class="roi-val" id="s1_cap">2.5%</div><div class="roi-sub">NOI / total cost</div></div>
       <div class="roi-card"><div class="roi-label">Stabilized Value</div><div class="roi-val">$52.7M</div><div class="roi-sub">NOI / 5.5% market cap</div></div>
     </div>
   </div>
@@ -344,7 +359,7 @@
 <div class="scenario-panel">
   <div class="scenario-header">
     <h3><span style="color:#059669">Scenario 2:</span> 100% Affordable — Grant Maximizer</h3>
-    <span class="roi-badge">8.5% Cash-on-Cash</span>
+    <span class="roi-badge" id="s2_coc_badge">8.5% Cash-on-Cash</span>
   </div>
   <div class="scenario-body">
     <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">All zones built as 100% affordable housing (30-60% AMI). Maximizes LIHTC equity, tax-exempt bonds, and city/state grants. Lower per-unit NOI but your equity requirement is dramatically reduced. SB 35 ministerial approval = 90-day entitlement. Best ROI on cash invested because grants and credits pay for most of it.</p>
@@ -372,15 +387,15 @@
     <div class="pro-forma">
       <div class="pf-section">
         <h5>Development Costs</h5>
-        <div class="pf-line"><span>Land acquisition</span><span class="amt">$4,800,000</span></div>
+        <div class="pf-line"><span>Land acquisition</span><span class="amt" id="s2_land">$4,800,000</span></div>
         <div class="pf-line"><span>Demolition</span><span class="amt">$580,000</span></div>
         <div class="pf-line"><span>Hard costs (200K sf @ $350/sf)</span><span class="amt">$70,000,000</span></div>
         <div class="pf-line"><span>Site work</span><span class="amt">$2,800,000</span></div>
         <div class="pf-line"><span>Soft costs (28%)</span><span class="amt">$19,600,000</span></div>
         <div class="pf-line"><span>Developer fee (15% — affordable premium)</span><span class="amt">$14,670,000</span></div>
         <div class="pf-line"><span>Financing costs &amp; reserves</span><span class="amt">$5,800,000</span></div>
-        <div class="pf-line total"><span>Total Development Cost</span><span class="amt">$118,250,000</span></div>
-        <div class="pf-line total"><span>Cost per unit</span><span class="amt">$458,000</span></div>
+        <div class="pf-line total"><span>Total Development Cost</span><span class="amt" id="s2_tdc">$118,250,000</span></div>
+        <div class="pf-line total"><span>Cost per unit</span><span class="amt" id="s2_cpu">$458,000</span></div>
       </div>
       <div class="pf-section">
         <h5>Operating Pro Forma (Stabilized)</h5>
@@ -392,7 +407,7 @@
         <div class="pf-line"><span>Reserves + insurance</span><span class="amt">($420,000)</span></div>
         <div class="pf-line total"><span>Net Operating Income (NOI)</span><span class="amt">$2,374,923</span></div>
         <div class="pf-line"><span>Debt service (~$25M perm @ 4.5% soft debt)</span><span class="amt">($750,000)</span></div>
-        <div class="pf-line total"><span>Annual Cash Flow</span><span class="amt">$1,624,923</span></div>
+        <div class="pf-line total"><span>Annual Cash Flow</span><span class="amt" id="s2_cf">$1,624,923</span></div>
       </div>
     </div>
 
@@ -406,18 +421,18 @@
         <div style="width:16%;background:#dc2626">Equity 16%</div>
       </div>
       <div class="stack-legend">
-        <span><span class="dot" style="background:#2563eb"></span> 4% LIHTC Equity — $41.4M</span>
-        <span><span class="dot" style="background:#059669"></span> Tax-Exempt Bonds — $26.0M</span>
-        <span><span class="dot" style="background:#7c3aed"></span> City/State/Fed Grants — $23.7M</span>
-        <span><span class="dot" style="background:#d97706"></span> Soft Loans (LAHD/HCD) — $8.3M</span>
-        <span><span class="dot" style="background:#dc2626"></span> Developer Equity — $18.9M</span>
+        <span><span class="dot" style="background:#2563eb"></span> 4% LIHTC Equity — <span id="s2_lihtc">$41.4M</span></span>
+        <span><span class="dot" style="background:#059669"></span> Tax-Exempt Bonds — <span id="s2_bonds">$26.0M</span></span>
+        <span><span class="dot" style="background:#7c3aed"></span> City/State/Fed Grants — <span id="s2_grants">$23.7M</span></span>
+        <span><span class="dot" style="background:#d97706"></span> Soft Loans (LAHD/HCD) — <span id="s2_soft">$8.3M</span></span>
+        <span><span class="dot" style="background:#dc2626"></span> Developer Equity — <span id="s2_equity">$18.9M</span></span>
       </div>
     </div>
 
     <div class="roi-grid">
       <div class="roi-card"><div class="roi-label">Stabilized NOI</div><div class="roi-val" style="color:#059669">$2.37M</div><div class="roi-sub">Year 1</div></div>
-      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669">8.5%</div><div class="roi-sub">On $18.9M equity</div></div>
-      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val">$135K</div><div class="roi-sub">After debt service</div></div>
+      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669" id="s2_coc">8.5%</div><div class="roi-sub" id="s2_coc_sub">On $18.9M equity</div></div>
+      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val" id="s2_mcf">$135K</div><div class="roi-sub">After debt service</div></div>
       <div class="roi-card"><div class="roi-label">Developer Fee</div><div class="roi-val" style="color:#2563eb">$14.7M</div><div class="roi-sub">Paid during construction</div></div>
       <div class="roi-card"><div class="roi-label">Entitlement Time</div><div class="roi-val">90 days</div><div class="roi-sub">SB 35 ministerial</div></div>
     </div>
@@ -428,7 +443,7 @@
 <div class="scenario-panel">
   <div class="scenario-header">
     <h3><span style="color:#d97706">Scenario 3:</span> Hybrid — 70% Affordable / 30% Market via MIIP</h3>
-    <span class="roi-badge">6.8% Cash-on-Cash</span>
+    <span class="roi-badge" id="s3_coc_badge">6.8% Cash-on-Cash</span>
   </div>
   <div class="scenario-body">
     <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px">Uses the new CHIP/MIIP program (Feb 2025) for 120% density bonus. Mixed-income: 70% affordable for grants/LIHTC eligibility, 30% market-rate for higher rents. No ground-floor retail — pure residential play. Balanced approach but less community impact and fewer grant sources than Scenario 1.</p>
@@ -455,29 +470,29 @@
     <div class="pro-forma">
       <div class="pf-section">
         <h5>Development Costs</h5>
-        <div class="pf-line"><span>Land + demo</span><span class="amt">$5,380,000</span></div>
+        <div class="pf-line"><span>Land + demo</span><span class="amt" id="s3_land">$5,380,000</span></div>
         <div class="pf-line"><span>Hard costs (200K sf @ $360/sf)</span><span class="amt">$72,000,000</span></div>
         <div class="pf-line"><span>Soft costs (28%)</span><span class="amt">$20,160,000</span></div>
         <div class="pf-line"><span>Developer fee (8%)</span><span class="amt">$7,800,000</span></div>
         <div class="pf-line"><span>Financing + reserves</span><span class="amt">$5,600,000</span></div>
-        <div class="pf-line total"><span>Total Development Cost</span><span class="amt">$110,940,000</span></div>
-        <div class="pf-line total"><span>Cost per unit</span><span class="amt">$430,000</span></div>
+        <div class="pf-line total"><span>Total Development Cost</span><span class="amt" id="s3_tdc">$110,940,000</span></div>
+        <div class="pf-line total"><span>Cost per unit</span><span class="amt" id="s3_cpu">$430,000</span></div>
       </div>
       <div class="pf-section">
         <h5>Operating Pro Forma</h5>
         <div class="pf-line total"><span>EGI (5% vacancy)</span><span class="amt">$5,042,334</span></div>
         <div class="pf-line"><span>Expenses + mgmt + reserves</span><span class="amt">($2,218,627)</span></div>
         <div class="pf-line total"><span>NOI</span><span class="amt">$2,823,707</span></div>
-        <div class="pf-line"><span>Debt service (~$45M @ 6.0%)</span><span class="amt">($1,350,000)</span></div>
-        <div class="pf-line total"><span>Annual Cash Flow</span><span class="amt">$1,473,707</span></div>
+        <div class="pf-line"><span>Debt service (~$45M @ 6.0%)</span><span class="amt" id="s3_ds">($1,350,000)</span></div>
+        <div class="pf-line total"><span>Annual Cash Flow</span><span class="amt" id="s3_cf">$1,473,707</span></div>
       </div>
     </div>
 
     <div class="roi-grid">
       <div class="roi-card"><div class="roi-label">Stabilized NOI</div><div class="roi-val" style="color:#059669">$2.82M</div><div class="roi-sub">Year 1</div></div>
-      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669">6.8%</div><div class="roi-sub">On $21.7M equity</div></div>
-      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val">$123K</div><div class="roi-sub">After debt service</div></div>
-      <div class="roi-card"><div class="roi-label">Cap Rate (on cost)</div><div class="roi-val">2.5%</div><div class="roi-sub">NOI / total cost</div></div>
+      <div class="roi-card"><div class="roi-label">Cash-on-Cash</div><div class="roi-val" style="color:#059669" id="s3_coc">6.8%</div><div class="roi-sub" id="s3_coc_sub">On $21.7M equity</div></div>
+      <div class="roi-card"><div class="roi-label">Monthly Cash Flow</div><div class="roi-val" id="s3_mcf">$123K</div><div class="roi-sub">After debt service</div></div>
+      <div class="roi-card"><div class="roi-label">Cap Rate (on cost)</div><div class="roi-val" id="s3_cap">2.5%</div><div class="roi-sub">NOI / total cost</div></div>
       <div class="roi-card"><div class="roi-label">Stabilized Value</div><div class="roi-val">$51.3M</div><div class="roi-sub">NOI / 5.5% cap</div></div>
     </div>
   </div>
@@ -487,7 +502,7 @@
 <div class="scenario-panel">
   <div class="scenario-header">
     <h3><span style="color:#7c3aed">Scenario 4:</span> Phase It — East Block First, West Block Later</h3>
-    <span class="roi-badge">9.1% Cash-on-Cash (Phase 1)</span>
+    <span class="roi-badge" id="s4_coc_badge">9.1% Cash-on-Cash (Phase 1)</span>
   </div>
   <div class="scenario-body">
     <p style="font-size:.78rem;color:#5f6774;margin-bottom:14px"><strong>This is the recommended strategy.</strong> Start with Zone B (all vacant, 100% affordable) — fastest to entitle, cheapest to build, most grant money available. Use the developer fee + cash flow from Phase 1 to fund your equity for Phase 2 (the mixed-use village on Zone A). De-risks the whole project. Proves concept to lenders and city. Manchester Urban Homes next door validates the market.</p>
@@ -496,42 +511,42 @@
       <div class="pf-section" style="border:2px solid #7c3aed">
         <h5 style="color:#7c3aed">Phase 1 — Zone B: East Block (Year 1-2)</h5>
         <div class="pf-line"><span>72 units, 100% affordable, 4-story Type V</span><span class="amt"></span></div>
-        <div class="pf-line"><span>Total development cost</span><span class="amt">$33,100,000</span></div>
-        <div class="pf-line"><span>Cost per unit</span><span class="amt">$460,000</span></div>
-        <div class="pf-line"><span>LIHTC equity (35%)</span><span class="amt">$11,585,000</span></div>
-        <div class="pf-line"><span>Bonds (25%)</span><span class="amt">$8,275,000</span></div>
-        <div class="pf-line"><span>Grants (AHSC, LAHD, AHP)</span><span class="amt">$6,620,000</span></div>
-        <div class="pf-line"><span>Soft loan</span><span class="amt">$2,320,000</span></div>
-        <div class="pf-line" style="color:#dc2626;font-weight:700"><span>YOUR EQUITY NEEDED</span><span class="amt">$4,300,000</span></div>
+        <div class="pf-line"><span>Total development cost</span><span class="amt" id="s4p1_tdc">$33,100,000</span></div>
+        <div class="pf-line"><span>Cost per unit</span><span class="amt" id="s4p1_cpu">$460,000</span></div>
+        <div class="pf-line"><span>LIHTC equity (35%)</span><span class="amt" id="s4p1_lihtc">$11,585,000</span></div>
+        <div class="pf-line"><span>Bonds (25%)</span><span class="amt" id="s4p1_bonds">$8,275,000</span></div>
+        <div class="pf-line"><span>Grants (AHSC, LAHD, AHP)</span><span class="amt" id="s4p1_grants">$6,620,000</span></div>
+        <div class="pf-line"><span>Soft loan</span><span class="amt" id="s4p1_soft">$2,320,000</span></div>
+        <div class="pf-line" style="color:#dc2626;font-weight:700"><span>YOUR EQUITY NEEDED</span><span class="amt" id="s4p1_equity">$4,300,000</span></div>
         <div class="pf-line"><span>Developer fee earned</span><span class="amt">$4,965,000</span></div>
         <div class="pf-line"><span>Stabilized NOI</span><span class="amt">$662,000</span></div>
-        <div class="pf-line"><span>Cash-on-cash return</span><span class="amt" style="color:#059669">9.1%</span></div>
-        <div class="pf-line"><span>Monthly cash flow</span><span class="amt">$32,600</span></div>
+        <div class="pf-line"><span>Cash-on-cash return</span><span class="amt" style="color:#059669" id="s4p1_coc">9.1%</span></div>
+        <div class="pf-line"><span>Monthly cash flow</span><span class="amt" id="s4p1_mcf">$32,600</span></div>
         <div class="pf-line"><span>Entitlement: SB 35 = 90 days</span><span class="amt"></span></div>
       </div>
       <div class="pf-section" style="border:2px solid #2563eb">
         <h5 style="color:#2563eb">Phase 2 — Zone A: West Block Mixed-Use (Year 3-5)</h5>
         <div class="pf-line"><span>148 units + 35,000 sf retail + 8701 reuse</span><span class="amt"></span></div>
-        <div class="pf-line"><span>Total development cost</span><span class="amt">$81,700,000</span></div>
-        <div class="pf-line"><span>Cost per unit (residential only)</span><span class="amt">$552,000</span></div>
-        <div class="pf-line"><span>LIHTC equity</span><span class="amt">$22,900,000</span></div>
-        <div class="pf-line"><span>Bonds</span><span class="amt">$20,400,000</span></div>
-        <div class="pf-line"><span>Grants (NMTC, HFFI, AHSC)</span><span class="amt">$14,300,000</span></div>
-        <div class="pf-line"><span>Perm loan</span><span class="amt">$15,200,000</span></div>
-        <div class="pf-line" style="color:#dc2626;font-weight:700"><span>YOUR EQUITY NEEDED</span><span class="amt">$8,900,000</span></div>
+        <div class="pf-line"><span>Total development cost</span><span class="amt" id="s4p2_tdc">$81,700,000</span></div>
+        <div class="pf-line"><span>Cost per unit (residential only)</span><span class="amt" id="s4p2_cpu">$552,000</span></div>
+        <div class="pf-line"><span>LIHTC equity</span><span class="amt" id="s4p2_lihtc">$22,900,000</span></div>
+        <div class="pf-line"><span>Bonds</span><span class="amt" id="s4p2_bonds">$20,400,000</span></div>
+        <div class="pf-line"><span>Grants (NMTC, HFFI, AHSC)</span><span class="amt" id="s4p2_grants">$14,300,000</span></div>
+        <div class="pf-line"><span>Perm loan</span><span class="amt" id="s4p2_perm">$15,200,000</span></div>
+        <div class="pf-line" style="color:#dc2626;font-weight:700"><span>YOUR EQUITY NEEDED</span><span class="amt" id="s4p2_equity">$8,900,000</span></div>
         <div class="pf-line"><span>Funded by: Phase 1 dev fee + cash flow</span><span class="amt">~$5.9M</span></div>
-        <div class="pf-line"><span>New cash needed</span><span class="amt" style="color:#dc2626">$3,000,000</span></div>
+        <div class="pf-line"><span>New cash needed</span><span class="amt" style="color:#dc2626" id="s4p2_newcash">$3,000,000</span></div>
         <div class="pf-line"><span>Stabilized NOI (residential + retail)</span><span class="amt">$2,238,000</span></div>
         <div class="pf-line"><span>Monthly cash flow</span><span class="amt">$72,000</span></div>
       </div>
     </div>
 
     <div class="roi-grid" style="margin-top:16px">
-      <div class="roi-card"><div class="roi-label">Total Project Cost</div><div class="roi-val">$114.8M</div><div class="roi-sub">Both phases</div></div>
-      <div class="roi-card"><div class="roi-label">Total Cash In</div><div class="roi-val" style="color:#dc2626">$7.3M</div><div class="roi-sub">$4.3M + $3.0M</div></div>
+      <div class="roi-card"><div class="roi-label">Total Project Cost</div><div class="roi-val" id="s4_tdc">$114.8M</div><div class="roi-sub">Both phases</div></div>
+      <div class="roi-card"><div class="roi-label">Total Cash In</div><div class="roi-val" style="color:#dc2626" id="s4_cashin">$7.3M</div><div class="roi-sub" id="s4_cashin_sub">$4.3M + $3.0M</div></div>
       <div class="roi-card"><div class="roi-label">Combined NOI</div><div class="roi-val" style="color:#059669">$2.9M</div><div class="roi-sub">Stabilized</div></div>
       <div class="roi-card"><div class="roi-label">Combined Cash Flow</div><div class="roi-val">$104K/mo</div><div class="roi-sub">$1.25M/yr</div></div>
-      <div class="roi-card"><div class="roi-label">Equity Multiple</div><div class="roi-val" style="color:#059669">3.4x</div><div class="roi-sub">Over 15 years</div></div>
+      <div class="roi-card"><div class="roi-label">Equity Multiple</div><div class="roi-val" style="color:#059669" id="s4_eqmult">3.4x</div><div class="roi-sub">Over 15 years</div></div>
     </div>
   </div>
 </div>
@@ -597,9 +612,9 @@
     </thead>
     <tbody>
       <tr><td>Total Units</td><td>226</td><td>258</td><td>258</td><td>226</td></tr>
-      <tr><td>Total Dev Cost</td><td class="mono">$114.8M</td><td class="mono">$118.3M</td><td class="mono">$110.9M</td><td class="mono">$114.8M</td></tr>
-      <tr><td>Cost / Unit</td><td class="mono">$508K</td><td class="mono">$458K</td><td class="mono">$430K</td><td class="mono">$508K</td></tr>
-      <tr><td>Your Cash In</td><td class="mono">$17.2M</td><td class="mono">$18.9M</td><td class="mono">$21.7M</td><td class="mono best">$7.3M</td></tr>
+      <tr><td>Total Dev Cost</td><td class="mono" id="ct_s1_tdc">$114.8M</td><td class="mono" id="ct_s2_tdc">$118.3M</td><td class="mono" id="ct_s3_tdc">$110.9M</td><td class="mono" id="ct_s4_tdc">$114.8M</td></tr>
+      <tr><td>Cost / Unit</td><td class="mono" id="ct_s1_cpu">$508K</td><td class="mono" id="ct_s2_cpu">$458K</td><td class="mono" id="ct_s3_cpu">$430K</td><td class="mono" id="ct_s4_cpu">$508K</td></tr>
+      <tr><td>Your Cash In</td><td class="mono" id="ct_s1_eq">$17.2M</td><td class="mono" id="ct_s2_eq">$18.9M</td><td class="mono" id="ct_s3_eq">$21.7M</td><td class="mono best" id="ct_s4_eq">$7.3M</td></tr>
       <tr><td>Stabilized NOI</td><td class="mono best">$2.90M</td><td class="mono">$2.37M</td><td class="mono">$2.82M</td><td class="mono best">$2.90M</td></tr>
       <tr><td>Annual Cash Flow</td><td class="mono">$1.25M</td><td class="mono best">$1.62M</td><td class="mono">$1.47M</td><td class="mono">$1.25M</td></tr>
       <tr><td>Monthly Cash Flow</td><td class="mono">$104K</td><td class="mono best">$135K</td><td class="mono">$123K</td><td class="mono">$104K</td></tr>
@@ -701,5 +716,102 @@
 
 </main>
 <button class="print-btn" onclick="window.print()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print</button>
+
+<script>
+(function(){
+  var BASE=4800000, SF=90291;
+  var ZB=29430/SF, ZA=1-ZB; // zone B ~32.6%, zone A ~67.4%
+
+  // Base values at $4.8M land
+  var S1={tdc:114805000,u:226,noi:2899918,ds:1650000,cf:1249918,eq:17200000,lihtc:34400000,bonds:28700000,grants:13800000,perm:20700000};
+  var S2={tdc:118250000,u:258,noi:2374923,ds:750000,cf:1624923,eq:18900000,lihtc:41400000,bonds:26000000,grants:23700000,soft:8300000};
+  var S3={tdc:110940000,u:258,noi:2823707,ds:1350000,cf:1473707,eq:21700000,demo:580000};
+  var P1={tdc:33100000,u:72,noi:662000,cf:391200,eq:4300000,lihtc:11585000,bonds:8275000,grants:6620000,soft:2320000};
+  var P2={tdc:81700000,u:148,eq:8900000,lihtc:22900000,bonds:20400000,grants:14300000,perm:15200000,p1fund:5900000,newcash:3000000};
+  var S4_RETURNS=7300000*3.4; // total returns over 15yr at base
+
+  function fm(n){return n>=1e9?'$'+(n/1e9).toFixed(1)+'B':n>=1e6?'$'+(n/1e6).toFixed(1)+'M':n>=1e3?'$'+Math.round(n/1000)+'K':'$'+Math.round(n)}
+  function ff(n){return'$'+Math.round(n).toLocaleString()}
+  function fp(n){return n.toFixed(1)+'%'}
+  function fk(n){return'$'+Math.round(n/1000)+'K'}
+  function st(id,v){var e=document.getElementById(id);if(e)e.textContent=v}
+  function pi(v){return parseInt(v.replace(/[^0-9]/g,''),10)||0}
+
+  var inp=document.getElementById('landPrice');
+
+  function recalc(){
+    var land=pi(inp.value), d=land-BASE, psf=Math.round(land/SF);
+    st('landPsf','$'+psf+'/sf on 90,291 sf');
+
+    // S1 — Village
+    var s1t=S1.tdc+d, s1e=S1.eq+d;
+    st('s1_land',ff(land));
+    st('s1_tdc',ff(s1t));
+    st('s1_cpu',ff(Math.round(s1t/S1.u/1000)*1000));
+    st('s1_equity',fm(s1e));
+    st('s1_coc',fp(S1.cf/s1e*100));
+    st('s1_coc_badge',fp(S1.cf/s1e*100)+' Cash-on-Cash');
+    st('s1_coc_sub','On '+fm(s1e)+' equity');
+    st('s1_mcf',fk(S1.cf/12));
+    st('s1_cap',fp(S1.noi/s1t*100));
+
+    // S2 — Affordable
+    var s2t=S2.tdc+d, s2e=S2.eq+d;
+    st('s2_land',ff(land));
+    st('s2_tdc',ff(s2t));
+    st('s2_cpu',ff(Math.round(s2t/S2.u/1000)*1000));
+    st('s2_equity',fm(s2e));
+    st('s2_coc',fp(S2.cf/s2e*100));
+    st('s2_coc_badge',fp(S2.cf/s2e*100)+' Cash-on-Cash');
+    st('s2_coc_sub','On '+fm(s2e)+' equity');
+    st('s2_mcf',fk(S2.cf/12));
+
+    // S3 — Hybrid (land+demo combined in one line)
+    var s3t=S3.tdc+d, s3e=S3.eq+d;
+    st('s3_land',ff(land+S3.demo));
+    st('s3_tdc',ff(s3t));
+    st('s3_cpu',ff(Math.round(s3t/S3.u/1000)*1000));
+    st('s3_coc',fp(S3.cf/s3e*100));
+    st('s3_coc_badge',fp(S3.cf/s3e*100)+' Cash-on-Cash');
+    st('s3_coc_sub','On '+fm(s3e)+' equity');
+    st('s3_mcf',fk(S3.cf/12));
+    st('s3_cap',fp(S3.noi/s3t*100));
+
+    // S4 — Phase It (land splits by zone area)
+    var d1=d*ZB, d2=d*ZA;
+    var p1t=P1.tdc+d1, p1e=P1.eq+d1;
+    st('s4p1_tdc',ff(Math.round(p1t)));
+    st('s4p1_cpu',ff(Math.round(p1t/P1.u/1000)*1000));
+    st('s4p1_equity',ff(Math.round(p1e)));
+    st('s4p1_coc',fp(P1.cf/p1e*100));
+    st('s4p1_mcf','$'+Math.round(P1.cf/12).toLocaleString());
+
+    var p2t=P2.tdc+d2, p2e=P2.eq+d2;
+    var p2nc=Math.max(0,p2e-P2.p1fund);
+    st('s4p2_tdc',ff(Math.round(p2t)));
+    st('s4p2_cpu',ff(Math.round(p2t/P2.u/1000)*1000));
+    st('s4p2_equity',ff(Math.round(p2e)));
+    st('s4p2_newcash',ff(Math.round(p2nc)));
+
+    var s4t=p1t+p2t, s4c=p1e+p2nc;
+    st('s4_tdc',fm(s4t));
+    st('s4_cashin',fm(s4c));
+    st('s4_cashin_sub',fm(p1e)+' + '+fm(p2nc));
+    st('s4_coc_badge',fp(P1.cf/p1e*100)+' Cash-on-Cash (Phase 1)');
+    st('s4_eqmult',(S4_RETURNS/s4c).toFixed(1)+'x');
+
+    // Comparison table
+    st('ct_s1_tdc',fm(s1t));st('ct_s2_tdc',fm(s2t));st('ct_s3_tdc',fm(s3t));st('ct_s4_tdc',fm(s4t));
+    st('ct_s1_cpu',fk(s1t/S1.u));st('ct_s2_cpu',fk(s2t/S2.u));st('ct_s3_cpu',fk(s3t/S3.u));st('ct_s4_cpu',fk(s4t/S1.u));
+    st('ct_s1_eq',fm(s1e));st('ct_s2_eq',fm(s2e));st('ct_s3_eq',fm(s3e));st('ct_s4_eq',fm(s4c));
+  }
+
+  inp.addEventListener('input',function(){
+    var raw=this.value.replace(/[^0-9]/g,'');
+    if(raw){var n=parseInt(raw,10);this.value=n.toLocaleString()}
+    recalc();
+  });
+})();
+</script>
 </body>
 </html>
