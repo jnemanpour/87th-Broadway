@@ -13,6 +13,11 @@ nav.tabs .tab{padding:8px 18px;font-size:.82rem;font-weight:600;color:#5f6774;te
 nav.tabs .tab:hover{color:#1a1d23;background:#f8f9fa}
 nav.tabs .tab.active{color:#2563eb;border-bottom-color:#2563eb}
 
+/* Print Button */
+.print-btn{position:fixed;bottom:24px;right:24px;background:#1a1d23;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.82rem;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;gap:6px;transition:all .15s}
+.print-btn:hover{background:#2563eb;transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.print-btn svg{width:16px;height:16px}
+
 main{max-width:1200px;margin:0 auto;padding:20px}
 
 /* Map */
@@ -109,3 +114,84 @@ tfoot td{background:#f8f9fa;font-weight:700}
 .grant-card .details strong{color:#1a1d23}
 .grant-card .amount{font-size:1rem;font-weight:800;color:#059669;margin-top:6px}
 .grant-card .deadline{font-size:.72rem;color:#dc2626;font-weight:600;margin-top:4px}
+
+/* Print Styles */
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:9pt!important;color:#000!important}
+  header{padding:12px 0!important;border-bottom:2px solid #000!important;background:#fff!important}
+  header h1{font-size:14pt!important;color:#000!important}
+  header p{font-size:8pt!important;color:#333!important}
+  nav.tabs{display:none!important}
+  .print-btn{display:none!important}
+  main{max-width:100%!important;padding:8px 0!important}
+
+  /* Tables */
+  .table-wrap{box-shadow:none!important;border:1px solid #999!important;border-radius:0!important;margin-bottom:10px!important;page-break-inside:avoid}
+  table{font-size:7.5pt!important}
+  th{background:#e8e8e8!important;color:#000!important;padding:4px 6px!important;font-size:6.5pt!important}
+  td{padding:4px 6px!important;border-bottom:1px solid #ccc!important}
+  tr:hover td{background:transparent!important}
+
+  /* Metric Cards */
+  .metric-row{gap:6px!important;margin-bottom:10px!important}
+  .metric{box-shadow:none!important;border:1px solid #999!important;border-radius:0!important;padding:8px 10px!important;min-width:120px!important}
+  .metric .label{font-size:6pt!important;color:#333!important}
+  .metric .value{font-size:10pt!important;color:#000!important}
+  .metric .sub{font-size:6.5pt!important;color:#444!important}
+
+  /* Section Headers */
+  .section-title{font-size:10pt!important;border-bottom:1.5px solid #000!important;margin-top:14px!important;margin-bottom:6px!important;page-break-after:avoid}
+
+  /* Calculator — show values, hide interactive elements */
+  .calc-panel{box-shadow:none!important;border:1px solid #999!important;border-radius:0!important;padding:10px!important}
+  .calc-range,.calc-range-labels,.nego-presets,.nego-btn{display:none!important}
+  .calc-field{border:none!important;padding:0!important;font-size:11pt!important}
+  .calc-result-grid{gap:6px!important}
+  .calc-card{border-radius:0!important;padding:6px 8px!important}
+  .calc-card.highlight-green{background:#e8f5e9!important;border-color:#4caf50!important}
+  .calc-card.highlight-amber{background:#fff8e1!important;border-color:#ff9800!important}
+  .calc-label{font-size:5.5pt!important}
+  .calc-val{font-size:9pt!important}
+  .calc-sub{font-size:5.5pt!important}
+  .calc-alloc{display:none!important}
+
+  /* Negotiation */
+  .nego-summary{border-top:1px solid #999!important}
+  .nego-summary-grid{gap:6px!important}
+
+  /* Grant Cards */
+  .grant-card{box-shadow:none!important;border:1px solid #999!important;border-radius:0!important;padding:8px 12px!important;margin-bottom:6px!important;page-break-inside:avoid}
+  .grant-card h3{font-size:9pt!important}
+  .grant-card .details{font-size:7pt!important}
+  .grant-card .amount{font-size:9pt!important}
+
+  /* Badges & Tags */
+  .b,.tag{border:1px solid #999!important;border-radius:2px!important}
+  .vacant{background:#e8f5e9!important;color:#2e7d32!important}
+  .improved{background:#fff8e1!important;color:#e65100!important}
+  .owned{background:#e3f2fd!important;color:#1565c0!important}
+  .tag-sold{background:#ffebee!important;color:#c62828!important}
+  .tag-listed{background:#fff8e1!important;color:#e65100!important}
+  .tag-dev{background:#e8f5e9!important;color:#2e7d32!important}
+
+  /* Map — show at reduced height */
+  #map{height:300px!important;border-radius:0!important;box-shadow:none!important;border:1px solid #999!important}
+
+  /* Links — show URL */
+  a.apn{color:#000!important}
+  a[href]:after{content:none!important}
+
+  /* Page breaks */
+  h3.section-title{page-break-after:avoid!important}
+  .scenario-panel{page-break-inside:avoid!important;box-shadow:none!important;border:1px solid #999!important;border-radius:0!important;margin-bottom:10px!important}
+  .scenario-header{padding:8px 12px!important}
+  .scenario-body{padding:10px 12px!important}
+
+  /* Contact table */
+  .filter-bar{display:none!important}
+  .contact-count{display:none!important}
+
+  /* Page footer */
+  @page{margin:0.5in 0.4in;size:letter}
+}
