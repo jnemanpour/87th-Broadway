@@ -145,6 +145,10 @@ const lg=L.control({position:'bottomright'});
 lg.onAdd=function(){const d=L.DomUtil.create('div');d.style.cssText='background:#fff;padding:10px 14px;border-radius:8px;font:12px Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15);line-height:1.8';d.innerHTML='<b style="font-size:11px">Legend</b><br><span style="color:'+OWN+'">&#9632;</span> You Own (2)<br><span style="color:'+BUY+'">&#9632;</span> Purchasing — Vacant<br><span style="color:'+BUY_IMP+'">&#9632;</span> Purchasing — Improved<br><span style="color:'+POTENTIAL+'">&#9632;</span> Potential — Lot 700';return d;};
 lg.addTo(map);
 </script>
+<script src="print-all.js"></script>
+<div class="print-btns">
 <button class="print-btn" onclick="window.print()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print</button>
+<button class="print-btn print-all" onclick="printAll()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print All Tabs</button>
+</div>
 </body>
 </html>

@@ -14,9 +14,12 @@ nav.tabs .tab:hover{color:#1a1d23;background:#f8f9fa}
 nav.tabs .tab.active{color:#2563eb;border-bottom-color:#2563eb}
 
 /* Print Button */
-.print-btn{position:fixed;bottom:24px;right:24px;background:#1a1d23;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.82rem;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;gap:6px;transition:all .15s}
+.print-btns{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;gap:8px;align-items:center}
+.print-btn{background:#1a1d23;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.82rem;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);display:flex;align-items:center;gap:6px;transition:all .15s}
 .print-btn:hover{background:#2563eb;transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.25)}
 .print-btn svg{width:16px;height:16px}
+.print-btn.print-all{background:#2563eb}
+.print-btn.print-all:hover{background:#1d4ed8}
 
 main{max-width:1200px;margin:0 auto;padding:20px}
 
@@ -123,7 +126,7 @@ tfoot td{background:#f8f9fa;font-weight:700}
   header h1{font-size:14pt!important;color:#000!important}
   header p{font-size:8pt!important;color:#333!important}
   nav.tabs{display:none!important}
-  .print-btn{display:none!important}
+  .print-btn,.print-btns{display:none!important}
   main{max-width:100%!important;padding:8px 0!important}
 
   /* Tables */
