@@ -75,13 +75,48 @@
   .roi-grid{grid-template-columns:repeat(3,1fr)}
   .amenity-grid{grid-template-columns:repeat(2,1fr)}
 }
+@media(max-width:640px){
+  .zone-cards{grid-template-columns:1fr}
+  .zone-card{padding:12px 14px}
+  .zone-card h4{font-size:.74rem}
+  .zone-card .zone-stats{font-size:.66rem}
+  .scenario-panel{border-radius:8px}
+  .scenario-header{padding:12px 14px;flex-direction:column;align-items:flex-start;gap:6px}
+  .scenario-header h3{font-size:.82rem}
+  .scenario-body{padding:14px}
+  .pro-forma{grid-template-columns:1fr;gap:10px}
+  .pf-section{padding:10px 12px}
+  .pf-section h5{font-size:.62rem}
+  .pf-line{font-size:.68rem}
+  .pf-line .amt{font-size:.68rem}
+  .pf-line.total{font-size:.72rem}
+  .roi-grid{grid-template-columns:repeat(2,1fr);gap:6px}
+  .roi-card{padding:8px 6px}
+  .roi-card .roi-val{font-size:.88rem}
+  .roi-card .roi-label{font-size:.56rem}
+  .roi-card .roi-sub{font-size:.56rem}
+  .stack-bar{height:26px}
+  .stack-bar div{font-size:.5rem}
+  .stack-legend{font-size:.6rem;gap:6px}
+  .amenity-grid{grid-template-columns:1fr}
+  .amenity-card{padding:10px 12px}
+  .amenity-card h5{font-size:.72rem}
+  .amenity-card .amenity-detail{font-size:.64rem}
+  .compare-table{font-size:.64rem}
+  .compare-table th{padding:6px 6px;font-size:.56rem}
+  .compare-table td{padding:6px 6px;font-size:.64rem}
+  .ref-section{padding:12px 14px}
+  .ref-section h4{font-size:.76rem}
+  .ref-list li{font-size:.66rem}
+  .scenario-body [style*="grid-template-columns"]{grid-template-columns:1fr!important}
+}
 </style>
 </head>
 <body>
 
 <header>
   <h1>87th &amp; Broadway — Acquisition Research</h1>
-  <p>Kleinman Trust &middot; 12 Parcels &middot; $4.8M Proposal &middot; ~90,291 sf land &middot; The Neman Group</p>
+  <p>Kleinman Trust &middot; 12 Parcels &middot; $5M Proposal &middot; ~90,291 sf land &middot; The Neman Group</p>
   <nav class="tabs">
     <a href="index.html" class="tab">Parcel Map</a>
     <a href="comps.html" class="tab">Commercial Comps</a>
@@ -102,9 +137,9 @@
     </div>
     <div style="display:flex;align-items:center;gap:4px">
       <span class="calc-dollar">$</span>
-      <input type="text" id="landPrice" value="4,800,000" class="calc-field mono" style="width:200px;font-size:1.3rem" />
+      <input type="text" id="landPrice" value="5,000,000" class="calc-field mono" style="width:200px;font-size:1.3rem" />
     </div>
-    <div style="font-size:.74rem;color:#5f6774" id="landPsf">$53/sf on 90,291 sf</div>
+    <div style="font-size:.74rem;color:#5f6774" id="landPsf">$55/sf on 90,291 sf</div>
   </div>
 </div>
 
@@ -815,6 +850,9 @@
     if(raw){var n=parseInt(raw,10);this.value=n.toLocaleString()}
     recalc();
   });
+
+  // Run on load to apply default value
+  recalc();
 })();
 </script>
 </body>
