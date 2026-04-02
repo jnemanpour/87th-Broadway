@@ -141,6 +141,9 @@ tfoot td{background:#f8f9fa;font-weight:700}
   .grant-card{padding:10px 14px}
   .grant-card h3{font-size:.78rem}
   .grant-card .details{font-size:.68rem}
+  .analysis-grid{grid-template-columns:1fr}
+  .expand-section ol{font-size:.7rem}
+  .analysis-note{font-size:.68rem}
   .filter-bar{gap:6px}
   .filter-btn{padding:4px 10px;font-size:.64rem}
   .print-btns{bottom:12px;right:12px;flex-direction:column;gap:6px}
@@ -149,12 +152,36 @@ tfoot td{background:#f8f9fa;font-weight:700}
   .b,.tag{font-size:.56rem;padding:1px 5px}
 }
 
+.grant-card{cursor:pointer;transition:all .2s}
+.grant-card:hover{border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,.15)}
 .grant-card h3{font-size:.88rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
 .grant-card .agency{font-size:.72rem;color:#5f6774;margin-bottom:8px}
 .grant-card .details{font-size:.78rem;line-height:1.6;color:#374151}
 .grant-card .details strong{color:#1a1d23}
 .grant-card .amount{font-size:1rem;font-weight:800;color:#059669;margin-top:6px}
 .grant-card .deadline{font-size:.72rem;color:#dc2626;font-weight:600;margin-top:4px}
+
+/* Expand Arrow */
+.expand-arrow{font-size:.6rem;color:#9ca3af;margin-left:auto;transition:transform .25s}
+.grant-card.expanded .expand-arrow{transform:rotate(180deg);color:#2563eb}
+
+/* Expand Panel */
+.expand-panel{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;opacity:0}
+.grant-card.expanded .expand-panel{max-height:3000px;opacity:1;margin-top:16px;border-top:1px solid #e2e5ea;padding-top:16px}
+
+.expand-section{margin-bottom:16px}
+.expand-section h4{font-size:.82rem;font-weight:700;color:#1a1d23;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.expand-section h4::before{content:'';width:3px;height:14px;background:#2563eb;border-radius:2px}
+.expand-section ol{padding-left:20px;font-size:.76rem;line-height:1.7;color:#374151}
+.expand-section ol li{margin-bottom:8px}
+.expand-section ol li strong{color:#1a1d23}
+
+/* Analysis Grid */
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.analysis-item{background:#f8f9fa;border:1px solid #e2e5ea;border-radius:6px;padding:10px 12px}
+.analysis-label{font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#8b919d;margin-bottom:2px}
+.analysis-value{font-size:.76rem;font-weight:600;color:#1a1d23}
+.analysis-note{font-size:.74rem;line-height:1.6;color:#374151;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 12px;margin-top:8px}
 
 /* Print Styles */
 @media print{
@@ -206,6 +233,14 @@ tfoot td{background:#f8f9fa;font-weight:700}
   .grant-card h3{font-size:9pt!important}
   .grant-card .details{font-size:7pt!important}
   .grant-card .amount{font-size:9pt!important}
+  .expand-panel{max-height:none!important;opacity:1!important;overflow:visible!important}
+  .expand-arrow{display:none!important}
+  .expand-section ol{font-size:7pt!important}
+  .analysis-grid{grid-template-columns:1fr 1fr!important;gap:4px!important}
+  .analysis-item{padding:4px 6px!important}
+  .analysis-label{font-size:5.5pt!important}
+  .analysis-value{font-size:7pt!important}
+  .analysis-note{font-size:7pt!important;padding:6px 8px!important}
 
   /* Badges & Tags */
   .b,.tag{border:1px solid #999!important;border-radius:2px!important}
