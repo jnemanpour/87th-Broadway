@@ -113,35 +113,40 @@ tfoot td{background:#f8f9fa;font-weight:700}
 
 /* Mobile Responsive */
 @media(max-width:640px){
-  header{padding:14px 16px}
-  header h1{font-size:1rem}
-  header p{font-size:.68rem}
-  nav.tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0;flex-wrap:nowrap}
-  nav.tabs::-webkit-scrollbar{display:none}
-  nav.tabs .tab{padding:7px 12px;font-size:.72rem;white-space:nowrap;flex-shrink:0}
-  main{padding:12px}
-  #map{height:300px;border-radius:8px}
-  .table-wrap{border-radius:8px}
-  table{font-size:.68rem}
-  th{padding:6px 8px;font-size:.58rem}
-  td{padding:6px 8px;font-size:.68rem}
+  body{overflow-x:hidden}
+  header{padding:12px 14px}
+  header h1{font-size:.88rem}
+  header p{font-size:.62rem}
+  nav.tabs{flex-wrap:wrap;gap:0;margin-top:10px;border-bottom:none}
+  nav.tabs .tab{padding:5px 10px;font-size:.66rem;flex:0 0 auto;border-bottom:2px solid transparent}
+  main{padding:10px}
+  #map{height:280px;border-radius:8px}
+  .table-wrap{border-radius:8px;margin-bottom:14px}
+  table{font-size:.6rem}
+  th{padding:4px 5px;font-size:.52rem}
+  td{padding:4px 5px;font-size:.6rem}
   .metric-row{gap:8px}
-  .metric{min-width:calc(50% - 4px);flex:none;width:calc(50% - 4px);padding:10px 12px}
-  .metric .value{font-size:.95rem}
-  .metric .sub{font-size:.64rem}
-  .section-title{font-size:.82rem}
-  .calc-panel{padding:14px 16px}
-  .calc-title{font-size:.85rem}
+  .metric{min-width:calc(50% - 4px);flex:none;width:calc(50% - 4px);padding:8px 10px}
+  .metric .label{font-size:.56rem}
+  .metric .value{font-size:.8rem}
+  .metric .sub{font-size:.56rem}
+  .section-title{font-size:.78rem}
+  .calc-panel{padding:12px 14px}
+  .calc-title{font-size:.82rem}
   .calc-grid{flex-direction:column}
   .calc-result-grid{grid-template-columns:1fr 1fr}
   .calc-card{padding:8px 10px}
-  .calc-val{font-size:.9rem}
+  .calc-val{font-size:.85rem}
   .nego-summary-grid{grid-template-columns:1fr 1fr}
-  .grant-card{padding:12px 14px}
-  .grant-card h3{font-size:.8rem}
-  .grant-card .details{font-size:.72rem}
-  .print-btns{bottom:16px;right:16px;flex-direction:column;gap:6px}
-  .print-btn{padding:8px 14px;font-size:.72rem}
+  .grant-card{padding:10px 14px}
+  .grant-card h3{font-size:.78rem}
+  .grant-card .details{font-size:.68rem}
+  .filter-bar{gap:6px}
+  .filter-btn{padding:4px 10px;font-size:.64rem}
+  .print-btns{bottom:12px;right:12px;flex-direction:column;gap:6px}
+  .print-btn{padding:8px 12px;font-size:.68rem}
+  .print-btn svg{width:14px;height:14px}
+  .b,.tag{font-size:.56rem;padding:1px 5px}
 }
 
 .grant-card h3{font-size:.88rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}

@@ -100,6 +100,43 @@
     </tfoot>
   </table>
 </div>
+
+<h3 class="section-title">Purchase &amp; Sale Agreements (PSAs)</h3>
+<div class="metric-row">
+  <div class="metric"><div class="label">Total PSA Value</div><div class="value">$7,000,000</div><div class="sub">5 agreements covering 12 parcels</div></div>
+  <div class="metric"><div class="label">Buyer</div><div class="value">Edward Neiman</div><div class="sub">And no assignee (assignable with consent)</div></div>
+  <div class="metric"><div class="label">Escrow</div><div class="value">Commerce Escrow</div><div class="sub">c/o Dwayne Butler &middot; 1055 Wilshire Blvd #1000</div></div>
+  <div class="metric"><div class="label">Title</div><div class="value">Chicago Title</div><div class="sub">c/o Michael Slinger</div></div>
+</div>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>PSA</th><th>Parcels</th><th>Address</th><th>Price</th><th>Date</th><th>Close</th><th>Deposit</th><th>Document</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>PSA 1</strong></td><td>014-003 thru 008</td><td>8613–8659 S Broadway</td><td class="mono">$1,842,653</td><td>Mar 18, 2026</td><td>21-30 days</td><td>Non-refundable</td>
+        <td><a href="docs/psa-8613-8659-broadway.pdf" target="_blank" style="color:#2563eb;font-weight:600">View PDF</a></td>
+      </tr>
+      <tr>
+        <td><strong>PSA 2</strong></td><td>014-006</td><td>8623 S Broadway</td><td class="mono">$368,209</td><td>Mar 18, 2026</td><td>21-30 days</td><td>Non-refundable</td>
+        <td><a href="docs/psa-8623-broadway.pdf" target="_blank" style="color:#2563eb;font-weight:600">View PDF</a></td>
+      </tr>
+      <tr>
+        <td><strong>PSA 3</strong></td><td>015-012 thru 016</td><td>8650–8680 S Broadway</td><td class="mono">$1,420,965</td><td>Mar 18, 2026</td><td>21-30 days</td><td>Non-refundable</td>
+        <td><a href="docs/psa-8650-8680-broadway.pdf" target="_blank" style="color:#2563eb;font-weight:600">View PDF</a></td>
+      </tr>
+      <tr>
+        <td><strong>PSA 4</strong></td><td>019-002</td><td>8713 S Broadway</td><td class="mono">$3,000,000</td><td>Mar 19, 2026</td><td>21-30 days</td><td>Non-refundable</td>
+        <td><a href="docs/psa-8713-broadway.pdf" target="_blank" style="color:#2563eb;font-weight:600">View PDF</a></td>
+      </tr>
+      <tr>
+        <td><strong>PSA 5</strong></td><td>026-019, 026-020</td><td>Detached parcels (Zone C)</td><td class="mono">$368,174</td><td>Mar 18, 2026</td><td>21-30 days</td><td>Non-refundable</td>
+        <td><a href="docs/psa-026-parcels.pdf" target="_blank" style="color:#2563eb;font-weight:600">View PDF</a></td>
+      </tr>
+    </tbody>
+    <tfoot><tr><td colspan="3"><strong>Total Across All PSAs</strong></td><td class="mono"><strong>$7,000,000</strong></td><td colspan="4"></td></tr></tfoot>
+  </table>
+</div>
+
 </main>
 
 <script>
@@ -112,18 +149,20 @@ const OWN='#3b82f6',BUY='#22c55e',BUY_IMP='#f59e0b',POTENTIAL='#a855f7';
 const parcelDefs=[
   {apn:'6040-019-001',label:'8701 S Broadway',status:'You Own',type:'Commercial',land:'15,750 sf',bldg:'13,965 sf (1993)',color:OWN},
   {apn:'6040-014-002',label:'Boxing Gym Lot',status:'You Own',type:'Commercial',land:'—',bldg:'—',color:OWN},
-  {apn:'6040-014-008',label:'Lots 8-9 (vacant)',status:'Purchasing',type:'Vacant',land:'15,000 sf',bldg:'—',color:BUY},
-  {apn:'6040-014-007',label:'Lot 7 (vacant)',status:'Purchasing',type:'Vacant',land:'7,500 sf',bldg:'—',color:BUY},
-  {apn:'6040-014-006',label:'8623 S Broadway',status:'Purchasing',type:'Restaurant',land:'7,500 sf',bldg:'22,500 sf (1927)',color:BUY_IMP},
-  {apn:'6040-014-005',label:'8617 S Broadway',status:'Purchasing',type:'Vacant',land:'7,050 sf',bldg:'—',color:BUY},
-  {apn:'6040-014-004',label:'8615 S Broadway',status:'Purchasing',type:'Office',land:'3,750 sf',bldg:'3,699 sf (1948)',color:BUY_IMP},
-  {apn:'6040-014-003',label:'8613 S Broadway',status:'Purchasing',type:'Store',land:'—',bldg:'3,096 sf (1910)',color:BUY_IMP},
-  {apn:'6040-019-002',label:'8713 S Broadway',status:'Purchasing',type:'Store',land:'15,750 sf',bldg:'13,020 sf (1936)',color:BUY_IMP},
-  {apn:'6040-015-016',label:'8680 S Broadway',status:'Purchasing',type:'Vacant',land:'5,535 sf',bldg:'—',color:BUY},
-  {apn:'6040-015-029',label:'8656 S Broadway',status:'Purchasing',type:'Vacant',land:'6,075 sf',bldg:'—',color:BUY},
-  {apn:'6040-015-012',label:'8650 S Broadway',status:'Purchasing',type:'Vacant',land:'6,750 sf',bldg:'—',color:BUY},
-  {apn:'6040-015-014',label:'8660 S Broadway',status:'Purchasing',type:'Vacant',land:'5,670 sf',bldg:'—',color:BUY},
-  {apn:'6040-015-015',label:'8666 S Broadway',status:'Purchasing',type:'Vacant',land:'5,400 sf',bldg:'—',color:BUY},
+  {apn:'6040-014-008',label:'Lots 8-9 (vacant)',status:'Purchasing',type:'Vacant',land:'15,000 sf',bldg:'—',color:BUY,psa:'docs/psa-8613-8659-broadway.pdf'},
+  {apn:'6040-014-007',label:'Lot 7 (vacant)',status:'Purchasing',type:'Vacant',land:'7,500 sf',bldg:'—',color:BUY,psa:'docs/psa-8613-8659-broadway.pdf'},
+  {apn:'6040-014-006',label:'8623 S Broadway',status:'Purchasing',type:'Restaurant',land:'7,500 sf',bldg:'22,500 sf (1927)',color:BUY_IMP,psa:'docs/psa-8623-broadway.pdf'},
+  {apn:'6040-014-005',label:'8617 S Broadway',status:'Purchasing',type:'Vacant',land:'7,050 sf',bldg:'—',color:BUY,psa:'docs/psa-8613-8659-broadway.pdf'},
+  {apn:'6040-014-004',label:'8615 S Broadway',status:'Purchasing',type:'Office',land:'3,750 sf',bldg:'3,699 sf (1948)',color:BUY_IMP,psa:'docs/psa-8613-8659-broadway.pdf'},
+  {apn:'6040-014-003',label:'8613 S Broadway',status:'Purchasing',type:'Store',land:'—',bldg:'3,096 sf (1910)',color:BUY_IMP,psa:'docs/psa-8613-8659-broadway.pdf'},
+  {apn:'6040-019-002',label:'8713 S Broadway',status:'Purchasing',type:'Store',land:'15,750 sf',bldg:'13,020 sf (1936)',color:BUY_IMP,psa:'docs/psa-8713-broadway.pdf'},
+  {apn:'6040-015-016',label:'8680 S Broadway',status:'Purchasing',type:'Vacant',land:'5,535 sf',bldg:'—',color:BUY,psa:'docs/psa-8650-8680-broadway.pdf'},
+  {apn:'6040-015-029',label:'8656 S Broadway',status:'Purchasing',type:'Vacant',land:'6,075 sf',bldg:'—',color:BUY,psa:'docs/psa-8650-8680-broadway.pdf'},
+  {apn:'6040-015-012',label:'8650 S Broadway',status:'Purchasing',type:'Vacant',land:'6,750 sf',bldg:'—',color:BUY,psa:'docs/psa-8650-8680-broadway.pdf'},
+  {apn:'6040-015-014',label:'8660 S Broadway',status:'Purchasing',type:'Vacant',land:'5,670 sf',bldg:'—',color:BUY,psa:'docs/psa-8650-8680-broadway.pdf'},
+  {apn:'6040-015-015',label:'8666 S Broadway',status:'Purchasing',type:'Vacant',land:'5,400 sf',bldg:'—',color:BUY,psa:'docs/psa-8650-8680-broadway.pdf'},
+  {apn:'6040-026-020',label:'Detached Parcel',status:'Purchasing',type:'Vacant',land:'~3,885 sf',bldg:'—',color:BUY,psa:'docs/psa-026-parcels.pdf'},
+  {apn:'6040-026-019',label:'Detached Parcel',status:'Purchasing',type:'Vacant',land:'~3,885 sf',bldg:'—',color:BUY,psa:'docs/psa-026-parcels.pdf'},
   {apn:'6040-015-900',label:'Lot 700 — LA City',status:'Potential',type:'City Parking Lot',land:'—',bldg:'—',color:POTENTIAL},
   {apn:'6040-015-901',label:'Lot 700 — LA City (pt 2)',status:'Potential',type:'City Parking Lot',land:'—',bldg:'—',color:POTENTIAL}
 ];
@@ -136,8 +175,9 @@ fetch(svcUrl+'?where=APN+IN+('+apnList+')&outFields=APN&returnGeometry=true&outS
     const lookup={};parcelDefs.forEach(p=>{lookup[p.apn]=p;});
     data.features.forEach(f=>{
       const def=lookup[f.properties.APN];if(!def)return;
+      var psaLink=def.psa?'<div style="margin-top:6px"><a href="'+def.psa+'" target="_blank" style="color:#2563eb;font-size:11px;font-weight:600;text-decoration:none">View PSA &rarr;</a></div>':'';
       L.geoJSON(f,{style:{color:def.color,weight:3,fillColor:def.color,fillOpacity:0.35,opacity:1}}).addTo(map)
-        .bindPopup('<div style="font-family:Inter,sans-serif;font-size:13px;min-width:200px"><strong>'+def.label+'</strong><br><span style="font-family:JetBrains Mono;font-size:11px;color:#666">'+f.properties.APN+'</span><br><span style="margin-top:4px;display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:'+def.color+'22;color:'+def.color+'">'+def.status+'</span><div style="margin-top:6px;font-size:12px">'+def.type+'<br>Land: '+def.land+(def.bldg!=='—'?'<br>Bldg: '+def.bldg:'')+'</div></div>');
+        .bindPopup('<div style="font-family:Inter,sans-serif;font-size:13px;min-width:200px"><strong>'+def.label+'</strong><br><span style="font-family:JetBrains Mono;font-size:11px;color:#666">'+f.properties.APN+'</span><br><span style="margin-top:4px;display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:'+def.color+'22;color:'+def.color+'">'+def.status+'</span><div style="margin-top:6px;font-size:12px">'+def.type+'<br>Land: '+def.land+(def.bldg!=='—'?'<br>Bldg: '+def.bldg:'')+'</div>'+psaLink+'</div>');
     });
   }).catch(()=>{});
 
